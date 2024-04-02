@@ -1,13 +1,3 @@
-ï»¿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
 namespace Proyecto_Walbusch
 {
     public partial class Form2 : Form
@@ -15,6 +5,41 @@ namespace Proyecto_Walbusch
         public Form2()
         {
             InitializeComponent();
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            // Establecer placeholder al buscador
+            BuscadorEmpleado.Text = "Ingrese nombre o rut";
+            BuscadorEmpleado.ForeColor = Color.Gray;
+        }
+
+        private void BuscadorEmpleado_Enter(object sender, EventArgs e)
+        {
+            // Remover el placeholder de los buscadores cuando se haga click en ellos
+            if (BuscadorEmpleado.Text == "Ingrese nombre o rut")
+            {
+                BuscadorEmpleado.Text = "";
+                BuscadorEmpleado.ForeColor = Color.Black;
+            }
+        }
+
+        private void BuscadorEmpleado_Leave(object sender, EventArgs e)
+        {
+            // Comprobar si el buscador está vacio para colocar el placeholder
+            if (BuscadorEmpleado.Text == "")
+            {
+                BuscadorEmpleado.Text = "Ingrese nombre o rut";
+                BuscadorEmpleado.ForeColor = Color.Gray;
+            }
+        }
+
+        private void RegresarButton_Click(object sender, EventArgs e)
+        {
+            // Regresar al formulario inicial
+            Form1 form1 = new Form1();
+            this.Hide();
+            form1.Show();
         }
     }
 }
