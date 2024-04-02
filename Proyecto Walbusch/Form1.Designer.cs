@@ -38,7 +38,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(292, 24);
+            pictureBox1.Location = new Point(292, 25);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(200, 200);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -47,7 +47,7 @@
             // 
             // EmpresaButton
             // 
-            EmpresaButton.Location = new Point(186, 261);
+            EmpresaButton.Location = new Point(193, 249);
             EmpresaButton.Name = "EmpresaButton";
             EmpresaButton.Size = new Size(180, 30);
             EmpresaButton.TabIndex = 1;
@@ -59,7 +59,7 @@
             // 
             // TrabajadorButton
             // 
-            TrabajadorButton.Location = new Point(404, 261);
+            TrabajadorButton.Location = new Point(409, 249);
             TrabajadorButton.Name = "TrabajadorButton";
             TrabajadorButton.Size = new Size(180, 30);
             TrabajadorButton.TabIndex = 2;
