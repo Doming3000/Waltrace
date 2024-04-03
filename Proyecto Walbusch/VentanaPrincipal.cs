@@ -33,13 +33,13 @@ namespace Proyecto_Walbusch
 
         private void EmpresaButton_MouseEnter(object sender, EventArgs e)
         {
-            // Cambiar el estado del cursor al estar sobre un botón
+            // Alternar el estado del cursor al posicionarse sobre un botón
             Cursor = Cursors.Hand;
         }
 
         private void EmpresaButton_MouseLeave(object sender, EventArgs e)
         {
-            // Regresar al cursor predeterminado
+            // Regresar al cursor predeterminado al retirar del botón
             Cursor = Cursors.Default;
         }
 

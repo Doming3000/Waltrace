@@ -69,15 +69,16 @@
             TrabajadorButton.MouseEnter += TrabajadorButton_MouseEnter;
             TrabajadorButton.MouseLeave += TrabajadorButton_MouseLeave;
             // 
-            // Form1
+            // VentanaPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlLight;
             ClientSize = new Size(782, 453);
             Controls.Add(TrabajadorButton);
             Controls.Add(EmpresaButton);
             Controls.Add(pictureBox1);
-            Name = "Form1";
+            Name = "VentanaPrincipal";
             Text = "Walbusch";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
