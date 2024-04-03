@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Proyecto_Walbusch
 {
-    public partial class Form1 : Form
+    public partial class VentanaPrincipal : Form
     {
-        public Form1()
+        public VentanaPrincipal()
         {
             InitializeComponent();
         }
@@ -20,13 +20,13 @@ namespace Proyecto_Walbusch
         private void TrabajadorButton_Click(object sender, EventArgs e)
         {
             // Cargar nueva ventana y esconder la anterior
-            Form2 form2 = new Form2();
+            VentanaTrabajadores form2 = new VentanaTrabajadores();
             this.Hide();
             form2.Show();
         }
         private void EmpresaButton_Click(object sender, EventArgs e)
         {
-            Form3 form3 = new Form3();
+            VentanaEmpresas form3 = new VentanaEmpresas();
             this.Hide();
             form3.Show();
         }

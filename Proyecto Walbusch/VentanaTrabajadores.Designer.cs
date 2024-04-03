@@ -1,6 +1,6 @@
 ﻿namespace Proyecto_Walbusch
 {
-    partial class Form2
+    partial class VentanaTrabajadores
     {
         /// <summary>
         ///  Required designer variable.

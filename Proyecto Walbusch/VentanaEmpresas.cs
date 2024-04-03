@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Proyecto_Walbusch
 {
-    public partial class Form3 : Form
+    public partial class VentanaEmpresas : Form
     {
-        public Form3()
+        public VentanaEmpresas()
         {
             InitializeComponent();
         }

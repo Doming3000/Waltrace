@@ -1,6 +1,6 @@
 ﻿namespace Proyecto_Walbusch
 {
-    partial class Form1
+    partial class VentanaPrincipal
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentanaPrincipal));
             pictureBox1 = new PictureBox();
             EmpresaButton = new Button();
             TrabajadorButton = new Button();

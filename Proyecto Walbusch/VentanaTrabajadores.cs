@@ -1,8 +1,8 @@
 namespace Proyecto_Walbusch
 {
-    public partial class Form2 : Form
+    public partial class VentanaTrabajadores : Form
     {
-        public Form2()
+        public VentanaTrabajadores()
         {
             InitializeComponent();
         }
@@ -37,7 +37,7 @@ namespace Proyecto_Walbusch
         private void RegresarButton_Click(object sender, EventArgs e)
         {
             // Regresar al formulario inicial
-            Form1 form1 = new Form1();
+            VentanaPrincipal form1 = new VentanaPrincipal();
             this.Hide();
             form1.Show();
         }
