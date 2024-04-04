@@ -81,7 +81,7 @@
             MaximizeBox = false;
             Name = "VentanaPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Walbusch";
+            Text = "Waltrace";
             Load += VentanaPrincipal_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
