@@ -41,5 +41,10 @@ namespace Proyecto_Walbusch
             this.Hide();
             form1.Show();
         }
+
+        private void BuscadorEmpleado_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

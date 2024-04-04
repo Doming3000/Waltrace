@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +17,18 @@ namespace Proyecto_Walbusch
         {
             InitializeComponent();
         }
+
+        private void VentanaPrincipal_Load(object sender, EventArgs e)
+        {
+            // Verificar si hay conexión a internet al cargar la ventana
+            bool checkConnection = NetworkInterface.GetIsNetworkAvailable();
+            if (!checkConnection)
+            {
+                MessageBox.Show("No estás contectado a internet");
+                System.Environment.Exit(1);
+            }
+        }
+
         // Botones en el formulario:
         private void TrabajadorButton_Click(object sender, EventArgs e)
         {

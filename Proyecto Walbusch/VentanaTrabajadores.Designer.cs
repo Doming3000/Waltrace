@@ -38,16 +38,17 @@
             // 
             // BuscadorEmpleado
             // 
-            BuscadorEmpleado.Location = new Point(320, 207);
+            BuscadorEmpleado.Location = new Point(288, 163);
             BuscadorEmpleado.Name = "BuscadorEmpleado";
             BuscadorEmpleado.Size = new Size(220, 27);
             BuscadorEmpleado.TabIndex = 1;
+            BuscadorEmpleado.TextChanged += BuscadorEmpleado_TextChanged;
             BuscadorEmpleado.Enter += BuscadorEmpleado_Enter;
             BuscadorEmpleado.Leave += BuscadorEmpleado_Leave;
             // 
             // SearchButton
             // 
-            SearchButton.Location = new Point(584, 316);
+            SearchButton.Location = new Point(676, 412);
             SearchButton.Name = "SearchButton";
             SearchButton.Size = new Size(94, 29);
             SearchButton.TabIndex = 0;
@@ -56,7 +57,7 @@
             // 
             // RegresarButton
             // 
-            RegresarButton.Location = new Point(271, 351);
+            RegresarButton.Location = new Point(576, 412);
             RegresarButton.Name = "RegresarButton";
             RegresarButton.Size = new Size(94, 29);
             RegresarButton.TabIndex = 2;
@@ -64,7 +65,7 @@
             RegresarButton.UseVisualStyleBackColor = true;
             RegresarButton.Click += RegresarButton_Click;
             // 
-            // Form2
+            // VentanaTrabajadores
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -72,7 +73,8 @@
             Controls.Add(RegresarButton);
             Controls.Add(SearchButton);
             Controls.Add(BuscadorEmpleado);
-            Name = "Form2";
+            Name = "VentanaTrabajadores";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form2";
             Load += Form2_Load;
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();

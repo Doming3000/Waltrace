@@ -16,5 +16,29 @@ namespace Proyecto_Walbusch
         {
             InitializeComponent();
         }
+
+        private void EmpresasBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RegresarButton_Click(object sender, EventArgs e)
+        {
+            // Regresar al formulario inicial
+            VentanaPrincipal form1 = new VentanaPrincipal();
+            this.Hide();
+            form1.Show();
+        }
+
+        private void RegresarButton_MouseEnter(object sender, EventArgs e)
+        {
+            // 
+            Cursor = Cursors.Hand;
+        }
+
+        private void RegresarButton_MouseLeave(object sender, EventArgs e)
+        {
+            Cursor = Cursors.Default;
+        }
     }
 }

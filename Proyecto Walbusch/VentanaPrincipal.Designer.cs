@@ -78,8 +78,11 @@
             Controls.Add(TrabajadorButton);
             Controls.Add(EmpresaButton);
             Controls.Add(pictureBox1);
+            MaximizeBox = false;
             Name = "VentanaPrincipal";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Walbusch";
+            Load += VentanaPrincipal_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
