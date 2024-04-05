@@ -39,6 +39,42 @@ namespace Waltrace
             }
         }
 
+        // Método para obtener datos de la empresa badados en el ID de la empresa
+        private (string rutEmpresa, string nombreRepresentante, string direccion, long telefono, DateTime añoConst, string logoUrl) ObtenerDatosEmpresa(int idEmpresa)
+        {
+            string rutEmpresa = "", nombreRepresentante = "", direccion = "", logoUrl = "";
+            long telefono = 0;
+            DateTime añoConst = DateTime.MinValue;
+
+            try
+            {
+                string consulta = "SELECT rut_empresa, representante, direccion, telefono, año_const, logo FROM empresas WHERE id_empresa = @idEmpresa";
+
+                using (SqlCommand comando = new SqlCommand(consulta, DataBaseConnection.Conexion))
+                {
+                    comando.Parameters.AddWithValue("@idEmpresa", idEmpresa);
+
+                    using (SqlDataReader lector = comando.ExecuteReader())
+                    {
+                        if (lector.Read())
+                        {
+                            rutEmpresa = lector["rut_empresa"].ToString();
+                            nombreRepresentante = lector["representante"].ToString();
+                            direccion = lector["direccion"].ToString();
+                            telefono = (long)lector["telefono"];
+                            añoConst = (DateTime)lector["año_const"];
+                            logoUrl = lector["logo"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al intentar obtener los datos de la empresa: " + ex.Message);
+            }
+
+            return (rutEmpresa, nombreRepresentante, direccion, telefono, añoConst, logoUrl);
+        }
 
         private void EmpresasBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -49,45 +85,35 @@ namespace Waltrace
                 GroupBox1.Enabled = true;
 
                 // Consultar la base de datos para obtener la información a imprimir
-                var (rutEmpresa, nombreRepresentante) = ObtenerDatosEmpresa(idEmpresa);
+                var (rutEmpresa, nombreRepresentante, direccion, telefono, añoConst, logoUrl) = ObtenerDatosEmpresa(idEmpresa);
 
-                // Imprimir datos en sus respectivos textboxes
+                // Imprimir los datos en sus respectivos textboxes
                 DisplayBoxRep.Text = nombreRepresentante;
                 DisplayBoxRut.Text = rutEmpresa;
+                DisplayBoxDir.Text = direccion;
+                DisplayBoxTel.Text = telefono.ToString();
+                DisplayBoxAño.Text = añoConst.ToString("d-MM-yyyy");
+
+                // Llamada a método para cargar el logo de la empresa
+                CargarLogo(logoUrl);
             }
         }
 
-        // Método para obtener datos de la empresa badados en el ID de la empresa
-        private (string rutEmpresa, string nombreRepresentante) ObtenerDatosEmpresa(int idEmpresa)
+        private void CargarLogo(string url)
         {
-            string rutEmpresa = "";
-            string nombreRepresentante = "";
-
             try
             {
-                string consulta = "SELECT rut_empresa, representante FROM empresas WHERE id_empresa = @idEmpresa";
-
-                using (SqlCommand comando = new SqlCommand(consulta, DataBaseConnection.Conexion))
+                // Comprobar que la url no esté vacía
+                if (!string.IsNullOrWhiteSpace(url))
                 {
-                    // Asegurar que el parámetro se añada de forma segura para evitar inyecciones SQL
-                    comando.Parameters.AddWithValue("@idEmpresa", idEmpresa);
-
-                    using (SqlDataReader lector = comando.ExecuteReader())
-                    {
-                        if (lector.Read())
-                        {
-                            rutEmpresa = lector["rut_empresa"].ToString();
-                            nombreRepresentante = lector["representante"].ToString();
-                        }
-                    }
+                    // Utiliza el método Load del PictureBox para cargar la imagen desde la URL
+                    LogoBox.Load(url);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar obtener los datos de la empresa: " + ex.Message);
+                MessageBox.Show("No se pudo cargar el logo: " + ex.Message);
             }
-
-            return (rutEmpresa, nombreRepresentante);
         }
 
         private void RegresarButton_Click(object sender, EventArgs e)
@@ -106,6 +132,11 @@ namespace Waltrace
         private void RegresarButton_MouseLeave(object sender, EventArgs e)
         {
             Cursor = Cursors.Default;
+        }
+
+        private void DocsButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

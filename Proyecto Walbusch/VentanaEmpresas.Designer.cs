@@ -32,11 +32,20 @@
             label1 = new Label();
             RegresarButton = new Button();
             GroupBox1 = new GroupBox();
+            LogoBox = new PictureBox();
+            label6 = new Label();
+            label5 = new Label();
+            label4 = new Label();
+            DisplayBoxAño = new TextBox();
+            DisplayBoxTel = new TextBox();
+            DisplayBoxRut = new TextBox();
+            label3 = new Label();
             label2 = new Label();
             DisplayBoxRep = new TextBox();
-            label3 = new Label();
-            DisplayBoxRut = new TextBox();
+            DisplayBoxDir = new TextBox();
+            DocsButton = new Button();
             GroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)LogoBox).BeginInit();
             SuspendLayout();
             // 
             // EmpresasBox
@@ -72,6 +81,13 @@
             // 
             // GroupBox1
             // 
+            GroupBox1.Controls.Add(DocsButton);
+            GroupBox1.Controls.Add(LogoBox);
+            GroupBox1.Controls.Add(label6);
+            GroupBox1.Controls.Add(label5);
+            GroupBox1.Controls.Add(label4);
+            GroupBox1.Controls.Add(DisplayBoxAño);
+            GroupBox1.Controls.Add(DisplayBoxTel);
             GroupBox1.Controls.Add(DisplayBoxRut);
             GroupBox1.Controls.Add(label3);
             GroupBox1.Controls.Add(label2);
@@ -79,9 +95,78 @@
             GroupBox1.Enabled = false;
             GroupBox1.Location = new Point(26, 121);
             GroupBox1.Name = "GroupBox1";
-            GroupBox1.Size = new Size(320, 125);
+            GroupBox1.Size = new Size(535, 207);
             GroupBox1.TabIndex = 6;
             GroupBox1.TabStop = false;
+            // 
+            // LogoBox
+            // 
+            LogoBox.Location = new Point(371, 38);
+            LogoBox.Name = "LogoBox";
+            LogoBox.Size = new Size(125, 114);
+            LogoBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            LogoBox.TabIndex = 8;
+            LogoBox.TabStop = false;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(17, 177);
+            label6.Name = "label6";
+            label6.Size = new Size(144, 20);
+            label6.TabIndex = 11;
+            label6.Text = "Año de constitución:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(17, 144);
+            label5.Name = "label5";
+            label5.Size = new Size(70, 20);
+            label5.TabIndex = 10;
+            label5.Text = "Teléfono:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(17, 111);
+            label4.Name = "label4";
+            label4.Size = new Size(75, 20);
+            label4.TabIndex = 9;
+            label4.Text = "Dirección:";
+            // 
+            // DisplayBoxAño
+            // 
+            DisplayBoxAño.Location = new Point(167, 174);
+            DisplayBoxAño.Name = "DisplayBoxAño";
+            DisplayBoxAño.ReadOnly = true;
+            DisplayBoxAño.Size = new Size(125, 27);
+            DisplayBoxAño.TabIndex = 8;
+            // 
+            // DisplayBoxTel
+            // 
+            DisplayBoxTel.Location = new Point(167, 141);
+            DisplayBoxTel.Name = "DisplayBoxTel";
+            DisplayBoxTel.ReadOnly = true;
+            DisplayBoxTel.Size = new Size(125, 27);
+            DisplayBoxTel.TabIndex = 8;
+            // 
+            // DisplayBoxRut
+            // 
+            DisplayBoxRut.Location = new Point(167, 75);
+            DisplayBoxRut.Name = "DisplayBoxRut";
+            DisplayBoxRut.ReadOnly = true;
+            DisplayBoxRut.Size = new Size(125, 27);
+            DisplayBoxRut.TabIndex = 3;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(17, 78);
+            label3.Name = "label3";
+            label3.Size = new Size(116, 20);
+            label3.TabIndex = 2;
+            label3.Text = "Rut de empresa:";
             // 
             // label2
             // 
@@ -100,22 +185,23 @@
             DisplayBoxRep.Size = new Size(125, 27);
             DisplayBoxRep.TabIndex = 0;
             // 
-            // label3
+            // DisplayBoxDir
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(17, 78);
-            label3.Name = "label3";
-            label3.Size = new Size(116, 20);
-            label3.TabIndex = 2;
-            label3.Text = "Rut de empresa:";
+            DisplayBoxDir.Location = new Point(193, 229);
+            DisplayBoxDir.Name = "DisplayBoxDir";
+            DisplayBoxDir.ReadOnly = true;
+            DisplayBoxDir.Size = new Size(125, 27);
+            DisplayBoxDir.TabIndex = 7;
             // 
-            // DisplayBoxRut
+            // DocsButton
             // 
-            DisplayBoxRut.Location = new Point(167, 75);
-            DisplayBoxRut.Name = "DisplayBoxRut";
-            DisplayBoxRut.ReadOnly = true;
-            DisplayBoxRut.Size = new Size(125, 27);
-            DisplayBoxRut.TabIndex = 3;
+            DocsButton.Location = new Point(371, 158);
+            DocsButton.Name = "DocsButton";
+            DocsButton.Size = new Size(125, 29);
+            DocsButton.TabIndex = 12;
+            DocsButton.Text = "Documentación";
+            DocsButton.UseVisualStyleBackColor = true;
+            DocsButton.Click += DocsButton_Click;
             // 
             // VentanaEmpresas
             // 
@@ -123,6 +209,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(782, 453);
+            Controls.Add(DisplayBoxDir);
             Controls.Add(GroupBox1);
             Controls.Add(RegresarButton);
             Controls.Add(label1);
@@ -132,6 +219,7 @@
             Text = "Waltrace - Empresas";
             GroupBox1.ResumeLayout(false);
             GroupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)LogoBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -146,5 +234,13 @@
         private TextBox DisplayBoxRep;
         private TextBox DisplayBoxRut;
         private Label label3;
+        private TextBox DisplayBoxAño;
+        private TextBox DisplayBoxTel;
+        private TextBox DisplayBoxDir;
+        private Label label4;
+        private Label label6;
+        private Label label5;
+        private PictureBox LogoBox;
+        private Button DocsButton;
     }
 }
