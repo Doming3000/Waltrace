@@ -32,7 +32,9 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             RegresarButton = new Button();
+            groupBox1 = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // EmpresasBox
@@ -56,7 +58,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(560, 29);
+            pictureBox1.Location = new Point(100, 26);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(200, 200);
             pictureBox1.TabIndex = 2;
@@ -74,20 +76,30 @@
             RegresarButton.MouseEnter += RegresarButton_MouseEnter;
             RegresarButton.MouseLeave += RegresarButton_MouseLeave;
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(pictureBox1);
+            groupBox1.Location = new Point(389, 29);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(380, 360);
+            groupBox1.TabIndex = 4;
+            groupBox1.TabStop = false;
+            // 
             // VentanaEmpresas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(782, 453);
+            Controls.Add(groupBox1);
             Controls.Add(RegresarButton);
-            Controls.Add(pictureBox1);
             Controls.Add(label1);
             Controls.Add(EmpresasBox);
             Name = "VentanaEmpresas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Waltrace - Empresas";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            groupBox1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -98,5 +110,6 @@
         private Label label1;
         private PictureBox pictureBox1;
         private Button RegresarButton;
+        private GroupBox groupBox1;
     }
 }
