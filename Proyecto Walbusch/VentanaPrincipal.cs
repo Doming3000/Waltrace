@@ -16,7 +16,7 @@ namespace Proyecto_Walbusch
             if (!checkConnection)
             {
                 MessageBox.Show("No estás contectado a internet");
-                System.Environment.Exit(1);
+                Environment.Exit(1);
             }
         }
 

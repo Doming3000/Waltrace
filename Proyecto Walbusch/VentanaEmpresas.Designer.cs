@@ -39,16 +39,16 @@
             // 
             EmpresasBox.DropDownStyle = ComboBoxStyle.DropDownList;
             EmpresasBox.FormattingEnabled = true;
-            EmpresasBox.Location = new Point(46, 63);
+            EmpresasBox.Location = new Point(26, 52);
             EmpresasBox.Name = "EmpresasBox";
-            EmpresasBox.Size = new Size(161, 28);
+            EmpresasBox.Size = new Size(230, 28);
             EmpresasBox.TabIndex = 0;
             EmpresasBox.SelectedIndexChanged += EmpresasBox_SelectedIndexChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(46, 40);
+            label1.Location = new Point(26, 29);
             label1.Name = "label1";
             label1.Size = new Size(144, 20);
             label1.TabIndex = 1;
@@ -86,7 +86,7 @@
             Controls.Add(EmpresasBox);
             Name = "VentanaEmpresas";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form3";
+            Text = "Waltrace - Empresas";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
