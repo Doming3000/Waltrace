@@ -1,4 +1,4 @@
-﻿namespace Proyecto_Walbusch
+﻿namespace Waltrace
 {
     partial class VentanaPrincipal
     {
@@ -89,8 +89,8 @@
 
         #endregion
 
-        private PictureBox pictureBox1;
         private Button EmpresaButton;
         private Button TrabajadorButton;
+        private PictureBox pictureBox1;
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Proyecto_Walbusch
+﻿namespace Waltrace
 {
     partial class VentanaEmpresas
     {
@@ -30,11 +30,13 @@
         {
             EmpresasBox = new ComboBox();
             label1 = new Label();
-            pictureBox1 = new PictureBox();
             RegresarButton = new Button();
-            groupBox1 = new GroupBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            groupBox1.SuspendLayout();
+            GroupBox1 = new GroupBox();
+            label2 = new Label();
+            DisplayBoxRep = new TextBox();
+            label3 = new Label();
+            DisplayBoxRut = new TextBox();
+            GroupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // EmpresasBox
@@ -56,14 +58,6 @@
             label1.TabIndex = 1;
             label1.Text = "Seleccione empresa:";
             // 
-            // pictureBox1
-            // 
-            pictureBox1.Location = new Point(100, 26);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(200, 200);
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
-            // 
             // RegresarButton
             // 
             RegresarButton.Location = new Point(676, 412);
@@ -76,14 +70,52 @@
             RegresarButton.MouseEnter += RegresarButton_MouseEnter;
             RegresarButton.MouseLeave += RegresarButton_MouseLeave;
             // 
-            // groupBox1
+            // GroupBox1
             // 
-            groupBox1.Controls.Add(pictureBox1);
-            groupBox1.Location = new Point(389, 29);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(380, 360);
-            groupBox1.TabIndex = 4;
-            groupBox1.TabStop = false;
+            GroupBox1.Controls.Add(DisplayBoxRut);
+            GroupBox1.Controls.Add(label3);
+            GroupBox1.Controls.Add(label2);
+            GroupBox1.Controls.Add(DisplayBoxRep);
+            GroupBox1.Enabled = false;
+            GroupBox1.Location = new Point(26, 121);
+            GroupBox1.Name = "GroupBox1";
+            GroupBox1.Size = new Size(320, 125);
+            GroupBox1.TabIndex = 6;
+            GroupBox1.TabStop = false;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(17, 41);
+            label2.Name = "label2";
+            label2.Size = new Size(144, 20);
+            label2.TabIndex = 1;
+            label2.Text = "Representante legal:";
+            // 
+            // DisplayBoxRep
+            // 
+            DisplayBoxRep.Location = new Point(167, 38);
+            DisplayBoxRep.Name = "DisplayBoxRep";
+            DisplayBoxRep.ReadOnly = true;
+            DisplayBoxRep.Size = new Size(125, 27);
+            DisplayBoxRep.TabIndex = 0;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(17, 78);
+            label3.Name = "label3";
+            label3.Size = new Size(116, 20);
+            label3.TabIndex = 2;
+            label3.Text = "Rut de empresa:";
+            // 
+            // DisplayBoxRut
+            // 
+            DisplayBoxRut.Location = new Point(167, 75);
+            DisplayBoxRut.Name = "DisplayBoxRut";
+            DisplayBoxRut.ReadOnly = true;
+            DisplayBoxRut.Size = new Size(125, 27);
+            DisplayBoxRut.TabIndex = 3;
             // 
             // VentanaEmpresas
             // 
@@ -91,15 +123,15 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(782, 453);
-            Controls.Add(groupBox1);
+            Controls.Add(GroupBox1);
             Controls.Add(RegresarButton);
             Controls.Add(label1);
             Controls.Add(EmpresasBox);
             Name = "VentanaEmpresas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Waltrace - Empresas";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            groupBox1.ResumeLayout(false);
+            GroupBox1.ResumeLayout(false);
+            GroupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -108,8 +140,11 @@
 
         private ComboBox EmpresasBox;
         private Label label1;
-        private PictureBox pictureBox1;
         private Button RegresarButton;
-        private GroupBox groupBox1;
+        private GroupBox GroupBox1;
+        private Label label2;
+        private TextBox DisplayBoxRep;
+        private TextBox DisplayBoxRut;
+        private Label label3;
     }
 }

@@ -1,4 +1,4 @@
-namespace Proyecto_Walbusch
+namespace Waltrace
 {
     public partial class VentanaTrabajadores : Form
     {

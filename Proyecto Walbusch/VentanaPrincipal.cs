@@ -1,6 +1,6 @@
 ﻿using System.Net.NetworkInformation;
 
-namespace Proyecto_Walbusch
+namespace Waltrace
 {
     public partial class VentanaPrincipal : Form
     {

@@ -1,6 +1,7 @@
-﻿using System.Data.SqlClient;
+﻿using System.Data;
+using System.Data.SqlClient;
 
-namespace Proyecto_Walbusch
+namespace Waltrace
 {
     public partial class VentanaEmpresas : Form
     {
@@ -12,24 +13,24 @@ namespace Proyecto_Walbusch
             ListarEmpresasBox();
         }
 
-        // Método para listar las empresas en Empresasbox almacenadas en la base de datos.
+        // Método para listar las empresas en EmpresasBox almacenadas en la base de datos.
         private void ListarEmpresasBox()
         {
             try
             {
                 DataBaseConnection.AbrirConexion();
 
-                // Crear el comando SQL para seleccionar los nombres de las empresas
-                using (SqlCommand comando = new SqlCommand("SELECT nom_empresa FROM empresas", DataBaseConnection.Conexion))
-
-                // Ejecutar el comando y recibir los datos
+                // Comando SQL ajustado para seleccionar solo el ID y el nombre de las empresas
+                using (SqlCommand comando = new SqlCommand("SELECT id_empresa, nom_empresa FROM empresas", DataBaseConnection.Conexion))
                 using (SqlDataReader lector = comando.ExecuteReader())
                 {
-                    // Leer los datos y agregar al ComboBox
-                    while (lector.Read())
-                    {
-                        EmpresasBox.Items.Add(lector["nom_empresa"].ToString());
-                    }
+                    DataTable dt = new DataTable();
+                    dt.Load(lector);
+                    EmpresasBox.DataSource = dt;
+                    EmpresasBox.ValueMember = "id_empresa"; // Establecer la columna que representa el valor único de cada ítem
+                    EmpresasBox.DisplayMember = "nom_empresa"; // Establecer la columna para mostrar en el ComboBox
+
+                    EmpresasBox.SelectedIndex = -1;
                 }
             }
             catch (Exception ex)
@@ -37,9 +38,56 @@ namespace Proyecto_Walbusch
                 MessageBox.Show("Ha ocurrido un error al intentar listar las empresas: " + ex.Message);
             }
         }
+
+
         private void EmpresasBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Comprobar si existe una selección válida
+            if (EmpresasBox.SelectedIndex >= 0 && int.TryParse(EmpresasBox.SelectedValue.ToString(), out int idEmpresa))
+            {
+                // Habilitar GroupBox al seleccionar una empresa
+                GroupBox1.Enabled = true;
 
+                // Consultar la base de datos para obtener la información a imprimir
+                var (rutEmpresa, nombreRepresentante) = ObtenerDatosEmpresa(idEmpresa);
+
+                // Imprimir datos en sus respectivos textboxes
+                DisplayBoxRep.Text = nombreRepresentante;
+                DisplayBoxRut.Text = rutEmpresa;
+            }
+        }
+
+        // Método para obtener datos de la empresa badados en el ID de la empresa
+        private (string rutEmpresa, string nombreRepresentante) ObtenerDatosEmpresa(int idEmpresa)
+        {
+            string rutEmpresa = "";
+            string nombreRepresentante = "";
+
+            try
+            {
+                string consulta = "SELECT rut_empresa, representante FROM empresas WHERE id_empresa = @idEmpresa";
+
+                using (SqlCommand comando = new SqlCommand(consulta, DataBaseConnection.Conexion))
+                {
+                    // Asegurar que el parámetro se añada de forma segura para evitar inyecciones SQL
+                    comando.Parameters.AddWithValue("@idEmpresa", idEmpresa);
+
+                    using (SqlDataReader lector = comando.ExecuteReader())
+                    {
+                        if (lector.Read())
+                        {
+                            rutEmpresa = lector["rut_empresa"].ToString();
+                            nombreRepresentante = lector["representante"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al intentar obtener los datos de la empresa: " + ex.Message);
+            }
+
+            return (rutEmpresa, nombreRepresentante);
         }
 
         private void RegresarButton_Click(object sender, EventArgs e)

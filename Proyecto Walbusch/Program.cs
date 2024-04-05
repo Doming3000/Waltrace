@@ -1,7 +1,7 @@
 ﻿using System.Data.SqlClient;
 using System.Configuration;
 
-namespace Proyecto_Walbusch
+namespace Waltrace
 {
     internal static class Program
     {

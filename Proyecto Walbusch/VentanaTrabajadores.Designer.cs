@@ -1,4 +1,4 @@
-﻿namespace Proyecto_Walbusch
+﻿namespace Waltrace
 {
     partial class VentanaTrabajadores
     {
