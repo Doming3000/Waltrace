@@ -51,6 +51,7 @@
             EmpresaButton.Name = "EmpresaButton";
             EmpresaButton.Size = new Size(180, 30);
             EmpresaButton.TabIndex = 1;
+            EmpresaButton.TabStop = false;
             EmpresaButton.Text = "Consultar por empresa";
             EmpresaButton.UseVisualStyleBackColor = true;
             EmpresaButton.Click += EmpresaButton_Click;
@@ -63,6 +64,7 @@
             TrabajadorButton.Name = "TrabajadorButton";
             TrabajadorButton.Size = new Size(180, 30);
             TrabajadorButton.TabIndex = 2;
+            TrabajadorButton.TabStop = false;
             TrabajadorButton.Text = "Consultar por trabajador";
             TrabajadorButton.UseVisualStyleBackColor = true;
             TrabajadorButton.Click += TrabajadorButton_Click;

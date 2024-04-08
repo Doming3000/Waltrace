@@ -1,10 +1,13 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using System.Net;
 
 namespace Waltrace
 {
     public partial class VentanaEmpresas : Form
     {
+        private string urlDocActual;
+
         public VentanaEmpresas()
         {
             InitializeComponent();
@@ -40,15 +43,15 @@ namespace Waltrace
         }
 
         // Método para obtener datos de la empresa badados en el ID de la empresa
-        private (string rutEmpresa, string nombreRepresentante, string direccion, long telefono, DateTime añoConst, string logoUrl) ObtenerDatosEmpresa(int idEmpresa)
+        private (string rutEmpresa, string nombreRepresentante, string direccion, long telefono, DateTime añoConst, string logoUrl, string documentacion) ObtenerDatosEmpresa(int idEmpresa)
         {
-            string rutEmpresa = "", nombreRepresentante = "", direccion = "", logoUrl = "";
+            string rutEmpresa = "", nombreRepresentante = "", direccion = "", logoUrl = "", documentacion = "";
             long telefono = 0;
             DateTime añoConst = DateTime.MinValue;
 
             try
             {
-                string consulta = "SELECT rut_empresa, representante, direccion, telefono, año_const, logo FROM empresas WHERE id_empresa = @idEmpresa";
+                string consulta = "SELECT rut_empresa, representante, direccion, telefono, año_const, logo, documentacion FROM empresas WHERE id_empresa = @idEmpresa";
 
                 using (SqlCommand comando = new SqlCommand(consulta, DataBaseConnection.Conexion))
                 {
@@ -64,6 +67,7 @@ namespace Waltrace
                             telefono = (long)lector["telefono"];
                             añoConst = (DateTime)lector["año_const"];
                             logoUrl = lector["logo"].ToString();
+                            documentacion = lector["documentacion"].ToString();
                         }
                     }
                 }
@@ -73,7 +77,7 @@ namespace Waltrace
                 MessageBox.Show("Ha ocurrido un error al intentar obtener los datos de la empresa: " + ex.Message);
             }
 
-            return (rutEmpresa, nombreRepresentante, direccion, telefono, añoConst, logoUrl);
+            return (rutEmpresa, nombreRepresentante, direccion, telefono, añoConst, logoUrl, documentacion);
         }
 
         private void EmpresasBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -85,7 +89,7 @@ namespace Waltrace
                 GroupBox1.Enabled = true;
 
                 // Consultar la base de datos para obtener la información a imprimir
-                var (rutEmpresa, nombreRepresentante, direccion, telefono, añoConst, logoUrl) = ObtenerDatosEmpresa(idEmpresa);
+                var (rutEmpresa, nombreRepresentante, direccion, telefono, añoConst, logoUrl, documentacion) = ObtenerDatosEmpresa(idEmpresa);
 
                 // Imprimir los datos en sus respectivos textboxes
                 DisplayBoxRep.Text = nombreRepresentante;
@@ -96,23 +100,57 @@ namespace Waltrace
 
                 // Llamada a método para cargar el logo de la empresa
                 CargarLogo(logoUrl);
+
+                // Actualizar la URL de documentación actual
+                urlDocActual = documentacion;
             }
         }
 
-        private void CargarLogo(string url)
+        private async void CargarLogo(string urlLogo)
         {
+            // Mostrar texto "Cargando imágen"
+            LoadingText.Visible = true;
+
             try
             {
-                // Comprobar que la url no esté vacía
-                if (!string.IsNullOrWhiteSpace(url))
+                var request = WebRequest.Create(urlLogo);
+                using (var response = await request.GetResponseAsync())
+                using (var stream = response.GetResponseStream())
                 {
-                    // Utiliza el método Load del PictureBox para cargar la imagen desde la URL
-                    LogoBox.Load(url);
+                    // Crear una imagen desde el stream de manera asincrónica
+                    var image = Image.FromStream(stream);
+
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        LogoBox.Image = image;
+                        LoadingText.Visible = false;
+                    });
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No se pudo cargar el logo: " + ex.Message);
+                MessageBox.Show("No se ha podido cargar el logo: " + ex.Message);
+                LoadingText.Visible = false;
+            }
+        }
+
+        private void DocsButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(urlDocActual))
+                {
+                    var psi = new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = urlDocActual,
+                        UseShellExecute = true
+                    };
+                    System.Diagnostics.Process.Start(psi);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha podido acceder a la documentación: " + ex.Message);
             }
         }
 
@@ -124,6 +162,7 @@ namespace Waltrace
             form1.Show();
         }
 
+        // Simular efecto Hover del cursor
         private void RegresarButton_MouseEnter(object sender, EventArgs e)
         {
             Cursor = Cursors.Hand;
@@ -134,9 +173,14 @@ namespace Waltrace
             Cursor = Cursors.Default;
         }
 
-        private void DocsButton_Click(object sender, EventArgs e)
+        private void DocsButton_MouseEnter(object sender, EventArgs e)
         {
+            Cursor = Cursors.Hand;
+        }
 
+        private void DocsButton_MouseLeave(object sender, EventArgs e)
+        {
+            Cursor = Cursors.Default;
         }
     }
 }

@@ -32,6 +32,9 @@
             label1 = new Label();
             RegresarButton = new Button();
             GroupBox1 = new GroupBox();
+            LoadingText = new Label();
+            DisplayBoxDir = new TextBox();
+            DocsButton = new Button();
             LogoBox = new PictureBox();
             label6 = new Label();
             label5 = new Label();
@@ -42,8 +45,6 @@
             label3 = new Label();
             label2 = new Label();
             DisplayBoxRep = new TextBox();
-            DisplayBoxDir = new TextBox();
-            DocsButton = new Button();
             GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)LogoBox).BeginInit();
             SuspendLayout();
@@ -55,7 +56,7 @@
             EmpresasBox.Location = new Point(26, 52);
             EmpresasBox.Name = "EmpresasBox";
             EmpresasBox.Size = new Size(230, 28);
-            EmpresasBox.TabIndex = 0;
+            EmpresasBox.TabIndex = 1;
             EmpresasBox.SelectedIndexChanged += EmpresasBox_SelectedIndexChanged;
             // 
             // label1
@@ -72,7 +73,7 @@
             RegresarButton.Location = new Point(676, 412);
             RegresarButton.Name = "RegresarButton";
             RegresarButton.Size = new Size(94, 29);
-            RegresarButton.TabIndex = 3;
+            RegresarButton.TabIndex = 8;
             RegresarButton.Text = "Regresar";
             RegresarButton.UseVisualStyleBackColor = true;
             RegresarButton.Click += RegresarButton_Click;
@@ -81,6 +82,8 @@
             // 
             // GroupBox1
             // 
+            GroupBox1.Controls.Add(LoadingText);
+            GroupBox1.Controls.Add(DisplayBoxDir);
             GroupBox1.Controls.Add(DocsButton);
             GroupBox1.Controls.Add(LogoBox);
             GroupBox1.Controls.Add(label6);
@@ -95,15 +98,45 @@
             GroupBox1.Enabled = false;
             GroupBox1.Location = new Point(26, 121);
             GroupBox1.Name = "GroupBox1";
-            GroupBox1.Size = new Size(535, 207);
+            GroupBox1.Size = new Size(744, 285);
             GroupBox1.TabIndex = 6;
             GroupBox1.TabStop = false;
             // 
+            // LoadingText
+            // 
+            LoadingText.AutoSize = true;
+            LoadingText.Location = new Point(513, 15);
+            LoadingText.Name = "LoadingText";
+            LoadingText.Size = new Size(137, 20);
+            LoadingText.TabIndex = 12;
+            LoadingText.Text = "Cargando imagen...";
+            LoadingText.Visible = false;
+            // 
+            // DisplayBoxDir
+            // 
+            DisplayBoxDir.Location = new Point(167, 108);
+            DisplayBoxDir.Name = "DisplayBoxDir";
+            DisplayBoxDir.ReadOnly = true;
+            DisplayBoxDir.Size = new Size(160, 27);
+            DisplayBoxDir.TabIndex = 4;
+            // 
+            // DocsButton
+            // 
+            DocsButton.Location = new Point(595, 207);
+            DocsButton.Name = "DocsButton";
+            DocsButton.Size = new Size(125, 29);
+            DocsButton.TabIndex = 7;
+            DocsButton.Text = "Documentación";
+            DocsButton.UseVisualStyleBackColor = true;
+            DocsButton.Click += DocsButton_Click;
+            DocsButton.MouseEnter += DocsButton_MouseEnter;
+            DocsButton.MouseLeave += DocsButton_MouseLeave;
+            // 
             // LogoBox
             // 
-            LogoBox.Location = new Point(371, 38);
+            LogoBox.Location = new Point(513, 38);
             LogoBox.Name = "LogoBox";
-            LogoBox.Size = new Size(125, 114);
+            LogoBox.Size = new Size(207, 163);
             LogoBox.SizeMode = PictureBoxSizeMode.StretchImage;
             LogoBox.TabIndex = 8;
             LogoBox.TabStop = false;
@@ -140,23 +173,23 @@
             DisplayBoxAño.Location = new Point(167, 174);
             DisplayBoxAño.Name = "DisplayBoxAño";
             DisplayBoxAño.ReadOnly = true;
-            DisplayBoxAño.Size = new Size(125, 27);
-            DisplayBoxAño.TabIndex = 8;
+            DisplayBoxAño.Size = new Size(160, 27);
+            DisplayBoxAño.TabIndex = 6;
             // 
             // DisplayBoxTel
             // 
             DisplayBoxTel.Location = new Point(167, 141);
             DisplayBoxTel.Name = "DisplayBoxTel";
             DisplayBoxTel.ReadOnly = true;
-            DisplayBoxTel.Size = new Size(125, 27);
-            DisplayBoxTel.TabIndex = 8;
+            DisplayBoxTel.Size = new Size(160, 27);
+            DisplayBoxTel.TabIndex = 5;
             // 
             // DisplayBoxRut
             // 
             DisplayBoxRut.Location = new Point(167, 75);
             DisplayBoxRut.Name = "DisplayBoxRut";
             DisplayBoxRut.ReadOnly = true;
-            DisplayBoxRut.Size = new Size(125, 27);
+            DisplayBoxRut.Size = new Size(160, 27);
             DisplayBoxRut.TabIndex = 3;
             // 
             // label3
@@ -182,26 +215,8 @@
             DisplayBoxRep.Location = new Point(167, 38);
             DisplayBoxRep.Name = "DisplayBoxRep";
             DisplayBoxRep.ReadOnly = true;
-            DisplayBoxRep.Size = new Size(125, 27);
-            DisplayBoxRep.TabIndex = 0;
-            // 
-            // DisplayBoxDir
-            // 
-            DisplayBoxDir.Location = new Point(193, 229);
-            DisplayBoxDir.Name = "DisplayBoxDir";
-            DisplayBoxDir.ReadOnly = true;
-            DisplayBoxDir.Size = new Size(125, 27);
-            DisplayBoxDir.TabIndex = 7;
-            // 
-            // DocsButton
-            // 
-            DocsButton.Location = new Point(371, 158);
-            DocsButton.Name = "DocsButton";
-            DocsButton.Size = new Size(125, 29);
-            DocsButton.TabIndex = 12;
-            DocsButton.Text = "Documentación";
-            DocsButton.UseVisualStyleBackColor = true;
-            DocsButton.Click += DocsButton_Click;
+            DisplayBoxRep.Size = new Size(160, 27);
+            DisplayBoxRep.TabIndex = 2;
             // 
             // VentanaEmpresas
             // 
@@ -209,11 +224,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(782, 453);
-            Controls.Add(DisplayBoxDir);
             Controls.Add(GroupBox1);
             Controls.Add(RegresarButton);
             Controls.Add(label1);
             Controls.Add(EmpresasBox);
+            MaximizeBox = false;
             Name = "VentanaEmpresas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Waltrace - Empresas";
@@ -236,11 +251,12 @@
         private Label label3;
         private TextBox DisplayBoxAño;
         private TextBox DisplayBoxTel;
-        private TextBox DisplayBoxDir;
         private Label label4;
         private Label label6;
         private Label label5;
         private PictureBox LogoBox;
         private Button DocsButton;
+        private TextBox DisplayBoxDir;
+        private Label LoadingText;
     }
 }

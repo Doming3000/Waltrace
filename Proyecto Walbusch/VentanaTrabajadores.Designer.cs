@@ -33,12 +33,14 @@
             BuscadorEmpleado = new TextBox();
             SearchButton = new Button();
             RegresarButton = new Button();
+            dataGridView1 = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // BuscadorEmpleado
             // 
-            BuscadorEmpleado.Location = new Point(288, 163);
+            BuscadorEmpleado.Location = new Point(12, 21);
             BuscadorEmpleado.Name = "BuscadorEmpleado";
             BuscadorEmpleado.Size = new Size(220, 27);
             BuscadorEmpleado.TabIndex = 1;
@@ -48,7 +50,7 @@
             // 
             // SearchButton
             // 
-            SearchButton.Location = new Point(676, 412);
+            SearchButton.Location = new Point(238, 21);
             SearchButton.Name = "SearchButton";
             SearchButton.Size = new Size(94, 29);
             SearchButton.TabIndex = 0;
@@ -65,19 +67,30 @@
             RegresarButton.UseVisualStyleBackColor = true;
             RegresarButton.Click += RegresarButton_Click;
             // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(12, 69);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(320, 320);
+            dataGridView1.TabIndex = 3;
+            // 
             // VentanaTrabajadores
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(782, 453);
+            Controls.Add(dataGridView1);
             Controls.Add(RegresarButton);
             Controls.Add(SearchButton);
             Controls.Add(BuscadorEmpleado);
             Name = "VentanaTrabajadores";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form2";
+            Text = "Waltrace - Trabajadores";
             Load += Form2_Load;
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -87,5 +100,6 @@
         private TextBox BuscadorEmpleado;
         private Button SearchButton;
         private Button RegresarButton;
+        private DataGridView dataGridView1;
     }
 }
