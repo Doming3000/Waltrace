@@ -23,6 +23,7 @@ namespace Waltrace
         {
             try
             {
+                // Abrir la conexión en caso de que no esté abierta
                 DataBaseConnection.AbrirConexion();
 
                 // Comando SQL ajustado para seleccionar solo el ID y el nombre de las empresas
