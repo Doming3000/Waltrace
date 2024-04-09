@@ -108,7 +108,7 @@
             LoadingText.Location = new Point(513, 15);
             LoadingText.Name = "LoadingText";
             LoadingText.Size = new Size(137, 20);
-            LoadingText.TabIndex = 12;
+            LoadingText.TabIndex = 9;
             LoadingText.Text = "Cargando imagen...";
             LoadingText.Visible = false;
             // 
@@ -122,11 +122,11 @@
             // 
             // DocsButton
             // 
-            DocsButton.Location = new Point(595, 207);
+            DocsButton.Location = new Point(167, 207);
             DocsButton.Name = "DocsButton";
-            DocsButton.Size = new Size(125, 29);
+            DocsButton.Size = new Size(160, 29);
             DocsButton.TabIndex = 7;
-            DocsButton.Text = "Documentación";
+            DocsButton.Text = "Documentación legal ";
             DocsButton.UseVisualStyleBackColor = true;
             DocsButton.Click += DocsButton_Click;
             DocsButton.MouseEnter += DocsButton_MouseEnter;

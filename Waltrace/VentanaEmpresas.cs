@@ -6,6 +6,7 @@ namespace Waltrace
 {
     public partial class VentanaEmpresas : Form
     {
+        // Variables
         private string urlDocActual;
 
         public VentanaEmpresas()
