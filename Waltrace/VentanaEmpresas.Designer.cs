@@ -107,9 +107,9 @@
             LoadingText.AutoSize = true;
             LoadingText.Location = new Point(513, 15);
             LoadingText.Name = "LoadingText";
-            LoadingText.Size = new Size(137, 20);
+            LoadingText.Size = new Size(145, 20);
             LoadingText.TabIndex = 9;
-            LoadingText.Text = "Cargando imagen...";
+            LoadingText.Text = "Cargando logotipo...";
             LoadingText.Visible = false;
             // 
             // DisplayBoxDir

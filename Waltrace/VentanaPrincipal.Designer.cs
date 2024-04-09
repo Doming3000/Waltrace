@@ -84,7 +84,6 @@
             Name = "VentanaPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Waltrace";
-            Load += VentanaPrincipal_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }

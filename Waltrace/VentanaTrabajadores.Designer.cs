@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentanaTrabajadores));
             bindingSource1 = new BindingSource(components);
             SearchButton = new Button();
             RegresarButton = new Button();
-            BuscadorEmpleado = new ComboBox();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -43,9 +41,8 @@
             textBox2 = new TextBox();
             textBox3 = new TextBox();
             textBox4 = new TextBox();
-            pictureBox1 = new PictureBox();
+            BuscadorEmpleado = new TextBox();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // SearchButton
@@ -66,16 +63,6 @@
             RegresarButton.Text = "Regresar";
             RegresarButton.UseVisualStyleBackColor = true;
             RegresarButton.Click += RegresarButton_Click;
-            // 
-            // BuscadorEmpleado
-            // 
-            BuscadorEmpleado.AutoCompleteCustomSource.AddRange(new string[] { "Miguel Lopez A - 10224033-2" });
-            BuscadorEmpleado.FormattingEnabled = true;
-            BuscadorEmpleado.Items.AddRange(new object[] { "Trabajador 1", "Trabajador 2", "Trabajador 3", "Trabajador 4" });
-            BuscadorEmpleado.Location = new Point(13, 13);
-            BuscadorEmpleado.Name = "BuscadorEmpleado";
-            BuscadorEmpleado.Size = new Size(220, 28);
-            BuscadorEmpleado.TabIndex = 3;
             // 
             // label1
             // 
@@ -159,23 +146,19 @@
             textBox4.TabIndex = 12;
             textBox4.Visible = false;
             // 
-            // pictureBox1
+            // BuscadorEmpleado
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(374, 271);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(170, 170);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 13;
-            pictureBox1.TabStop = false;
-            pictureBox1.Visible = false;
+            BuscadorEmpleado.Location = new Point(12, 14);
+            BuscadorEmpleado.Name = "BuscadorEmpleado";
+            BuscadorEmpleado.Size = new Size(221, 27);
+            BuscadorEmpleado.TabIndex = 14;
             // 
             // VentanaTrabajadores
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(556, 453);
-            Controls.Add(pictureBox1);
+            Controls.Add(BuscadorEmpleado);
             Controls.Add(textBox4);
             Controls.Add(textBox3);
             Controls.Add(textBox2);
@@ -185,7 +168,6 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(BuscadorEmpleado);
             Controls.Add(RegresarButton);
             Controls.Add(SearchButton);
             Name = "VentanaTrabajadores";
@@ -193,7 +175,6 @@
             Text = "Waltrace - Trabajadores";
             Load += Form2_Load;
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -202,7 +183,6 @@
         private BindingSource bindingSource1;
         private Button SearchButton;
         private Button RegresarButton;
-        private ComboBox BuscadorEmpleado;
         private Label label1;
         private Label label2;
         private Label label3;
@@ -212,6 +192,6 @@
         private TextBox textBox2;
         private TextBox textBox3;
         private TextBox textBox4;
-        private PictureBox pictureBox1;
+        private TextBox BuscadorEmpleado;
     }
 }

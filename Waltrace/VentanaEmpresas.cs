@@ -1,13 +1,14 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
 using System.Net;
+using System.Net.NetworkInformation;
 
 namespace Waltrace
 {
     public partial class VentanaEmpresas : Form
     {
         // Variables
-        private string urlDocActual;
+        string urlDoc;
 
         public VentanaEmpresas()
         {
@@ -39,7 +40,7 @@ namespace Waltrace
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar listar las empresas: " + ex.Message);
+                MessageBox.Show("Ha ocurrido un error al intentar listar las empresas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -75,7 +76,7 @@ namespace Waltrace
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar obtener los datos de la empresa: " + ex.Message);
+                MessageBox.Show("Ha ocurrido un error al intentar obtener los datos de la empresa: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return (rutEmpresa, nombreRepresentante, direccion, telefono, añoConst, logoUrl, documentacion);
@@ -83,33 +84,41 @@ namespace Waltrace
 
         private void EmpresasBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Comprobar si existe una selección válida
-            if (EmpresasBox.SelectedIndex >= 0 && int.TryParse(EmpresasBox.SelectedValue.ToString(), out int idEmpresa))
+            // Verificar si hay conexión a internet al seleccionar una empresa
+            bool checkConnection = NetworkInterface.GetIsNetworkAvailable();
+            if (!checkConnection)
             {
-                // Habilitar GroupBox al seleccionar una empresa
-                GroupBox1.Enabled = true;
+                MessageBox.Show("No estás conectado a internet.\r\nVerífica el estado de tu conexión y vuelve a intentarlo más tarde.", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                // Comprobar si existe una selección válida
+                if (EmpresasBox.SelectedIndex >= 0 && int.TryParse(EmpresasBox.SelectedValue.ToString(), out int idEmpresa))
+                {
+                    // Habilitar GroupBox al seleccionar una empresa
+                    GroupBox1.Enabled = true;
 
-                // Consultar la base de datos para obtener la información a imprimir
-                var (rutEmpresa, nombreRepresentante, direccion, telefono, añoConst, logoUrl, documentacion) = ObtenerDatosEmpresa(idEmpresa);
+                    // Consultar la base de datos para obtener la información a imprimir
+                    var (rutEmpresa, nombreRepresentante, direccion, telefono, añoConst, logoUrl, documentacion) = ObtenerDatosEmpresa(idEmpresa);
 
-                // Imprimir los datos en sus respectivos textboxes
-                DisplayBoxRep.Text = nombreRepresentante;
-                DisplayBoxRut.Text = rutEmpresa;
-                DisplayBoxDir.Text = direccion;
-                DisplayBoxTel.Text = telefono.ToString();
-                DisplayBoxAño.Text = añoConst.ToString("d-MM-yyyy");
+                    // Imprimir los datos en sus respectivos textboxes
+                    DisplayBoxRep.Text = nombreRepresentante;
+                    DisplayBoxRut.Text = rutEmpresa;
+                    DisplayBoxDir.Text = direccion;
+                    DisplayBoxTel.Text = telefono.ToString();
+                    DisplayBoxAño.Text = añoConst.ToString("d-MM-yyyy");
 
-                // Llamada a método para cargar el logo de la empresa
-                CargarLogo(logoUrl);
+                    // Llamada a método para cargar el logo de la empresa
+                    CargarLogo(logoUrl);
 
-                // Actualizar la URL de documentación actual
-                urlDocActual = documentacion;
+                    // Actualizar la URL de documentación actual
+                    urlDoc = documentacion;
+                }
             }
         }
-
         private async void CargarLogo(string urlLogo)
         {
-            // Mostrar texto "Cargando imágen"
+            // Mostrar texto "Cargando logotipo"
             LoadingText.Visible = true;
 
             try
@@ -130,7 +139,7 @@ namespace Waltrace
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No se ha podido cargar el logo: " + ex.Message);
+                MessageBox.Show("No se ha podido cargar el logo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 LoadingText.Visible = false;
             }
         }
@@ -139,11 +148,11 @@ namespace Waltrace
         {
             try
             {
-                if (!string.IsNullOrEmpty(urlDocActual))
+                if (!string.IsNullOrEmpty(urlDoc))
                 {
                     var psi = new System.Diagnostics.ProcessStartInfo
                     {
-                        FileName = urlDocActual,
+                        FileName = urlDoc,
                         UseShellExecute = true
                     };
                     System.Diagnostics.Process.Start(psi);
@@ -151,7 +160,7 @@ namespace Waltrace
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No se ha podido acceder a la documentación: " + ex.Message);
+                MessageBox.Show("No se ha podido acceder a la documentación: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

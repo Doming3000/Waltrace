@@ -9,30 +9,36 @@ namespace Waltrace
             InitializeComponent();
         }
 
-        private void VentanaPrincipal_Load(object sender, EventArgs e)
+        // Botones en el formulario:
+        private void TrabajadorButton_Click(object sender, EventArgs e)
         {
             // Verificar si hay conexión a internet al cargar la ventana
             bool checkConnection = NetworkInterface.GetIsNetworkAvailable();
             if (!checkConnection)
             {
-                MessageBox.Show("No estás contectado a internet");
-                Environment.Exit(1);
+                MessageBox.Show("No estás conectado a internet.\r\nVerífica el estado de tu conexión y vuelve a intentarlo más tarde.", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        // Botones en el formulario:
-        private void TrabajadorButton_Click(object sender, EventArgs e)
-        {
-            // Cargar nueva ventana y esconder la anterior
-            VentanaTrabajadores form2 = new VentanaTrabajadores();
-            this.Hide();
-            form2.Show();
+            else
+            {
+                // Cargar nueva ventana y esconder la anterior
+                VentanaTrabajadores form2 = new VentanaTrabajadores();
+                this.Hide();
+                form2.Show();
+            }
         }
         private void EmpresaButton_Click(object sender, EventArgs e)
         {
-            VentanaEmpresas form3 = new VentanaEmpresas();
-            this.Hide();
-            form3.Show();
+            bool checkConnection = NetworkInterface.GetIsNetworkAvailable();
+            if (!checkConnection)
+            {
+                MessageBox.Show("No estás conectado a internet.\r\nVerífica el estado de tu conexión y vuelve a intentarlo más tarde.", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                VentanaEmpresas form3 = new VentanaEmpresas();
+                this.Hide();
+                form3.Show();
+            }
         }
 
         private void EmpresaButton_MouseEnter(object sender, EventArgs e)
