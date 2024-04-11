@@ -34,14 +34,14 @@
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
-            CurriculumButton = new Button();
-            RegresarButton = new Button();
+            AceptarButton = new Button();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
             textBox3 = new TextBox();
             textBox4 = new TextBox();
             textBox5 = new TextBox();
             LoadingText = new Label();
+            linkLabel1 = new LinkLabel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -99,29 +99,17 @@
             label5.TabIndex = 0;
             label5.Text = "Fecha inicio:";
             // 
-            // CurriculumButton
+            // AceptarButton
             // 
-            CurriculumButton.Location = new Point(206, 212);
-            CurriculumButton.Name = "CurriculumButton";
-            CurriculumButton.Size = new Size(164, 29);
-            CurriculumButton.TabIndex = 7;
-            CurriculumButton.Text = "Descargar Currículum";
-            CurriculumButton.UseVisualStyleBackColor = true;
-            CurriculumButton.Click += CurriculumButton_Click;
-            CurriculumButton.MouseEnter += CurriculumButton_MouseEnter;
-            CurriculumButton.MouseLeave += CurriculumButton_MouseLeave;
-            // 
-            // RegresarButton
-            // 
-            RegresarButton.Location = new Point(376, 212);
-            RegresarButton.Name = "RegresarButton";
-            RegresarButton.Size = new Size(94, 29);
-            RegresarButton.TabIndex = 1;
-            RegresarButton.Text = "Regresar";
-            RegresarButton.UseVisualStyleBackColor = true;
-            RegresarButton.Click += RegresarButton_Click;
-            RegresarButton.MouseEnter += RegresarButton_MouseEnter;
-            RegresarButton.MouseLeave += RegresarButton_MouseLeave;
+            AceptarButton.Location = new Point(376, 212);
+            AceptarButton.Name = "AceptarButton";
+            AceptarButton.Size = new Size(94, 29);
+            AceptarButton.TabIndex = 1;
+            AceptarButton.Text = "Aceptar";
+            AceptarButton.UseVisualStyleBackColor = true;
+            AceptarButton.Click += AceptarButton_Click;
+            AceptarButton.MouseEnter += AceptarButton_MouseEnter;
+            AceptarButton.MouseLeave += AceptarButton_MouseLeave;
             // 
             // textBox1
             // 
@@ -173,19 +161,29 @@
             LoadingText.Text = "Cargando foto...";
             LoadingText.Visible = false;
             // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(190, 175);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(151, 20);
+            linkLabel1.TabIndex = 8;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Descargar Currículum";
+            // 
             // TrabajadorSeleccionado
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(482, 253);
+            Controls.Add(linkLabel1);
             Controls.Add(LoadingText);
             Controls.Add(textBox5);
             Controls.Add(textBox4);
             Controls.Add(textBox3);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
-            Controls.Add(RegresarButton);
-            Controls.Add(CurriculumButton);
+            Controls.Add(AceptarButton);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -209,13 +207,13 @@
         private Label label3;
         private Label label4;
         private Label label5;
-        private Button CurriculumButton;
-        private Button RegresarButton;
+        private Button AceptarButton;
         private TextBox textBox1;
         private TextBox textBox2;
         private TextBox textBox3;
         private TextBox textBox4;
         private TextBox textBox5;
         private Label LoadingText;
+        private LinkLabel linkLabel1;
     }
 }
