@@ -13,7 +13,7 @@ namespace Waltrace
             // Abrir la conexión al inicio de la aplicación
             DataBaseConnection.AbrirConexion();
 
-            Application.Run(new VentanaPrincipal());
+            Application.Run(new Principal());
 
             // Cerrar la conexión cuando la aplicación se cierra
             DataBaseConnection.CerrarConexion();

@@ -5,12 +5,12 @@ using System.Net.NetworkInformation;
 
 namespace Waltrace
 {
-    public partial class VentanaEmpresas : Form
+    public partial class Empresas : Form
     {
         // Variables
         string urlDoc;
 
-        public VentanaEmpresas()
+        public Empresas()
         {
             InitializeComponent();
 
@@ -168,7 +168,7 @@ namespace Waltrace
         private void RegresarButton_Click(object sender, EventArgs e)
         {
             // Regresar al formulario inicial
-            VentanaPrincipal form1 = new VentanaPrincipal();
+            Principal form1 = new Principal();
             this.Hide();
             form1.Show();
         }

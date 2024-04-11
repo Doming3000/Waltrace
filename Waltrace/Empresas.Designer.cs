@@ -1,6 +1,6 @@
 ﻿namespace Waltrace
 {
-    partial class VentanaEmpresas
+    partial class Empresas
     {
         /// <summary>
         /// Required designer variable.

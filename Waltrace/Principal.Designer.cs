@@ -1,6 +1,6 @@
 ﻿namespace Waltrace
 {
-    partial class VentanaPrincipal
+    partial class Principal
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentanaPrincipal));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             pictureBox1 = new PictureBox();
             EmpresaButton = new Button();
             TrabajadorButton = new Button();

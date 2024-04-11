@@ -1,6 +1,6 @@
 ﻿namespace Waltrace
 {
-    partial class VentanaTrabajadores
+    partial class Trabajadores
     {
         /// <summary>
         ///  Required designer variable.
@@ -36,6 +36,7 @@
             TrabajadoresList = new ListView();
             NombreTrabajador = new ColumnHeader();
             RutTrabajador = new ColumnHeader();
+            cargo = new ColumnHeader();
             EmpresaContr = new ColumnHeader();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
@@ -70,13 +71,16 @@
             // 
             // TrabajadoresList
             // 
-            TrabajadoresList.Columns.AddRange(new ColumnHeader[] { NombreTrabajador, RutTrabajador, EmpresaContr });
-            TrabajadoresList.Location = new Point(12, 63);
+            TrabajadoresList.Columns.AddRange(new ColumnHeader[] { NombreTrabajador, RutTrabajador, cargo, EmpresaContr });
+            TrabajadoresList.FullRowSelect = true;
+            TrabajadoresList.Location = new Point(12, 47);
             TrabajadoresList.Name = "TrabajadoresList";
-            TrabajadoresList.Size = new Size(394, 121);
+            TrabajadoresList.Size = new Size(545, 120);
             TrabajadoresList.TabIndex = 15;
+            TrabajadoresList.TileSize = new Size(1, 1);
             TrabajadoresList.UseCompatibleStateImageBehavior = false;
             TrabajadoresList.View = View.Details;
+            TrabajadoresList.ItemActivate += TrabajadoresList_ItemActivate;
             // 
             // NombreTrabajador
             // 
@@ -87,6 +91,11 @@
             // 
             RutTrabajador.Text = "Rut";
             RutTrabajador.Width = 90;
+            // 
+            // cargo
+            // 
+            cargo.Text = "Cargo";
+            cargo.Width = 150;
             // 
             // EmpresaContr
             // 
@@ -120,5 +129,6 @@
         private ColumnHeader NombreTrabajador;
         private ColumnHeader RutTrabajador;
         private ColumnHeader EmpresaContr;
+        private ColumnHeader cargo;
     }
 }

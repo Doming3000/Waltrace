@@ -2,9 +2,9 @@
 
 namespace Waltrace
 {
-    public partial class VentanaPrincipal : Form
+    public partial class Principal : Form
     {
-        public VentanaPrincipal()
+        public Principal()
         {
             InitializeComponent();
         }
@@ -21,7 +21,7 @@ namespace Waltrace
             else
             {
                 // Cargar nueva ventana y esconder la anterior
-                VentanaTrabajadores form2 = new VentanaTrabajadores();
+                Trabajadores form2 = new Trabajadores();
                 this.Hide();
                 form2.Show();
             }
@@ -35,7 +35,7 @@ namespace Waltrace
             }
             else
             {
-                VentanaEmpresas form3 = new VentanaEmpresas();
+                Empresas form3 = new Empresas();
                 this.Hide();
                 form3.Show();
             }

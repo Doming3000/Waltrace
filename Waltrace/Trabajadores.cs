@@ -3,9 +3,9 @@ using System.Data.SqlClient;
 
 namespace Waltrace
 {
-    public partial class VentanaTrabajadores : Form
+    public partial class Trabajadores : Form
     {
-        public VentanaTrabajadores()
+        public Trabajadores()
         {
             InitializeComponent();
 
@@ -27,7 +27,7 @@ namespace Waltrace
                 // Abrir la conexión en caso de que no esté abierta
                 DataBaseConnection.AbrirConexion();
 
-                string consulta = @"SELECT t.nom_trabajador, t.rut_trabajador, e.nom_empresa FROM trabajadores t INNER JOIN empresas e ON t.id_empresa = e.id_empresa";
+                string consulta = @"SELECT t.nom_trabajador, t.rut_trabajador, e.nom_empresa, t.cargo FROM trabajadores t INNER JOIN empresas e ON t.id_empresa = e.id_empresa";
 
                 using (SqlCommand comando = new SqlCommand(consulta, DataBaseConnection.Conexion))
                 using (SqlDataReader lector = comando.ExecuteReader())
@@ -38,6 +38,7 @@ namespace Waltrace
                     {
                         ListViewItem item = new ListViewItem(lector["nom_trabajador"].ToString());
                         item.SubItems.Add(lector["rut_trabajador"].ToString());
+                        item.SubItems.Add(lector["cargo"].ToString());
                         item.SubItems.Add(lector["nom_empresa"].ToString());
                         TrabajadoresList.Items.Add(item);
                     }
@@ -68,18 +69,23 @@ namespace Waltrace
                 BuscadorEmpleado.ForeColor = Color.Gray;
             }
         }
+        private void BuscadorEmpleado_TextChanged(object sender, EventArgs e)
+        {
+
+        }
 
         private void RegresarButton_Click(object sender, EventArgs e)
         {
             // Regresar al formulario inicial
-            VentanaPrincipal form1 = new VentanaPrincipal();
+            Principal form1 = new Principal();
             this.Hide();
             form1.Show();
         }
 
-        private void BuscadorEmpleado_TextChanged(object sender, EventArgs e)
+        private void TrabajadoresList_ItemActivate(object sender, EventArgs e)
         {
-
+            TrabajadorSeleccionado form1 = new TrabajadorSeleccionado();
+            form1.ShowDialog();
         }
     }
 }
