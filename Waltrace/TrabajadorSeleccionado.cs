@@ -7,8 +7,8 @@
             InitializeComponent();
 
             /*
-            Al cargar la ventana deben imprimirse los datos del trabajador seleccionado en el paso anterior,
-            de alguna forma hay que comunicar un método entre scripts. 
+            Al cargar la ventana deben imprimirse los datos del trabajador seleccionado mediante la llamada
+            de un método en este paso o en el anterior.
             */
         }
 

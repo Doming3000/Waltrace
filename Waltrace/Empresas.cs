@@ -99,6 +99,23 @@ namespace Waltrace
                     // Habilitar GroupBox al seleccionar una empresa
                     GroupBox1.Enabled = true;
 
+                    // Limpiar posibles datos seleccionados anteriormente
+                    GroupBox2.Visible = false;
+
+                    // Comprobar cuál empresa se seleccionó:
+                    if (idEmpresa == 1) // Walbusch SA
+                    {
+                        GroupBox2.Visible = true;
+                    }
+                    else if (idEmpresa == 2) // MCA SA
+                    {
+                        MessageBox.Show("2");
+                    }
+                    else if (idEmpresa == 3) // Waltech
+                    {
+                        MessageBox.Show("3");
+                    }
+
                     // Consultar la base de datos para obtener la información a imprimir
                     var (rutEmpresa, nombreRepresentante, direccion, telefono, añoConst, logoUrl, documentacion) = ObtenerDatosEmpresa(idEmpresa);
 
@@ -117,6 +134,7 @@ namespace Waltrace
                 }
             }
         }
+
         private async void CargarLogo(string urlLogo)
         {
             // Mostrar texto "Cargando logotipo"
@@ -192,6 +210,12 @@ namespace Waltrace
         private void DocsButton_MouseLeave(object sender, EventArgs e)
         {
             Cursor = Cursors.Default;
+        }
+
+        private void FlotaButton_Click(object sender, EventArgs e)
+        {
+            FlotaWalbusch form1 = new FlotaWalbusch();
+            form1.ShowDialog();
         }
     }
 }

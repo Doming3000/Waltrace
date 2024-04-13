@@ -32,28 +32,31 @@
             label1 = new Label();
             RegresarButton = new Button();
             GroupBox1 = new GroupBox();
-            LoadingText = new Label();
             DisplayBoxDir = new TextBox();
             DocsButton = new Button();
-            LogoBox = new PictureBox();
             label6 = new Label();
             label5 = new Label();
             label4 = new Label();
             DisplayBoxAño = new TextBox();
             DisplayBoxTel = new TextBox();
-            DisplayBoxRut = new TextBox();
             label3 = new Label();
             label2 = new Label();
+            DisplayBoxRut = new TextBox();
             DisplayBoxRep = new TextBox();
+            LoadingText = new Label();
+            LogoBox = new PictureBox();
+            FlotaButton = new Button();
+            GroupBox2 = new GroupBox();
             GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)LogoBox).BeginInit();
+            GroupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // EmpresasBox
             // 
             EmpresasBox.DropDownStyle = ComboBoxStyle.DropDownList;
             EmpresasBox.FormattingEnabled = true;
-            EmpresasBox.Location = new Point(26, 52);
+            EmpresasBox.Location = new Point(25, 50);
             EmpresasBox.Name = "EmpresasBox";
             EmpresasBox.Size = new Size(230, 28);
             EmpresasBox.TabIndex = 1;
@@ -62,7 +65,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(26, 29);
+            label1.Location = new Point(25, 25);
             label1.Name = "label1";
             label1.Size = new Size(144, 20);
             label1.TabIndex = 1;
@@ -82,35 +85,23 @@
             // 
             // GroupBox1
             // 
-            GroupBox1.Controls.Add(LoadingText);
             GroupBox1.Controls.Add(DisplayBoxDir);
             GroupBox1.Controls.Add(DocsButton);
-            GroupBox1.Controls.Add(LogoBox);
             GroupBox1.Controls.Add(label6);
             GroupBox1.Controls.Add(label5);
             GroupBox1.Controls.Add(label4);
             GroupBox1.Controls.Add(DisplayBoxAño);
             GroupBox1.Controls.Add(DisplayBoxTel);
-            GroupBox1.Controls.Add(DisplayBoxRut);
             GroupBox1.Controls.Add(label3);
             GroupBox1.Controls.Add(label2);
+            GroupBox1.Controls.Add(DisplayBoxRut);
             GroupBox1.Controls.Add(DisplayBoxRep);
             GroupBox1.Enabled = false;
-            GroupBox1.Location = new Point(26, 121);
+            GroupBox1.Location = new Point(25, 93);
             GroupBox1.Name = "GroupBox1";
-            GroupBox1.Size = new Size(744, 285);
+            GroupBox1.Size = new Size(354, 248);
             GroupBox1.TabIndex = 6;
             GroupBox1.TabStop = false;
-            // 
-            // LoadingText
-            // 
-            LoadingText.AutoSize = true;
-            LoadingText.Location = new Point(513, 15);
-            LoadingText.Name = "LoadingText";
-            LoadingText.Size = new Size(145, 20);
-            LoadingText.TabIndex = 9;
-            LoadingText.Text = "Cargando logotipo...";
-            LoadingText.Visible = false;
             // 
             // DisplayBoxDir
             // 
@@ -131,15 +122,6 @@
             DocsButton.Click += DocsButton_Click;
             DocsButton.MouseEnter += DocsButton_MouseEnter;
             DocsButton.MouseLeave += DocsButton_MouseLeave;
-            // 
-            // LogoBox
-            // 
-            LogoBox.Location = new Point(513, 38);
-            LogoBox.Name = "LogoBox";
-            LogoBox.Size = new Size(207, 163);
-            LogoBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            LogoBox.TabIndex = 8;
-            LogoBox.TabStop = false;
             // 
             // label6
             // 
@@ -184,18 +166,10 @@
             DisplayBoxTel.Size = new Size(160, 27);
             DisplayBoxTel.TabIndex = 5;
             // 
-            // DisplayBoxRut
-            // 
-            DisplayBoxRut.Location = new Point(167, 75);
-            DisplayBoxRut.Name = "DisplayBoxRut";
-            DisplayBoxRut.ReadOnly = true;
-            DisplayBoxRut.Size = new Size(160, 27);
-            DisplayBoxRut.TabIndex = 3;
-            // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(17, 78);
+            label3.Location = new Point(17, 74);
             label3.Name = "label3";
             label3.Size = new Size(116, 20);
             label3.TabIndex = 2;
@@ -210,6 +184,14 @@
             label2.TabIndex = 1;
             label2.Text = "Representante legal:";
             // 
+            // DisplayBoxRut
+            // 
+            DisplayBoxRut.Location = new Point(167, 71);
+            DisplayBoxRut.Name = "DisplayBoxRut";
+            DisplayBoxRut.ReadOnly = true;
+            DisplayBoxRut.Size = new Size(160, 27);
+            DisplayBoxRut.TabIndex = 3;
+            // 
             // DisplayBoxRep
             // 
             DisplayBoxRep.Location = new Point(167, 38);
@@ -218,23 +200,66 @@
             DisplayBoxRep.Size = new Size(160, 27);
             DisplayBoxRep.TabIndex = 2;
             // 
-            // VentanaEmpresas
+            // LoadingText
+            // 
+            LoadingText.AutoSize = true;
+            LoadingText.Location = new Point(563, 178);
+            LoadingText.Name = "LoadingText";
+            LoadingText.Size = new Size(145, 20);
+            LoadingText.TabIndex = 9;
+            LoadingText.Text = "Cargando logotipo...";
+            LoadingText.Visible = false;
+            // 
+            // LogoBox
+            // 
+            LogoBox.Location = new Point(563, 12);
+            LogoBox.Name = "LogoBox";
+            LogoBox.Size = new Size(207, 163);
+            LogoBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            LogoBox.TabIndex = 8;
+            LogoBox.TabStop = false;
+            // 
+            // FlotaButton
+            // 
+            FlotaButton.Location = new Point(148, 90);
+            FlotaButton.Name = "FlotaButton";
+            FlotaButton.Size = new Size(94, 29);
+            FlotaButton.TabIndex = 10;
+            FlotaButton.Text = "Flota";
+            FlotaButton.UseVisualStyleBackColor = true;
+            FlotaButton.Click += FlotaButton_Click;
+            // 
+            // GroupBox2
+            // 
+            GroupBox2.Controls.Add(FlotaButton);
+            GroupBox2.Location = new Point(503, 253);
+            GroupBox2.Name = "GroupBox2";
+            GroupBox2.Size = new Size(250, 125);
+            GroupBox2.TabIndex = 11;
+            GroupBox2.TabStop = false;
+            GroupBox2.Visible = false;
+            // 
+            // Empresas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(782, 453);
+            Controls.Add(GroupBox2);
+            Controls.Add(LoadingText);
             Controls.Add(GroupBox1);
             Controls.Add(RegresarButton);
             Controls.Add(label1);
+            Controls.Add(LogoBox);
             Controls.Add(EmpresasBox);
             MaximizeBox = false;
-            Name = "VentanaEmpresas";
+            Name = "Empresas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Waltrace - Empresas";
             GroupBox1.ResumeLayout(false);
             GroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)LogoBox).EndInit();
+            GroupBox2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -258,5 +283,7 @@
         private Button DocsButton;
         private TextBox DisplayBoxDir;
         private Label LoadingText;
+        private Button FlotaButton;
+        private GroupBox GroupBox2;
     }
 }

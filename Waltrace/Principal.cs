@@ -21,9 +21,9 @@ namespace Waltrace
             else
             {
                 // Cargar nueva ventana y esconder la anterior
-                Trabajadores form2 = new Trabajadores();
+                Trabajadores form1 = new Trabajadores();
                 this.Hide();
-                form2.Show();
+                form1.Show();
             }
         }
         private void EmpresaButton_Click(object sender, EventArgs e)
@@ -35,9 +35,9 @@ namespace Waltrace
             }
             else
             {
-                Empresas form3 = new Empresas();
+                Empresas form1 = new Empresas();
                 this.Hide();
-                form3.Show();
+                form1.Show();
             }
         }
 
