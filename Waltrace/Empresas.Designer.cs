@@ -46,10 +46,10 @@
             LoadingText = new Label();
             LogoBox = new PictureBox();
             FlotaButton = new Button();
-            GroupBox2 = new GroupBox();
+            WalbuschPanel = new Panel();
             GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)LogoBox).BeginInit();
-            GroupBox2.SuspendLayout();
+            WalbuschPanel.SuspendLayout();
             SuspendLayout();
             // 
             // EmpresasBox
@@ -221,7 +221,7 @@
             // 
             // FlotaButton
             // 
-            FlotaButton.Location = new Point(148, 90);
+            FlotaButton.Location = new Point(153, 87);
             FlotaButton.Name = "FlotaButton";
             FlotaButton.Size = new Size(94, 29);
             FlotaButton.TabIndex = 10;
@@ -229,15 +229,14 @@
             FlotaButton.UseVisualStyleBackColor = true;
             FlotaButton.Click += FlotaButton_Click;
             // 
-            // GroupBox2
+            // WalbuschPanel
             // 
-            GroupBox2.Controls.Add(FlotaButton);
-            GroupBox2.Location = new Point(503, 253);
-            GroupBox2.Name = "GroupBox2";
-            GroupBox2.Size = new Size(250, 125);
-            GroupBox2.TabIndex = 11;
-            GroupBox2.TabStop = false;
-            GroupBox2.Visible = false;
+            WalbuschPanel.Controls.Add(FlotaButton);
+            WalbuschPanel.Location = new Point(520, 281);
+            WalbuschPanel.Name = "WalbuschPanel";
+            WalbuschPanel.Size = new Size(250, 125);
+            WalbuschPanel.TabIndex = 12;
+            WalbuschPanel.Visible = false;
             // 
             // Empresas
             // 
@@ -245,7 +244,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(782, 453);
-            Controls.Add(GroupBox2);
+            Controls.Add(WalbuschPanel);
             Controls.Add(LoadingText);
             Controls.Add(GroupBox1);
             Controls.Add(RegresarButton);
@@ -259,7 +258,7 @@
             GroupBox1.ResumeLayout(false);
             GroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)LogoBox).EndInit();
-            GroupBox2.ResumeLayout(false);
+            WalbuschPanel.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -284,6 +283,6 @@
         private TextBox DisplayBoxDir;
         private Label LoadingText;
         private Button FlotaButton;
-        private GroupBox GroupBox2;
+        private Panel WalbuschPanel;
     }
 }

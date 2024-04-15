@@ -100,12 +100,12 @@ namespace Waltrace
                     GroupBox1.Enabled = true;
 
                     // Limpiar posibles datos seleccionados anteriormente
-                    GroupBox2.Visible = false;
+                    WalbuschPanel.Visible = false;
 
                     // Comprobar cuál empresa se seleccionó:
                     if (idEmpresa == 1) // Walbusch SA
                     {
-                        GroupBox2.Visible = true;
+                        WalbuschPanel.Visible = true;
                     }
                     else if (idEmpresa == 2) // MCA SA
                     {
