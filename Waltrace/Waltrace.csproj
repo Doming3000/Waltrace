@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="CodeFolder.ico" />
+    <Content Remove="C:\Users\Asus\.nuget\packages\af.dataaccessor\2.0.2\contentFiles\any\net6.0\AFDataAccessor.json" />
   </ItemGroup>
 
   <ItemGroup>

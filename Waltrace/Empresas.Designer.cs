@@ -47,6 +47,7 @@
             LogoBox = new PictureBox();
             FlotaButton = new Button();
             WalbuschPanel = new Panel();
+            button1 = new Button();
             GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)LogoBox).BeginInit();
             WalbuschPanel.SuspendLayout();
@@ -221,7 +222,7 @@
             // 
             // FlotaButton
             // 
-            FlotaButton.Location = new Point(153, 87);
+            FlotaButton.Location = new Point(275, 170);
             FlotaButton.Name = "FlotaButton";
             FlotaButton.Size = new Size(94, 29);
             FlotaButton.TabIndex = 10;
@@ -231,12 +232,22 @@
             // 
             // WalbuschPanel
             // 
+            WalbuschPanel.Controls.Add(button1);
             WalbuschPanel.Controls.Add(FlotaButton);
-            WalbuschPanel.Location = new Point(520, 281);
+            WalbuschPanel.Location = new Point(398, 204);
             WalbuschPanel.Name = "WalbuschPanel";
-            WalbuschPanel.Size = new Size(250, 125);
+            WalbuschPanel.Size = new Size(372, 202);
             WalbuschPanel.TabIndex = 12;
             WalbuschPanel.Visible = false;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(164, 170);
+            button1.Name = "button1";
+            button1.Size = new Size(105, 29);
+            button1.TabIndex = 11;
+            button1.Text = "Organigrama";
+            button1.UseVisualStyleBackColor = true;
             // 
             // Empresas
             // 
@@ -284,5 +295,6 @@
         private Label LoadingText;
         private Button FlotaButton;
         private Panel WalbuschPanel;
+        private Button button1;
     }
 }
