@@ -71,7 +71,7 @@
             TrabajadorButton.MouseEnter += TrabajadorButton_MouseEnter;
             TrabajadorButton.MouseLeave += TrabajadorButton_MouseLeave;
             // 
-            // VentanaPrincipal
+            // Principal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -80,8 +80,9 @@
             Controls.Add(TrabajadorButton);
             Controls.Add(EmpresaButton);
             Controls.Add(pictureBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
-            Name = "VentanaPrincipal";
+            Name = "Principal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Waltrace";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

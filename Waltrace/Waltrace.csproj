@@ -8,11 +8,11 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>Waltrace</AssemblyName>
-    <ApplicationIcon>CodeFolder.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <Content Remove="C:\Users\Asus\.nuget\packages\af.dataaccessor\2.0.2\contentFiles\any\net6.0\AFDataAccessor.json" />
+    <Content Remove="C:\Users\Asus\.nuget\packages\af.dataaccessor\2.0.2\contentFiles\any\net6.0\Icons\Icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +33,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
 
 </Project>

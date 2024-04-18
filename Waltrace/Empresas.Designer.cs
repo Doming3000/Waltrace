@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Empresas));
             EmpresasBox = new ComboBox();
             label1 = new Label();
             RegresarButton = new Button();
@@ -87,7 +88,7 @@
             RegresarButton.Location = new Point(676, 412);
             RegresarButton.Name = "RegresarButton";
             RegresarButton.Size = new Size(94, 29);
-            RegresarButton.TabIndex = 8;
+            RegresarButton.TabIndex = 9;
             RegresarButton.Text = "Regresar";
             RegresarButton.UseVisualStyleBackColor = true;
             RegresarButton.Click += RegresarButton_Click;
@@ -120,10 +121,12 @@
             CopyButton.Location = new Point(141, 249);
             CopyButton.Name = "CopyButton";
             CopyButton.Size = new Size(169, 29);
-            CopyButton.TabIndex = 12;
+            CopyButton.TabIndex = 8;
             CopyButton.Text = "Copiar al portapapeles";
             CopyButton.UseVisualStyleBackColor = true;
             CopyButton.Click += CopyButton_Click;
+            CopyButton.MouseEnter += CopyButton_MouseEnter;
+            CopyButton.MouseLeave += CopyButton_MouseLeave;
             // 
             // DisplayBoxDir
             // 
@@ -351,6 +354,7 @@
             Controls.Add(label1);
             Controls.Add(LogoBox);
             Controls.Add(EmpresasBox);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Empresas";
             StartPosition = FormStartPosition.CenterScreen;
