@@ -32,6 +32,7 @@
             label1 = new Label();
             RegresarButton = new Button();
             GroupBox1 = new GroupBox();
+            CopyButton = new Button();
             DisplayBoxDir = new TextBox();
             DocsButton = new Button();
             label6 = new Label();
@@ -47,10 +48,19 @@
             LogoBox = new PictureBox();
             FlotaButton = new Button();
             WalbuschPanel = new Panel();
+            label7 = new Label();
             button1 = new Button();
+            MCAPanel = new Panel();
+            label8 = new Label();
+            button2 = new Button();
+            WaltechPanel = new Panel();
+            label9 = new Label();
+            button3 = new Button();
             GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)LogoBox).BeginInit();
             WalbuschPanel.SuspendLayout();
+            MCAPanel.SuspendLayout();
+            WaltechPanel.SuspendLayout();
             SuspendLayout();
             // 
             // EmpresasBox
@@ -86,6 +96,7 @@
             // 
             // GroupBox1
             // 
+            GroupBox1.Controls.Add(CopyButton);
             GroupBox1.Controls.Add(DisplayBoxDir);
             GroupBox1.Controls.Add(DocsButton);
             GroupBox1.Controls.Add(label6);
@@ -100,9 +111,19 @@
             GroupBox1.Enabled = false;
             GroupBox1.Location = new Point(25, 93);
             GroupBox1.Name = "GroupBox1";
-            GroupBox1.Size = new Size(354, 248);
+            GroupBox1.Size = new Size(354, 303);
             GroupBox1.TabIndex = 6;
             GroupBox1.TabStop = false;
+            // 
+            // CopyButton
+            // 
+            CopyButton.Location = new Point(141, 249);
+            CopyButton.Name = "CopyButton";
+            CopyButton.Size = new Size(169, 29);
+            CopyButton.TabIndex = 12;
+            CopyButton.Text = "Copiar al portapapeles";
+            CopyButton.UseVisualStyleBackColor = true;
+            CopyButton.Click += CopyButton_Click;
             // 
             // DisplayBoxDir
             // 
@@ -222,7 +243,7 @@
             // 
             // FlotaButton
             // 
-            FlotaButton.Location = new Point(275, 170);
+            FlotaButton.Location = new Point(267, 159);
             FlotaButton.Name = "FlotaButton";
             FlotaButton.Size = new Size(94, 29);
             FlotaButton.TabIndex = 10;
@@ -232,22 +253,89 @@
             // 
             // WalbuschPanel
             // 
+            WalbuschPanel.Controls.Add(label7);
             WalbuschPanel.Controls.Add(button1);
             WalbuschPanel.Controls.Add(FlotaButton);
-            WalbuschPanel.Location = new Point(398, 204);
+            WalbuschPanel.Location = new Point(395, 207);
             WalbuschPanel.Name = "WalbuschPanel";
-            WalbuschPanel.Size = new Size(372, 202);
+            WalbuschPanel.Size = new Size(375, 202);
             WalbuschPanel.TabIndex = 12;
             WalbuschPanel.Visible = false;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(13, 15);
+            label7.Name = "label7";
+            label7.Size = new Size(131, 20);
+            label7.TabIndex = 12;
+            label7.Text = "Panel Walbusch Sa";
+            // 
             // button1
             // 
-            button1.Location = new Point(164, 170);
+            button1.Location = new Point(156, 159);
             button1.Name = "button1";
             button1.Size = new Size(105, 29);
             button1.TabIndex = 11;
             button1.Text = "Organigrama";
             button1.UseVisualStyleBackColor = true;
+            // 
+            // MCAPanel
+            // 
+            MCAPanel.Controls.Add(label8);
+            MCAPanel.Controls.Add(button2);
+            MCAPanel.Location = new Point(0, 0);
+            MCAPanel.Name = "MCAPanel";
+            MCAPanel.Size = new Size(375, 202);
+            MCAPanel.TabIndex = 13;
+            MCAPanel.Visible = false;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(13, 15);
+            label8.Name = "label8";
+            label8.Size = new Size(102, 20);
+            label8.TabIndex = 12;
+            label8.Text = "Panel MCA SA";
+            // 
+            // button2
+            // 
+            button2.Location = new Point(258, 160);
+            button2.Name = "button2";
+            button2.Size = new Size(105, 29);
+            button2.TabIndex = 11;
+            button2.Text = "Organigrama";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // WaltechPanel
+            // 
+            WaltechPanel.Controls.Add(label9);
+            WaltechPanel.Controls.Add(MCAPanel);
+            WaltechPanel.Controls.Add(button3);
+            WaltechPanel.Location = new Point(395, 207);
+            WaltechPanel.Name = "WaltechPanel";
+            WaltechPanel.Size = new Size(375, 202);
+            WaltechPanel.TabIndex = 14;
+            WaltechPanel.Visible = false;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(13, 15);
+            label9.Name = "label9";
+            label9.Size = new Size(101, 20);
+            label9.TabIndex = 12;
+            label9.Text = "Panel Waltech";
+            // 
+            // button3
+            // 
+            button3.Location = new Point(258, 160);
+            button3.Name = "button3";
+            button3.Size = new Size(105, 29);
+            button3.TabIndex = 11;
+            button3.Text = "Organigrama";
+            button3.UseVisualStyleBackColor = true;
             // 
             // Empresas
             // 
@@ -255,6 +343,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(782, 453);
+            Controls.Add(WaltechPanel);
             Controls.Add(WalbuschPanel);
             Controls.Add(LoadingText);
             Controls.Add(GroupBox1);
@@ -270,6 +359,11 @@
             GroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)LogoBox).EndInit();
             WalbuschPanel.ResumeLayout(false);
+            WalbuschPanel.PerformLayout();
+            MCAPanel.ResumeLayout(false);
+            MCAPanel.PerformLayout();
+            WaltechPanel.ResumeLayout(false);
+            WaltechPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -296,5 +390,13 @@
         private Button FlotaButton;
         private Panel WalbuschPanel;
         private Button button1;
+        private Label label7;
+        private Panel MCAPanel;
+        private Label label8;
+        private Button button2;
+        private Panel WaltechPanel;
+        private Label label9;
+        private Button button3;
+        private Button CopyButton;
     }
 }

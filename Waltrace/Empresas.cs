@@ -101,6 +101,8 @@ namespace Waltrace
 
                     // Limpiar posibles datos seleccionados anteriormente
                     WalbuschPanel.Visible = false;
+                    MCAPanel.Visible = false;
+                    WaltechPanel.Visible = false;
 
                     // Comprobar cuál empresa se seleccionó:
                     if (idEmpresa == 1) // Walbusch SA
@@ -109,11 +111,11 @@ namespace Waltrace
                     }
                     else if (idEmpresa == 2) // MCA SA
                     {
-                        MessageBox.Show("2");
+                        MCAPanel.Visible = true;
                     }
                     else if (idEmpresa == 3) // Waltech
                     {
-                        MessageBox.Show("3");
+                        WaltechPanel.Visible = false;
                     }
 
                     // Consultar la base de datos para obtener la información a imprimir
@@ -181,6 +183,19 @@ namespace Waltrace
             {
                 MessageBox.Show("No se ha podido acceder a la documentación: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void CopyButton_Click(object sender, EventArgs e)
+        {
+            // Obtener información de los textboxes 
+            string nombreRepresentante = DisplayBoxRep.Text;
+            string rutEmpresa = DisplayBoxRut.Text;
+            string direccion = DisplayBoxDir.Text;
+            string telefono = DisplayBoxTel.Text;
+            string año = DisplayBoxAño.Text;
+
+            // Copiar información al portapapeles
+            Clipboard.SetText(nombreRepresentante + "\n" + rutEmpresa + "\n" + direccion + "\n" + telefono + "\n" + año);
         }
 
         private void RegresarButton_Click(object sender, EventArgs e)
