@@ -115,7 +115,7 @@ namespace Waltrace
                     }
                     else if (idEmpresa == 3) // Waltech
                     {
-                        WaltechPanel.Visible = false;
+                        WaltechPanel.Visible = true;
                     }
 
                     // Consultar la base de datos para obtener la información a imprimir
@@ -151,7 +151,7 @@ namespace Waltrace
                     // Crear una imagen desde el stream de manera asincrónica
                     var image = Image.FromStream(stream);
 
-                    this.Invoke((MethodInvoker)delegate
+                    Invoke((MethodInvoker)delegate
                     {
                         LogoBox.Image = image;
                         LoadingText.Visible = false;

@@ -68,7 +68,7 @@
             // 
             EmpresasBox.DropDownStyle = ComboBoxStyle.DropDownList;
             EmpresasBox.FormattingEnabled = true;
-            EmpresasBox.Location = new Point(25, 50);
+            EmpresasBox.Location = new Point(25, 48);
             EmpresasBox.Name = "EmpresasBox";
             EmpresasBox.Size = new Size(230, 28);
             EmpresasBox.TabIndex = 1;
@@ -85,7 +85,7 @@
             // 
             // RegresarButton
             // 
-            RegresarButton.Location = new Point(676, 412);
+            RegresarButton.Location = new Point(996, 632);
             RegresarButton.Name = "RegresarButton";
             RegresarButton.Size = new Size(94, 29);
             RegresarButton.TabIndex = 9;
@@ -228,7 +228,7 @@
             // LoadingText
             // 
             LoadingText.AutoSize = true;
-            LoadingText.Location = new Point(563, 178);
+            LoadingText.Location = new Point(890, 228);
             LoadingText.Name = "LoadingText";
             LoadingText.Size = new Size(145, 20);
             LoadingText.TabIndex = 9;
@@ -237,9 +237,9 @@
             // 
             // LogoBox
             // 
-            LogoBox.Location = new Point(563, 12);
+            LogoBox.Location = new Point(890, 25);
             LogoBox.Name = "LogoBox";
-            LogoBox.Size = new Size(207, 163);
+            LogoBox.Size = new Size(200, 200);
             LogoBox.SizeMode = PictureBoxSizeMode.StretchImage;
             LogoBox.TabIndex = 8;
             LogoBox.TabStop = false;
@@ -259,7 +259,7 @@
             WalbuschPanel.Controls.Add(label7);
             WalbuschPanel.Controls.Add(button1);
             WalbuschPanel.Controls.Add(FlotaButton);
-            WalbuschPanel.Location = new Point(395, 207);
+            WalbuschPanel.Location = new Point(454, 59);
             WalbuschPanel.Name = "WalbuschPanel";
             WalbuschPanel.Size = new Size(375, 202);
             WalbuschPanel.TabIndex = 12;
@@ -287,7 +287,7 @@
             // 
             MCAPanel.Controls.Add(label8);
             MCAPanel.Controls.Add(button2);
-            MCAPanel.Location = new Point(0, 0);
+            MCAPanel.Location = new Point(408, 459);
             MCAPanel.Name = "MCAPanel";
             MCAPanel.Size = new Size(375, 202);
             MCAPanel.TabIndex = 13;
@@ -314,9 +314,8 @@
             // WaltechPanel
             // 
             WaltechPanel.Controls.Add(label9);
-            WaltechPanel.Controls.Add(MCAPanel);
             WaltechPanel.Controls.Add(button3);
-            WaltechPanel.Location = new Point(395, 207);
+            WaltechPanel.Location = new Point(705, 292);
             WaltechPanel.Name = "WaltechPanel";
             WaltechPanel.Size = new Size(375, 202);
             WaltechPanel.TabIndex = 14;
@@ -345,8 +344,9 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
-            ClientSize = new Size(782, 453);
+            ClientSize = new Size(1102, 673);
             Controls.Add(WaltechPanel);
+            Controls.Add(MCAPanel);
             Controls.Add(WalbuschPanel);
             Controls.Add(LoadingText);
             Controls.Add(GroupBox1);
