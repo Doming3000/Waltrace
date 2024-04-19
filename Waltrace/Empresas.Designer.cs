@@ -256,10 +256,11 @@
             // 
             // WalbuschPanel
             // 
+            WalbuschPanel.Controls.Add(WaltechPanel);
             WalbuschPanel.Controls.Add(label7);
             WalbuschPanel.Controls.Add(button1);
             WalbuschPanel.Controls.Add(FlotaButton);
-            WalbuschPanel.Location = new Point(454, 59);
+            WalbuschPanel.Location = new Point(454, 48);
             WalbuschPanel.Name = "WalbuschPanel";
             WalbuschPanel.Size = new Size(375, 202);
             WalbuschPanel.TabIndex = 12;
@@ -287,7 +288,7 @@
             // 
             MCAPanel.Controls.Add(label8);
             MCAPanel.Controls.Add(button2);
-            MCAPanel.Location = new Point(408, 459);
+            MCAPanel.Location = new Point(454, 134);
             MCAPanel.Name = "MCAPanel";
             MCAPanel.Size = new Size(375, 202);
             MCAPanel.TabIndex = 13;
@@ -315,7 +316,7 @@
             // 
             WaltechPanel.Controls.Add(label9);
             WaltechPanel.Controls.Add(button3);
-            WaltechPanel.Location = new Point(705, 292);
+            WaltechPanel.Location = new Point(0, 40);
             WaltechPanel.Name = "WaltechPanel";
             WaltechPanel.Size = new Size(375, 202);
             WaltechPanel.TabIndex = 14;
@@ -345,7 +346,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(1102, 673);
-            Controls.Add(WaltechPanel);
             Controls.Add(MCAPanel);
             Controls.Add(WalbuschPanel);
             Controls.Add(LoadingText);
