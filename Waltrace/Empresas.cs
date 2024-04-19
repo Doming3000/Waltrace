@@ -8,7 +8,7 @@ namespace Waltrace
     public partial class Empresas : Form
     {
         // Variables
-        string urlDoc;
+        string urlDoc = string.Empty;
 
         public Empresas()
         {
@@ -64,13 +64,13 @@ namespace Waltrace
                     {
                         if (lector.Read())
                         {
-                            rutEmpresa = lector["rut_empresa"].ToString();
-                            nombreRepresentante = lector["representante"].ToString();
-                            direccion = lector["direccion"].ToString();
-                            telefono = (long)lector["telefono"];
-                            añoConst = (DateTime)lector["año_const"];
-                            logoUrl = lector["logo"].ToString();
-                            documentacion = lector["documentacion"].ToString();
+                            rutEmpresa = lector["rut_empresa"]?.ToString() ?? "";
+                            nombreRepresentante = lector["representante"]?.ToString() ?? "";
+                            direccion = lector["direccion"]?.ToString() ?? "";
+                            telefono = lector["telefono"] as long? ?? 0;
+                            añoConst = lector["año_const"] as DateTime? ?? DateTime.MinValue;
+                            logoUrl = lector["logo"]?.ToString() ?? "";
+                            documentacion = lector["documentacion"]?.ToString() ?? "";
                         }
                     }
                 }
@@ -94,7 +94,7 @@ namespace Waltrace
             else
             {
                 // Comprobar si existe una selección válida
-                if (EmpresasBox.SelectedIndex >= 0 && int.TryParse(EmpresasBox.SelectedValue.ToString(), out int idEmpresa))
+                if (EmpresasBox.SelectedIndex >= 0 && EmpresasBox.SelectedValue != null && int.TryParse(EmpresasBox.SelectedValue.ToString(), out int idEmpresa))
                 {
                     // Habilitar GroupBox al seleccionar una empresa
                     GroupBox1.Enabled = true;
@@ -144,18 +144,25 @@ namespace Waltrace
 
             try
             {
-                var request = WebRequest.Create(urlLogo);
-                using (var response = await request.GetResponseAsync())
-                using (var stream = response.GetResponseStream())
+                using (HttpClient client = new HttpClient())
+                using (HttpResponseMessage response = await client.GetAsync(urlLogo))
+                using (Stream stream = await response.Content.ReadAsStreamAsync())
                 {
-                    // Crear una imagen desde el stream de manera asincrónica
-                    var image = Image.FromStream(stream);
-
-                    Invoke((MethodInvoker)delegate
+                    if (response.IsSuccessStatusCode)
                     {
-                        LogoBox.Image = image;
-                        LoadingText.Visible = false;
-                    });
+                        // Crear una imagen desde el stream de manera asincrónica
+                        var image = Image.FromStream(stream);
+
+                        Invoke((MethodInvoker)delegate
+                        {
+                            LogoBox.Image = image;
+                            LoadingText.Visible = false;
+                        });
+                    }
+                    else
+                    {
+                        throw new Exception("No se ha podido cargar el logo. El servidor ha respondido con el código de estado: " + response.StatusCode);
+                    }
                 }
             }
             catch (Exception ex)
