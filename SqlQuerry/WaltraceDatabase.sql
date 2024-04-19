@@ -6,11 +6,11 @@ use WaltraceDatabase
 create table empresas (
 	id_empresa int not null,
 	nom_empresa varchar(50) not null,
-	rut_empresa varchar(10) not null, -- Sin puntos, con gui髇
+	rut_empresa varchar(10) not null, -- Sin puntos, con gui贸n
 	representante varchar(50) not null, 
 	direccion varchar(50) not null,
 	telefono bigint not null,
-	a駉_const date not null,
+	a帽o_const date not null,
 	logo varchar(max) not null,
 	documentacion varchar(max) not null,
 
@@ -20,22 +20,22 @@ create table empresas (
 -- Tabla Trabajadores:
 create table trabajadores (
     id_trabajador int not null,
-	id_empresa int not null, -- Clave for醤ea perteneciente a la tabla empresas
+	id_empresa int not null, -- Clave for谩nea perteneciente a la tabla empresas
     nom_trabajador varchar(50) not null,
-    rut_trabajador varchar(10) not null, -- Sin puntos, con gui髇
+    rut_trabajador varchar(10) not null, -- Sin puntos, con gui贸n
 	cargo varchar(30) not null,
 	fecha_inicio date not null,
 	curriculum_url varchar(max) not null,
 	foto varchar(max) not null,
 
     constraint pk_tra primary key (id_trabajador), -- Identificador
-    constraint fk_empresa_contratante foreign key (id_empresa) references empresas(id_empresa) -- Conexi髇 de tablas por medio de id de la empresa
+    constraint fk_empresa_contratante foreign key (id_empresa) references empresas(id_empresa) -- Conexi贸n de tablas por medio de id de la empresa
 );
 
 -- Tabla barcos (pertenecientes a Walbusch SA):
 create table barcos (
     id_barco int not null,
-    id_empresa int not null, -- Clave for醤ea 
+    id_empresa int not null, -- Clave for谩nea 
     nom_barco varchar(50) not null,
     foto varchar(max),
     ficha varchar(max),
@@ -45,7 +45,7 @@ create table barcos (
     check (id_empresa = 1)  -- Solo la empresa 1 opera con barcos
 );
 
--- Tabla Tripulaci髇 (Hecha para conectar la tabla trabajadores con la tabla barcos):
+-- Tabla Tripulaci贸n (Hecha para conectar la tabla trabajadores con la tabla barcos):
 create table tripulacion (
     id_barco int,
     id_trabajador int,
@@ -63,12 +63,12 @@ select * from trabajadores
 delete from empresas
 delete from trabajadores
 
--- Inserci髇 de datos:
-insert into empresas (id_empresa, nom_empresa, rut_empresa, representante, direccion, telefono, a駉_const, documentacion, logo) 
+-- Inserci贸n de datos:
+insert into empresas (id_empresa, nom_empresa, rut_empresa, representante, direccion, telefono, a帽o_const, documentacion, logo) 
 values
 (1, 'Empresa 1', '74689042-3', 'Juan Gabriel', 'Pasaje Los Colonos 208, Valparaiso', 56987654321, '2012-06-18', 'https://drive.google.com/drive/folders/1W7JaSxQ0TEG6kGMRF8w9FCSloYBuppAV', 'https://i.imgur.com/NThgvQp.jpeg'),
 (2, 'Empresa 2', '81237463-2', 'Ana Rivera', 'Avenida Los Industriales 1560, Santiago', 56222334455, '2010-03-15', 'https://drive.google.com/drive/folders/1W7JaSxQ0TEG6kGMRF8w9FCSloYBuppAV', 'https://i.imgur.com/NThgvQp.jpeg')
 
 insert into trabajadores (id_trabajador, id_empresa, nom_trabajador, rut_trabajador, cargo, fecha_inicio, curriculum_url, foto)
 values
-(1, 1, 'Juan P閞ez', '12345678-9', 'Recursos Humanos', '2020-01-15', 'https://www.ejemplo-cv.com/juanperez', 'https://www.ejemplo-foto.com/juanperez.jpg')
+(1, 1, 'Juan P茅rez', '12345678-9', 'Recursos Humanos', '2020-01-15', 'https://www.ejemplo-cv.com/juanperez', 'https://www.ejemplo-foto.com/juanperez.jpg')
