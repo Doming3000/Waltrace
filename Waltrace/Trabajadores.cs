@@ -1,4 +1,5 @@
 using System.Data.SqlClient;
+using System.Net.NetworkInformation;
 
 namespace Waltrace
 {
@@ -26,7 +27,7 @@ namespace Waltrace
                 // Abrir la conexión en caso de que no esté abierta
                 DataBaseConnection.AbrirConexion();
 
-                string consulta = @"SELECT t.nom_trabajador, t.rut_trabajador, e.nom_empresa, t.cargo FROM trabajadores t INNER JOIN empresas e ON t.id_empresa = e.id_empresa";
+                string consulta = @"SELECT t.id_trabajador, t.nom_trabajador, t.rut_trabajador, e.nom_empresa, t.cargo FROM trabajadores t INNER JOIN empresas e ON t.id_empresa = e.id_empresa";
 
                 using (SqlCommand comando = new SqlCommand(consulta, DataBaseConnection.Conexion))
                 using (SqlDataReader lector = comando.ExecuteReader())
@@ -39,6 +40,7 @@ namespace Waltrace
                         item.SubItems.Add(lector["rut_trabajador"].ToString());
                         item.SubItems.Add(lector["cargo"].ToString());
                         item.SubItems.Add(lector["nom_empresa"].ToString());
+                        item.Tag = lector["id_trabajador"].ToString();  // ID almacenado en el Tag del item
                         TrabajadoresList.Items.Add(item);
                     }
                 }
@@ -47,6 +49,41 @@ namespace Waltrace
             {
                 MessageBox.Show("Ha ocurrido un error al intentar listar los trabajadores: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                DataBaseConnection.CerrarConexion();
+            }
+        }
+
+        private void TrabajadoresList_ItemActivate(object sender, EventArgs e)
+        {
+            // Verificar si hay conexión a internet al seleccionar una empresa
+            bool checkConnection = NetworkInterface.GetIsNetworkAvailable();
+            if (!checkConnection)
+            {
+                MessageBox.Show("No estás conectado a internet.\r\nVerífica el estado de tu conexión y vuelve a intentarlo más tarde.", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                if (TrabajadoresList.SelectedItems.Count > 0)
+                {
+                    ListViewItem item = TrabajadoresList.SelectedItems[0];
+                    string nombre = item.SubItems[0].Text;
+                    string rut = item.SubItems[1].Text;
+                    string cargo = item.SubItems[2].Text;
+                    string empresa = item.SubItems[3].Text;
+                    string id = item.Tag?.ToString() ?? "";  // Obtener el ID del Tag
+
+                    // Abrir nueva ventana con los datos recolectados
+                    TrabajadorSeleccionado form1 = new TrabajadorSeleccionado(nombre, rut, empresa, cargo, id);
+                    form1.ShowDialog();
+                }
+            }
+        }
+
+        private void BuscadorEmpleado_TextChanged(object sender, EventArgs e)
+        {
+            // Código del búscador
         }
 
         private void BuscadorEmpleado_Enter(object sender, EventArgs e)
@@ -68,10 +105,6 @@ namespace Waltrace
                 BuscadorEmpleado.ForeColor = Color.Gray;
             }
         }
-        private void BuscadorEmpleado_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void RegresarButton_Click(object sender, EventArgs e)
         {
@@ -81,10 +114,14 @@ namespace Waltrace
             form1.Show();
         }
 
-        private void TrabajadoresList_ItemActivate(object sender, EventArgs e)
+        private void RegresarButton_MouseEnter(object sender, EventArgs e)
         {
-            TrabajadorSeleccionado form1 = new TrabajadorSeleccionado();
-            form1.ShowDialog();
+            Cursor = Cursors.Hand;
+        }
+
+        private void RegresarButton_MouseLeave(object sender, EventArgs e)
+        {
+            Cursor = Cursors.Default;
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
-using System.Net;
 using System.Net.NetworkInformation;
 
 namespace Waltrace
@@ -211,6 +210,9 @@ namespace Waltrace
             Principal form1 = new Principal();
             this.Hide();
             form1.Show();
+
+            // Cerrar conexión
+            DataBaseConnection.CerrarConexion();
         }
 
         // Simular efecto Hover del cursor

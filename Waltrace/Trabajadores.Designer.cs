@@ -52,13 +52,15 @@
             // 
             // RegresarButton
             // 
-            RegresarButton.Location = new Point(676, 412);
+            RegresarButton.Location = new Point(996, 632);
             RegresarButton.Name = "RegresarButton";
             RegresarButton.Size = new Size(94, 29);
             RegresarButton.TabIndex = 2;
             RegresarButton.Text = "Regresar";
             RegresarButton.UseVisualStyleBackColor = true;
             RegresarButton.Click += RegresarButton_Click;
+            RegresarButton.MouseEnter += RegresarButton_MouseEnter;
+            RegresarButton.MouseLeave += RegresarButton_MouseLeave;
             // 
             // BuscadorEmpleado
             // 
@@ -102,16 +104,16 @@
             EmpresaContr.Text = "Empresa Contratante";
             EmpresaContr.Width = 160;
             // 
-            // VentanaTrabajadores
+            // Trabajadores
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(782, 453);
+            ClientSize = new Size(1102, 673);
             Controls.Add(TrabajadoresList);
             Controls.Add(BuscadorEmpleado);
             Controls.Add(RegresarButton);
             Controls.Add(SearchButton);
-            Name = "VentanaTrabajadores";
+            Name = "Trabajadores";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Waltrace - Trabajadores";
             Load += Form2_Load;

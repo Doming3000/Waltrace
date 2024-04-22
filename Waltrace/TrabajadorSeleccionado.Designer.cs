@@ -28,31 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pictureBox1 = new PictureBox();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
             AceptarButton = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
+            DisplayBoxNom = new TextBox();
+            DisplayBoxRut = new TextBox();
+            DisplayBoxCargo = new TextBox();
+            DisplayBoxEmp = new TextBox();
+            DisplayBoxAño = new TextBox();
             LoadingText = new Label();
             linkLabel1 = new LinkLabel();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            FotoBox = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)FotoBox).BeginInit();
             SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Location = new Point(12, 12);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(145, 160);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
             // 
             // label1
             // 
@@ -111,45 +102,45 @@
             AceptarButton.MouseEnter += AceptarButton_MouseEnter;
             AceptarButton.MouseLeave += AceptarButton_MouseLeave;
             // 
-            // textBox1
+            // DisplayBoxNom
             // 
-            textBox1.Location = new Point(345, 12);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 2;
+            DisplayBoxNom.Location = new Point(345, 12);
+            DisplayBoxNom.Name = "DisplayBoxNom";
+            DisplayBoxNom.ReadOnly = true;
+            DisplayBoxNom.Size = new Size(125, 27);
+            DisplayBoxNom.TabIndex = 2;
             // 
-            // textBox2
+            // DisplayBoxRut
             // 
-            textBox2.Location = new Point(345, 45);
-            textBox2.Name = "textBox2";
-            textBox2.ReadOnly = true;
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 3;
+            DisplayBoxRut.Location = new Point(345, 45);
+            DisplayBoxRut.Name = "DisplayBoxRut";
+            DisplayBoxRut.ReadOnly = true;
+            DisplayBoxRut.Size = new Size(125, 27);
+            DisplayBoxRut.TabIndex = 3;
             // 
-            // textBox3
+            // DisplayBoxCargo
             // 
-            textBox3.Location = new Point(345, 78);
-            textBox3.Name = "textBox3";
-            textBox3.ReadOnly = true;
-            textBox3.Size = new Size(125, 27);
-            textBox3.TabIndex = 4;
+            DisplayBoxCargo.Location = new Point(345, 78);
+            DisplayBoxCargo.Name = "DisplayBoxCargo";
+            DisplayBoxCargo.ReadOnly = true;
+            DisplayBoxCargo.Size = new Size(125, 27);
+            DisplayBoxCargo.TabIndex = 4;
             // 
-            // textBox4
+            // DisplayBoxEmp
             // 
-            textBox4.Location = new Point(345, 111);
-            textBox4.Name = "textBox4";
-            textBox4.ReadOnly = true;
-            textBox4.Size = new Size(125, 27);
-            textBox4.TabIndex = 5;
+            DisplayBoxEmp.Location = new Point(345, 111);
+            DisplayBoxEmp.Name = "DisplayBoxEmp";
+            DisplayBoxEmp.ReadOnly = true;
+            DisplayBoxEmp.Size = new Size(125, 27);
+            DisplayBoxEmp.TabIndex = 5;
             // 
-            // textBox5
+            // DisplayBoxAño
             // 
-            textBox5.Location = new Point(345, 144);
-            textBox5.Name = "textBox5";
-            textBox5.ReadOnly = true;
-            textBox5.Size = new Size(125, 27);
-            textBox5.TabIndex = 6;
+            DisplayBoxAño.Location = new Point(345, 144);
+            DisplayBoxAño.Name = "DisplayBoxAño";
+            DisplayBoxAño.ReadOnly = true;
+            DisplayBoxAño.Size = new Size(125, 27);
+            DisplayBoxAño.TabIndex = 6;
             // 
             // LoadingText
             // 
@@ -171,49 +162,57 @@
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Descargar Currículum";
             // 
+            // FotoBox
+            // 
+            FotoBox.Location = new Point(12, 12);
+            FotoBox.Name = "FotoBox";
+            FotoBox.Size = new Size(150, 160);
+            FotoBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            FotoBox.TabIndex = 9;
+            FotoBox.TabStop = false;
+            // 
             // TrabajadorSeleccionado
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(482, 253);
+            Controls.Add(FotoBox);
             Controls.Add(linkLabel1);
             Controls.Add(LoadingText);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(DisplayBoxAño);
+            Controls.Add(DisplayBoxEmp);
+            Controls.Add(DisplayBoxCargo);
+            Controls.Add(DisplayBoxRut);
+            Controls.Add(DisplayBoxNom);
             Controls.Add(AceptarButton);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(pictureBox1);
             MaximizeBox = false;
             Name = "TrabajadorSeleccionado";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Waltrace - Trabajador";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)FotoBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private PictureBox pictureBox1;
         private Label label1;
         private Label label2;
         private Label label3;
         private Label label4;
         private Label label5;
         private Button AceptarButton;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
+        private TextBox DisplayBoxNom;
+        private TextBox DisplayBoxRut;
+        private TextBox DisplayBoxCargo;
+        private TextBox DisplayBoxEmp;
+        private TextBox DisplayBoxAño;
         private Label LoadingText;
         private LinkLabel linkLabel1;
+        private PictureBox FotoBox;
     }
 }
