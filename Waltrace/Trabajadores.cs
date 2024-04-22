@@ -49,10 +49,6 @@ namespace Waltrace
             {
                 MessageBox.Show("Ha ocurrido un error al intentar listar los trabajadores: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally
-            {
-                DataBaseConnection.CerrarConexion();
-            }
         }
 
         private void TrabajadoresList_ItemActivate(object sender, EventArgs e)
@@ -83,7 +79,9 @@ namespace Waltrace
 
         private void BuscadorEmpleado_TextChanged(object sender, EventArgs e)
         {
-            // Código del búscador
+            // Código del búscador:
+            // Hay que filtrar datos por nombre o por rut.
+            // Hay que comprobar el estado de la conexión a internet.
         }
 
         private void BuscadorEmpleado_Enter(object sender, EventArgs e)
@@ -112,6 +110,9 @@ namespace Waltrace
             Principal form1 = new Principal();
             this.Hide();
             form1.Show();
+
+            // Cerrar la conexión
+            DataBaseConnection.CerrarConexion();
         }
 
         private void RegresarButton_MouseEnter(object sender, EventArgs e)

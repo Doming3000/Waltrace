@@ -31,12 +31,14 @@ namespace Waltrace
         {
             if (conexion.State == System.Data.ConnectionState.Closed)
                 conexion.Open();
+            //MessageBox.Show("Abierto");
         }
 
         public static void CerrarConexion()
         {
             if (conexion.State == System.Data.ConnectionState.Open)
                 conexion.Close();
+            //MessageBox.Show("Cerrado");
         }
     }
 }

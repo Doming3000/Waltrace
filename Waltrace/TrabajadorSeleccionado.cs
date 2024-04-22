@@ -60,7 +60,6 @@ namespace Waltrace
             }
         }
 
-
         private async void CargarFoto(string urlFoto)
         {
             // Mostrar texto "Cargando foto..."
