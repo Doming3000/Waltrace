@@ -71,8 +71,8 @@ namespace Waltrace
                     string id = item.Tag?.ToString() ?? "";  // Obtener el ID del Tag
 
                     // Abrir nueva ventana con los datos recolectados
-                    TrabajadorSeleccionado form1 = new TrabajadorSeleccionado(nombre, rut, empresa, cargo, id);
-                    form1.ShowDialog();
+                    TrabajadorSeleccionado form = new TrabajadorSeleccionado(nombre, rut, empresa, cargo, id);
+                    form.ShowDialog();
                 }
             }
         }
@@ -82,6 +82,17 @@ namespace Waltrace
             // Código del búscador:
             // Hay que filtrar datos por nombre o por rut.
             // Hay que comprobar el estado de la conexión a internet.
+        }
+
+        private void RegresarButton_Click(object sender, EventArgs e)
+        {
+            // Regresar al formulario inicial
+            Principal form = new Principal();
+            form.Show();
+            Hide();
+
+            // Cerrar la conexión
+            DataBaseConnection.CerrarConexion();
         }
 
         private void BuscadorEmpleado_Enter(object sender, EventArgs e)
@@ -104,17 +115,7 @@ namespace Waltrace
             }
         }
 
-        private void RegresarButton_Click(object sender, EventArgs e)
-        {
-            // Regresar al formulario inicial
-            Principal form1 = new Principal();
-            this.Hide();
-            form1.Show();
-
-            // Cerrar la conexión
-            DataBaseConnection.CerrarConexion();
-        }
-
+        // Simular efecto Hover del cursor
         private void RegresarButton_MouseEnter(object sender, EventArgs e)
         {
             Cursor = Cursors.Hand;

@@ -40,7 +40,7 @@
             DisplayBoxEmp = new TextBox();
             DisplayBoxAño = new TextBox();
             LoadingText = new Label();
-            linkLabel1 = new LinkLabel();
+            CurriculumLink = new LinkLabel();
             FotoBox = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)FotoBox).BeginInit();
             SuspendLayout();
@@ -152,15 +152,16 @@
             LoadingText.Text = "Cargando foto...";
             LoadingText.Visible = false;
             // 
-            // linkLabel1
+            // CurriculumLink
             // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(190, 175);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(151, 20);
-            linkLabel1.TabIndex = 8;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "Descargar Currículum";
+            CurriculumLink.AutoSize = true;
+            CurriculumLink.Location = new Point(190, 175);
+            CurriculumLink.Name = "CurriculumLink";
+            CurriculumLink.Size = new Size(151, 20);
+            CurriculumLink.TabIndex = 8;
+            CurriculumLink.TabStop = true;
+            CurriculumLink.Text = "Descargar Currículum";
+            CurriculumLink.LinkClicked += CurriculumLink_LinkClicked;
             // 
             // FotoBox
             // 
@@ -177,7 +178,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(482, 253);
             Controls.Add(FotoBox);
-            Controls.Add(linkLabel1);
+            Controls.Add(CurriculumLink);
             Controls.Add(LoadingText);
             Controls.Add(DisplayBoxAño);
             Controls.Add(DisplayBoxEmp);
@@ -212,7 +213,7 @@
         private TextBox DisplayBoxEmp;
         private TextBox DisplayBoxAño;
         private Label LoadingText;
-        private LinkLabel linkLabel1;
+        private LinkLabel CurriculumLink;
         private PictureBox FotoBox;
     }
 }

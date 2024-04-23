@@ -207,9 +207,9 @@ namespace Waltrace
         private void RegresarButton_Click(object sender, EventArgs e)
         {
             // Regresar al formulario inicial
-            Principal form1 = new Principal();
-            this.Hide();
-            form1.Show();
+            Principal form = new Principal();
+            form.Show();
+            Hide();
 
             // Cerrar conexión
             DataBaseConnection.CerrarConexion();
@@ -247,8 +247,8 @@ namespace Waltrace
 
         private void FlotaButton_Click(object sender, EventArgs e)
         {
-            FlotaWalbusch form1 = new FlotaWalbusch();
-            form1.ShowDialog();
+            FlotaWalbusch form = new FlotaWalbusch();
+            form.ShowDialog();
         }
     }
 }

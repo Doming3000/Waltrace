@@ -4,6 +4,9 @@ namespace Waltrace
 {
     public partial class TrabajadorSeleccionado : Form
     {
+        // Variables
+        string urlCurr = string.Empty;
+
         public TrabajadorSeleccionado(string nombre, string rut, string empresa, string cargo, string id)
         {
             InitializeComponent();
@@ -24,7 +27,7 @@ namespace Waltrace
             {
                 DataBaseConnection.AbrirConexion();
 
-                string consulta = "SELECT fecha_inicio, foto FROM trabajadores WHERE id_trabajador = @Identificador";
+                string consulta = "SELECT fecha_inicio, curriculum_url, foto FROM trabajadores WHERE id_trabajador = @Identificador";
 
                 using (SqlCommand comando = new SqlCommand(consulta, DataBaseConnection.Conexion))
                 {
@@ -40,8 +43,13 @@ namespace Waltrace
                             // Obtener la URL de la foto del trabajador
                             string urlFoto = lector["foto"]?.ToString() ?? "";
 
+                            string curriculumUrl = lector["curriculum_url"]?.ToString() ?? "";
+
                             // Llamada al método para cargar la foto
                             CargarFoto(urlFoto);
+
+                            // Actualizar variable del enlace con curriculum del trabajador
+                            urlCurr = curriculumUrl;
                         }
                         else
                         {
@@ -95,12 +103,32 @@ namespace Waltrace
             }
         }
 
-        // Botón Aceptar:
+        private void CurriculumLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(urlCurr))
+                {
+                    var psi = new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = urlCurr,
+                        UseShellExecute = true
+                    };
+                    System.Diagnostics.Process.Start(psi);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha podido acceder al currículum: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void AceptarButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        // Simular efecto Hover del cursor
         private void AceptarButton_MouseEnter(object sender, EventArgs e)
         {
             Cursor = Cursors.Hand;
