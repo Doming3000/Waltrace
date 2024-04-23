@@ -215,6 +215,12 @@ namespace Waltrace
             DataBaseConnection.CerrarConexion();
         }
 
+        private void FlotaButton_Click(object sender, EventArgs e)
+        {
+            FlotaWalbusch form = new FlotaWalbusch();
+            form.ShowDialog();
+        }
+
         // Simular efecto Hover del cursor
         private void RegresarButton_MouseEnter(object sender, EventArgs e)
         {
@@ -243,12 +249,6 @@ namespace Waltrace
         private void DocsButton_MouseLeave(object sender, EventArgs e)
         {
             Cursor = Cursors.Default;
-        }
-
-        private void FlotaButton_Click(object sender, EventArgs e)
-        {
-            FlotaWalbusch form = new FlotaWalbusch();
-            form.ShowDialog();
         }
     }
 }
