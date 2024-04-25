@@ -55,8 +55,8 @@
             EmpresaButton.Text = "Consultar por empresa";
             EmpresaButton.UseVisualStyleBackColor = true;
             EmpresaButton.Click += EmpresaButton_Click;
-            EmpresaButton.MouseEnter += EmpresaButton_MouseEnter;
-            EmpresaButton.MouseLeave += EmpresaButton_MouseLeave;
+            EmpresaButton.MouseEnter += Button_MouseEnter;
+            EmpresaButton.MouseLeave += Button_MouseLeave;
             // 
             // TrabajadorButton
             // 
@@ -68,8 +68,8 @@
             TrabajadorButton.Text = "Consultar por trabajador";
             TrabajadorButton.UseVisualStyleBackColor = true;
             TrabajadorButton.Click += TrabajadorButton_Click;
-            TrabajadorButton.MouseEnter += TrabajadorButton_MouseEnter;
-            TrabajadorButton.MouseLeave += TrabajadorButton_MouseLeave;
+            TrabajadorButton.MouseEnter += Button_MouseEnter;
+            TrabajadorButton.MouseLeave += Button_MouseLeave;
             // 
             // Principal
             // 

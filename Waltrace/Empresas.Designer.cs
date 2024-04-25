@@ -92,8 +92,8 @@
             RegresarButton.Text = "Regresar";
             RegresarButton.UseVisualStyleBackColor = true;
             RegresarButton.Click += RegresarButton_Click;
-            RegresarButton.MouseEnter += RegresarButton_MouseEnter;
-            RegresarButton.MouseLeave += RegresarButton_MouseLeave;
+            RegresarButton.MouseEnter += Button_MouseEnter;
+            RegresarButton.MouseLeave += Button_MouseLeave;
             // 
             // GroupBox1
             // 
@@ -125,8 +125,8 @@
             CopyButton.Text = "Copiar al portapapeles";
             CopyButton.UseVisualStyleBackColor = true;
             CopyButton.Click += CopyButton_Click;
-            CopyButton.MouseEnter += CopyButton_MouseEnter;
-            CopyButton.MouseLeave += CopyButton_MouseLeave;
+            CopyButton.MouseEnter += Button_MouseEnter;
+            CopyButton.MouseLeave += Button_MouseLeave;
             // 
             // DisplayBoxDir
             // 
@@ -145,8 +145,8 @@
             DocsButton.Text = "Documentación legal ";
             DocsButton.UseVisualStyleBackColor = true;
             DocsButton.Click += DocsButton_Click;
-            DocsButton.MouseEnter += DocsButton_MouseEnter;
-            DocsButton.MouseLeave += DocsButton_MouseLeave;
+            DocsButton.MouseEnter += Button_MouseEnter;
+            DocsButton.MouseLeave += Button_MouseLeave;
             // 
             // label6
             // 
