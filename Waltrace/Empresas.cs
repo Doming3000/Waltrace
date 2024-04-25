@@ -22,19 +22,16 @@ namespace Waltrace
         {
             try
             {
-                // Abrir la conexión en caso de que no esté abierta
                 DataBaseConnection.AbrirConexion();
 
-                // Comando SQL ajustado para seleccionar solo el ID y el nombre de las empresas
                 using (SqlCommand comando = new SqlCommand("SELECT id_empresa, nom_empresa FROM empresas", DataBaseConnection.Conexion))
                 using (SqlDataReader lector = comando.ExecuteReader())
                 {
                     DataTable dt = new DataTable();
                     dt.Load(lector);
                     EmpresasBox.DataSource = dt;
-                    EmpresasBox.ValueMember = "id_empresa"; // Establecer la columna que representa el valor único de cada ítem
-                    EmpresasBox.DisplayMember = "nom_empresa"; // Establecer la columna para mostrar en el ComboBox
-
+                    EmpresasBox.ValueMember = "id_empresa";
+                    EmpresasBox.DisplayMember = "nom_empresa";
                     EmpresasBox.SelectedIndex = -1;
                 }
             }
@@ -136,6 +133,8 @@ namespace Waltrace
             }
         }
 
+        private static readonly HttpClient client = new HttpClient();
+
         private async void CargarLogo(string urlLogo)
         {
             // Mostrar texto "Cargando logotipo"
@@ -143,7 +142,6 @@ namespace Waltrace
 
             try
             {
-                using (HttpClient client = new HttpClient())
                 using (HttpResponseMessage response = await client.GetAsync(urlLogo))
                 using (Stream stream = await response.Content.ReadAsStreamAsync())
                 {
@@ -221,7 +219,7 @@ namespace Waltrace
             form.ShowDialog();
         }
 
-        // Simular efecto Hover del cursor
+         // Simular efecto Hover del cursor
         private void Button_MouseEnter(object sender, EventArgs e)
         {
             Cursor = Cursors.Hand;
