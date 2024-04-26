@@ -58,6 +58,10 @@ namespace Waltrace
                     }
                 }
             }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error en base de datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("Ha ocurrido un error al intentar cargar información: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -57,6 +57,7 @@
             MCAPanel = new Panel();
             label8 = new Label();
             button2 = new Button();
+            panel1 = new Panel();
             GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)LogoBox).BeginInit();
             WalbuschPanel.SuspendLayout();
@@ -68,7 +69,7 @@
             // 
             EmpresasBox.DropDownStyle = ComboBoxStyle.DropDownList;
             EmpresasBox.FormattingEnabled = true;
-            EmpresasBox.Location = new Point(25, 48);
+            EmpresasBox.Location = new Point(25, 105);
             EmpresasBox.Name = "EmpresasBox";
             EmpresasBox.Size = new Size(230, 28);
             EmpresasBox.TabIndex = 1;
@@ -77,7 +78,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(25, 25);
+            label1.Location = new Point(25, 82);
             label1.Name = "label1";
             label1.Size = new Size(144, 20);
             label1.TabIndex = 1;
@@ -110,7 +111,7 @@
             GroupBox1.Controls.Add(DisplayBoxRut);
             GroupBox1.Controls.Add(DisplayBoxRep);
             GroupBox1.Enabled = false;
-            GroupBox1.Location = new Point(25, 93);
+            GroupBox1.Location = new Point(25, 150);
             GroupBox1.Name = "GroupBox1";
             GroupBox1.Size = new Size(354, 303);
             GroupBox1.TabIndex = 6;
@@ -228,7 +229,7 @@
             // LoadingText
             // 
             LoadingText.AutoSize = true;
-            LoadingText.Location = new Point(890, 228);
+            LoadingText.Location = new Point(890, 285);
             LoadingText.Name = "LoadingText";
             LoadingText.Size = new Size(145, 20);
             LoadingText.TabIndex = 9;
@@ -237,7 +238,7 @@
             // 
             // LogoBox
             // 
-            LogoBox.Location = new Point(890, 25);
+            LogoBox.Location = new Point(890, 82);
             LogoBox.Name = "LogoBox";
             LogoBox.Size = new Size(200, 200);
             LogoBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -260,7 +261,7 @@
             WalbuschPanel.Controls.Add(label7);
             WalbuschPanel.Controls.Add(button1);
             WalbuschPanel.Controls.Add(FlotaButton);
-            WalbuschPanel.Location = new Point(454, 48);
+            WalbuschPanel.Location = new Point(454, 105);
             WalbuschPanel.Name = "WalbuschPanel";
             WalbuschPanel.Size = new Size(375, 202);
             WalbuschPanel.TabIndex = 12;
@@ -316,7 +317,7 @@
             // 
             MCAPanel.Controls.Add(label8);
             MCAPanel.Controls.Add(button2);
-            MCAPanel.Location = new Point(454, 134);
+            MCAPanel.Location = new Point(454, 191);
             MCAPanel.Name = "MCAPanel";
             MCAPanel.Size = new Size(375, 202);
             MCAPanel.TabIndex = 13;
@@ -340,12 +341,22 @@
             button2.Text = "Organigrama";
             button2.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.Highlight;
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1102, 44);
+            panel1.TabIndex = 14;
+            // 
             // Empresas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(1102, 673);
+            Controls.Add(panel1);
             Controls.Add(MCAPanel);
             Controls.Add(WalbuschPanel);
             Controls.Add(LoadingText);
@@ -402,5 +413,6 @@
         private Label label9;
         private Button button3;
         private Button CopyButton;
+        private Panel panel1;
     }
 }
