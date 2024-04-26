@@ -68,6 +68,8 @@ namespace Waltrace
             }
         }
 
+        private static readonly HttpClient client = new HttpClient();
+
         private async void CargarFoto(string urlFoto)
         {
             // Mostrar texto "Cargando foto..."
@@ -75,7 +77,6 @@ namespace Waltrace
 
             try
             {
-                using (HttpClient client = new HttpClient())
                 using (HttpResponseMessage response = await client.GetAsync(urlFoto))
                 using (Stream stream = await response.Content.ReadAsStreamAsync())
                 {
@@ -92,13 +93,13 @@ namespace Waltrace
                     }
                     else
                     {
-                        throw new Exception("No se ha podido cargar la foto. El servidor ha respondido con el código de estado: " + response.StatusCode);
+                        throw new Exception("No se ha podido cargar el logo. El servidor ha respondido con el código de estado: " + response.StatusCode);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No se ha podido cargar la foto: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No se ha podido cargar el logo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 LoadingText.Visible = false;
             }
         }
@@ -129,12 +130,12 @@ namespace Waltrace
         }
 
         // Simular efecto Hover del cursor
-        private void AceptarButton_MouseEnter(object sender, EventArgs e)
+        private void Button_MouseEnter(object sender, EventArgs e)
         {
             Cursor = Cursors.Hand;
         }
 
-        private void AceptarButton_MouseLeave(object sender, EventArgs e)
+        private void Button_MouseLeave(object sender, EventArgs e)
         {
             Cursor = Cursors.Default;
         }

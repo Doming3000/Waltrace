@@ -99,8 +99,8 @@
             AceptarButton.Text = "Aceptar";
             AceptarButton.UseVisualStyleBackColor = true;
             AceptarButton.Click += AceptarButton_Click;
-            AceptarButton.MouseEnter += AceptarButton_MouseEnter;
-            AceptarButton.MouseLeave += AceptarButton_MouseLeave;
+            AceptarButton.MouseEnter += Button_MouseEnter;
+            AceptarButton.MouseLeave += Button_MouseLeave;
             // 
             // DisplayBoxNom
             // 

@@ -219,7 +219,7 @@ namespace Waltrace
             form.ShowDialog();
         }
 
-         // Simular efecto Hover del cursor
+        // Simular efecto Hover del cursor
         private void Button_MouseEnter(object sender, EventArgs e)
         {
             Cursor = Cursors.Hand;

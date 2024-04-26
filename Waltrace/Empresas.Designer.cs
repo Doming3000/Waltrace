@@ -49,19 +49,19 @@
             LogoBox = new PictureBox();
             FlotaButton = new Button();
             WalbuschPanel = new Panel();
+            WaltechPanel = new Panel();
+            label9 = new Label();
+            button3 = new Button();
             label7 = new Label();
             button1 = new Button();
             MCAPanel = new Panel();
             label8 = new Label();
             button2 = new Button();
-            WaltechPanel = new Panel();
-            label9 = new Label();
-            button3 = new Button();
             GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)LogoBox).BeginInit();
             WalbuschPanel.SuspendLayout();
-            MCAPanel.SuspendLayout();
             WaltechPanel.SuspendLayout();
+            MCAPanel.SuspendLayout();
             SuspendLayout();
             // 
             // EmpresasBox
@@ -266,6 +266,34 @@
             WalbuschPanel.TabIndex = 12;
             WalbuschPanel.Visible = false;
             // 
+            // WaltechPanel
+            // 
+            WaltechPanel.Controls.Add(label9);
+            WaltechPanel.Controls.Add(button3);
+            WaltechPanel.Location = new Point(0, 40);
+            WaltechPanel.Name = "WaltechPanel";
+            WaltechPanel.Size = new Size(375, 202);
+            WaltechPanel.TabIndex = 14;
+            WaltechPanel.Visible = false;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(13, 15);
+            label9.Name = "label9";
+            label9.Size = new Size(101, 20);
+            label9.TabIndex = 12;
+            label9.Text = "Panel Waltech";
+            // 
+            // button3
+            // 
+            button3.Location = new Point(258, 160);
+            button3.Name = "button3";
+            button3.Size = new Size(105, 29);
+            button3.TabIndex = 11;
+            button3.Text = "Organigrama";
+            button3.UseVisualStyleBackColor = true;
+            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -312,34 +340,6 @@
             button2.Text = "Organigrama";
             button2.UseVisualStyleBackColor = true;
             // 
-            // WaltechPanel
-            // 
-            WaltechPanel.Controls.Add(label9);
-            WaltechPanel.Controls.Add(button3);
-            WaltechPanel.Location = new Point(0, 40);
-            WaltechPanel.Name = "WaltechPanel";
-            WaltechPanel.Size = new Size(375, 202);
-            WaltechPanel.TabIndex = 14;
-            WaltechPanel.Visible = false;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(13, 15);
-            label9.Name = "label9";
-            label9.Size = new Size(101, 20);
-            label9.TabIndex = 12;
-            label9.Text = "Panel Waltech";
-            // 
-            // button3
-            // 
-            button3.Location = new Point(258, 160);
-            button3.Name = "button3";
-            button3.Size = new Size(105, 29);
-            button3.TabIndex = 11;
-            button3.Text = "Organigrama";
-            button3.UseVisualStyleBackColor = true;
-            // 
             // Empresas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -364,10 +364,10 @@
             ((System.ComponentModel.ISupportInitialize)LogoBox).EndInit();
             WalbuschPanel.ResumeLayout(false);
             WalbuschPanel.PerformLayout();
-            MCAPanel.ResumeLayout(false);
-            MCAPanel.PerformLayout();
             WaltechPanel.ResumeLayout(false);
             WaltechPanel.PerformLayout();
+            MCAPanel.ResumeLayout(false);
+            MCAPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
