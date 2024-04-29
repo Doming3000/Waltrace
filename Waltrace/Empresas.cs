@@ -12,6 +12,7 @@ namespace Waltrace
         public Empresas()
         {
             InitializeComponent();
+            FormClosing += Empresas_FormClosing;
 
             // Llamada a método para listar las empresas
             ListarEmpresasBox();
@@ -24,16 +25,14 @@ namespace Waltrace
             {
                 DataBaseConnection.AbrirConexion();
 
-                using (SqlCommand comando = new SqlCommand("SELECT id_empresa, nom_empresa FROM empresas", DataBaseConnection.Conexion))
-                using (SqlDataReader lector = comando.ExecuteReader())
-                {
-                    DataTable dt = new DataTable();
-                    dt.Load(lector);
-                    EmpresasBox.DataSource = dt;
-                    EmpresasBox.ValueMember = "id_empresa";
-                    EmpresasBox.DisplayMember = "nom_empresa";
-                    EmpresasBox.SelectedIndex = -1;
-                }
+                using SqlCommand comando = new("SELECT id_empresa, nom_empresa FROM empresas", DataBaseConnection.Conexion);
+                using SqlDataReader lector = comando.ExecuteReader();
+                DataTable dt = new();
+                dt.Load(lector);
+                EmpresasBox.DataSource = dt;
+                EmpresasBox.ValueMember = "id_empresa";
+                EmpresasBox.DisplayMember = "nom_empresa";
+                EmpresasBox.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -52,23 +51,19 @@ namespace Waltrace
             {
                 string consulta = "SELECT rut_empresa, representante, direccion, telefono, año_const, logo, documentacion FROM empresas WHERE id_empresa = @idEmpresa";
 
-                using (SqlCommand comando = new SqlCommand(consulta, DataBaseConnection.Conexion))
-                {
-                    comando.Parameters.AddWithValue("@idEmpresa", idEmpresa);
+                using SqlCommand command = new(consulta, DataBaseConnection.Conexion);
+                command.Parameters.AddWithValue("@idEmpresa", idEmpresa);
 
-                    using (SqlDataReader lector = comando.ExecuteReader())
-                    {
-                        if (lector.Read())
-                        {
-                            rutEmpresa = lector["rut_empresa"]?.ToString() ?? "";
-                            nombreRepresentante = lector["representante"]?.ToString() ?? "";
-                            direccion = lector["direccion"]?.ToString() ?? "";
-                            telefono = lector["telefono"] as long? ?? 0;
-                            añoConst = lector["año_const"] as DateTime? ?? DateTime.MinValue;
-                            logoUrl = lector["logo"]?.ToString() ?? "";
-                            documentacion = lector["documentacion"]?.ToString() ?? "";
-                        }
-                    }
+                using SqlDataReader lector = command.ExecuteReader();
+                if (lector.Read())
+                {
+                    rutEmpresa = lector["rut_empresa"]?.ToString() ?? "";
+                    nombreRepresentante = lector["representante"]?.ToString() ?? "";
+                    direccion = lector["direccion"]?.ToString() ?? "";
+                    telefono = lector["telefono"] as long? ?? 0;
+                    añoConst = lector["año_const"] as DateTime? ?? DateTime.MinValue;
+                    logoUrl = lector["logo"]?.ToString() ?? "";
+                    documentacion = lector["documentacion"]?.ToString() ?? "";
                 }
             }
             catch (Exception ex)
@@ -133,8 +128,7 @@ namespace Waltrace
             }
         }
 
-        private static readonly HttpClient client = new HttpClient();
-
+        private static readonly HttpClient client = new();
         private async void CargarLogo(string urlLogo)
         {
             // Mostrar texto "Cargando logotipo"
@@ -142,24 +136,22 @@ namespace Waltrace
 
             try
             {
-                using (HttpResponseMessage response = await client.GetAsync(urlLogo))
-                using (Stream stream = await response.Content.ReadAsStreamAsync())
+                using HttpResponseMessage response = await client.GetAsync(urlLogo);
+                using Stream stream = await response.Content.ReadAsStreamAsync();
+                if (response.IsSuccessStatusCode)
                 {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        // Crear una imagen desde el stream de manera asincrónica
-                        var image = Image.FromStream(stream);
+                    // Crear una imagen desde el stream de manera asincrónica
+                    var image = Image.FromStream(stream);
 
-                        Invoke((MethodInvoker)delegate
-                        {
-                            LogoBox.Image = image;
-                            LoadingText.Visible = false;
-                        });
-                    }
-                    else
+                    Invoke((MethodInvoker)delegate
                     {
-                        throw new Exception("No se ha podido cargar el logo. El servidor ha respondido con el código de estado: " + response.StatusCode);
-                    }
+                        LogoBox.Image = image;
+                        LoadingText.Visible = false;
+                    });
+                }
+                else
+                {
+                    throw new Exception("No se ha podido cargar el logo. El servidor ha respondido con el código de estado: " + response.StatusCode);
                 }
             }
             catch (Exception ex)
@@ -205,7 +197,7 @@ namespace Waltrace
         private void RegresarButton_Click(object sender, EventArgs e)
         {
             // Regresar al formulario inicial
-            Principal form = new Principal();
+            Principal form = new();
             form.Show();
             Hide();
 
@@ -215,8 +207,14 @@ namespace Waltrace
 
         private void FlotaButton_Click(object sender, EventArgs e)
         {
-            FlotaWalbusch form = new FlotaWalbusch();
+            FlotaWalbusch form = new();
             form.ShowDialog();
+        }
+
+        // Al cerrar la ventana
+        private void Empresas_FormClosing(object? sender, FormClosingEventArgs e)
+        {
+            DataBaseConnection.CerrarConexion();
         }
 
         // Simular efecto Hover del cursor

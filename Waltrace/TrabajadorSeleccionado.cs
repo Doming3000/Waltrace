@@ -29,32 +29,30 @@ namespace Waltrace
 
                 string consulta = "SELECT fecha_inicio, curriculum_url, foto FROM trabajadores WHERE id_trabajador = @Identificador";
 
-                using (SqlCommand comando = new SqlCommand(consulta, DataBaseConnection.Conexion))
+                using SqlCommand comando = new(consulta, DataBaseConnection.Conexion);
+                comando.Parameters.AddWithValue("@Identificador", identificador);
+
+                using (SqlDataReader lector = comando.ExecuteReader())
                 {
-                    comando.Parameters.AddWithValue("@Identificador", identificador);
-
-                    using (SqlDataReader lector = comando.ExecuteReader())
+                    if (lector.Read())
                     {
-                        if (lector.Read())
-                        {
-                            DateTime fechaInicio = (DateTime)lector["fecha_inicio"];
-                            DisplayBoxAño.Text = fechaInicio.ToString("dd-MM-yyyy");
+                        DateTime fechaInicio = (DateTime)lector["fecha_inicio"];
+                        DisplayBoxAño.Text = fechaInicio.ToString("dd-MM-yyyy");
 
-                            // Obtener la URL de la foto del trabajador
-                            string urlFoto = lector["foto"]?.ToString() ?? "";
+                        // Obtener la URL de la foto del trabajador
+                        string urlFoto = lector["foto"]?.ToString() ?? "";
 
-                            string curriculumUrl = lector["curriculum_url"]?.ToString() ?? "";
+                        string curriculumUrl = lector["curriculum_url"]?.ToString() ?? "";
 
-                            // Llamada al método para cargar la foto
-                            CargarFoto(urlFoto);
+                        // Llamada al método para cargar la foto
+                        CargarFoto(urlFoto);
 
-                            // Actualizar variable del enlace con curriculum del trabajador
-                            urlCurr = curriculumUrl;
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se encontraron datos para el trabajador seleccionado.", "Información no encontrada", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
+                        // Actualizar variable del enlace con curriculum del trabajador
+                        urlCurr = curriculumUrl;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontraron datos para el trabajador seleccionado.", "Información no encontrada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
@@ -72,7 +70,7 @@ namespace Waltrace
             }
         }
 
-        private static readonly HttpClient client = new HttpClient();
+        private static readonly HttpClient client = new();
 
         private async void CargarFoto(string urlFoto)
         {
@@ -81,24 +79,22 @@ namespace Waltrace
 
             try
             {
-                using (HttpResponseMessage response = await client.GetAsync(urlFoto))
-                using (Stream stream = await response.Content.ReadAsStreamAsync())
+                using HttpResponseMessage response = await client.GetAsync(urlFoto);
+                using Stream stream = await response.Content.ReadAsStreamAsync();
+                if (response.IsSuccessStatusCode)
                 {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        // Crear una imagen desde el stream de manera asincrónica
-                        var image = Image.FromStream(stream);
+                    // Crear una imagen desde el stream de manera asincrónica
+                    var image = Image.FromStream(stream);
 
-                        Invoke((MethodInvoker)delegate
-                        {
-                            FotoBox.Image = image;
-                            LoadingText.Visible = false;
-                        });
-                    }
-                    else
+                    Invoke((MethodInvoker)delegate
                     {
-                        throw new Exception("No se ha podido cargar el logo. El servidor ha respondido con el código de estado: " + response.StatusCode);
-                    }
+                        FotoBox.Image = image;
+                        LoadingText.Visible = false;
+                    });
+                }
+                else
+                {
+                    throw new Exception("No se ha podido cargar el logo. El servidor ha respondido con el código de estado: " + response.StatusCode);
                 }
             }
             catch (Exception ex)

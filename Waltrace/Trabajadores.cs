@@ -8,6 +8,7 @@ namespace Waltrace
         public Trabajadores()
         {
             InitializeComponent();
+            FormClosing += Trabajadores_FormClosing;
 
             // Llamada a método para listar los trabajdores en el listview
             ListarTrabajadores();
@@ -29,20 +30,18 @@ namespace Waltrace
 
                 string consulta = @"SELECT t.id_trabajador, t.nom_trabajador, t.rut_trabajador, e.nom_empresa, t.cargo FROM trabajadores t INNER JOIN empresas e ON t.id_empresa = e.id_empresa";
 
-                using (SqlCommand comando = new SqlCommand(consulta, DataBaseConnection.Conexion))
-                using (SqlDataReader lector = comando.ExecuteReader())
-                {
-                    TrabajadoresList.Items.Clear();
+                using SqlCommand comando = new SqlCommand(consulta, DataBaseConnection.Conexion);
+                using SqlDataReader lector = comando.ExecuteReader();
+                TrabajadoresList.Items.Clear();
 
-                    while (lector.Read())
-                    {
-                        ListViewItem item = new ListViewItem(lector["nom_trabajador"].ToString());
-                        item.SubItems.Add(lector["rut_trabajador"].ToString());
-                        item.SubItems.Add(lector["cargo"].ToString());
-                        item.SubItems.Add(lector["nom_empresa"].ToString());
-                        item.Tag = lector["id_trabajador"].ToString();  // ID almacenado en el Tag del item
-                        TrabajadoresList.Items.Add(item);
-                    }
+                while (lector.Read())
+                {
+                    ListViewItem item = new ListViewItem(lector["nom_trabajador"].ToString());
+                    item.SubItems.Add(lector["rut_trabajador"].ToString());
+                    item.SubItems.Add(lector["cargo"].ToString());
+                    item.SubItems.Add(lector["nom_empresa"].ToString());
+                    item.Tag = lector["id_trabajador"].ToString();  // ID almacenado en el Tag del item
+                    TrabajadoresList.Items.Add(item);
                 }
             }
             catch (Exception ex)
@@ -71,7 +70,7 @@ namespace Waltrace
                     string id = item.Tag?.ToString() ?? "";  // Obtener el ID del Tag
 
                     // Abrir nueva ventana con los datos recolectados
-                    TrabajadorSeleccionado form = new TrabajadorSeleccionado(nombre, rut, empresa, cargo, id);
+                    TrabajadorSeleccionado form = new(nombre, rut, empresa, cargo, id);
                     form.ShowDialog();
                 }
             }
@@ -87,7 +86,7 @@ namespace Waltrace
         private void RegresarButton_Click(object sender, EventArgs e)
         {
             // Regresar al formulario inicial
-            Principal form = new Principal();
+            Principal form = new();
             form.Show();
             Hide();
 
@@ -113,6 +112,12 @@ namespace Waltrace
                 BuscadorEmpleado.Text = "Ingrese nombre o rut";
                 BuscadorEmpleado.ForeColor = Color.Gray;
             }
+        }
+
+        // Al cerrar la ventana
+        private void Trabajadores_FormClosing(object? sender, FormClosingEventArgs e)
+        {
+            DataBaseConnection.CerrarConexion();
         }
 
         // Simular efecto Hover del cursor

@@ -20,11 +20,12 @@ namespace Waltrace
             else
             {
                 // Cargar nueva ventana y esconder la anterior
-                Trabajadores form = new Trabajadores();
+                Trabajadores form = new();
                 form.Show();
                 Hide();
             }
         }
+
         private void EmpresaButton_Click(object sender, EventArgs e)
         {
             // Verificar si hay conexión a internet al cargar la ventana
@@ -36,7 +37,7 @@ namespace Waltrace
             else
             {
                 // Cargar nueva ventana y esconder la anterior
-                Empresas form = new Empresas();
+                Empresas form = new();
                 form.Show();
                 Hide();
             }
