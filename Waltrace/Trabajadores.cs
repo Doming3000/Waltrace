@@ -141,7 +141,7 @@ namespace Waltrace
 
         private void RegresarButton_Click(object sender, EventArgs e)
         {
-            // Regresar al formulario inicial
+            // Regresar a la ventana inicial
             Principal form = new();
             form.Show();
             Hide();
