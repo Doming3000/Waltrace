@@ -32,12 +32,12 @@
             bindingSource1 = new BindingSource(components);
             SearchButton = new Button();
             RegresarButton = new Button();
-            BuscadorEmpleado = new TextBox();
             TrabajadoresList = new ListView();
             NombreTrabajador = new ColumnHeader();
             RutTrabajador = new ColumnHeader();
             cargo = new ColumnHeader();
             EmpresaContr = new ColumnHeader();
+            BuscadorEmpleado = new TextBox();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
             // 
@@ -49,6 +49,9 @@
             SearchButton.TabIndex = 0;
             SearchButton.Text = "Buscar";
             SearchButton.UseVisualStyleBackColor = true;
+            SearchButton.Click += SearchButton_Click;
+            SearchButton.MouseEnter += Button_MouseEnter;
+            SearchButton.MouseLeave += Button_MouseLeave;
             // 
             // RegresarButton
             // 
@@ -59,17 +62,8 @@
             RegresarButton.Text = "Regresar";
             RegresarButton.UseVisualStyleBackColor = true;
             RegresarButton.Click += RegresarButton_Click;
-            RegresarButton.MouseEnter += RegresarButton_MouseEnter;
-            RegresarButton.MouseLeave += RegresarButton_MouseLeave;
-            // 
-            // BuscadorEmpleado
-            // 
-            BuscadorEmpleado.Location = new Point(12, 14);
-            BuscadorEmpleado.Name = "BuscadorEmpleado";
-            BuscadorEmpleado.Size = new Size(221, 27);
-            BuscadorEmpleado.TabIndex = 14;
-            BuscadorEmpleado.Enter += BuscadorEmpleado_Enter;
-            BuscadorEmpleado.Leave += BuscadorEmpleado_Leave;
+            RegresarButton.MouseEnter += Button_MouseEnter;
+            RegresarButton.MouseLeave += Button_MouseLeave;
             // 
             // TrabajadoresList
             // 
@@ -104,19 +98,27 @@
             EmpresaContr.Text = "Empresa Contratante";
             EmpresaContr.Width = 160;
             // 
+            // BuscadorEmpleado
+            // 
+            BuscadorEmpleado.Location = new Point(12, 12);
+            BuscadorEmpleado.Name = "BuscadorEmpleado";
+            BuscadorEmpleado.PlaceholderText = "Ingrese nombre o rut";
+            BuscadorEmpleado.Size = new Size(221, 27);
+            BuscadorEmpleado.TabIndex = 16;
+            BuscadorEmpleado.KeyDown += BuscadorEmpleado_KeyDown;
+            // 
             // Trabajadores
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1102, 673);
-            Controls.Add(TrabajadoresList);
             Controls.Add(BuscadorEmpleado);
+            Controls.Add(TrabajadoresList);
             Controls.Add(RegresarButton);
             Controls.Add(SearchButton);
             Name = "Trabajadores";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Waltrace - Trabajadores";
-            Load += Form2_Load;
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -126,11 +128,11 @@
         private BindingSource bindingSource1;
         private Button SearchButton;
         private Button RegresarButton;
-        private TextBox BuscadorEmpleado;
         private ListView TrabajadoresList;
         private ColumnHeader NombreTrabajador;
         private ColumnHeader RutTrabajador;
         private ColumnHeader EmpresaContr;
         private ColumnHeader cargo;
+        private TextBox BuscadorEmpleado;
     }
 }

@@ -14,13 +14,6 @@ namespace Waltrace
             ListarTrabajadores();
         }
 
-        private void Form2_Load(object sender, EventArgs e)
-        {
-            // Establecer placeholder al buscador
-            BuscadorEmpleado.Text = "Ingrese nombre o rut";
-            BuscadorEmpleado.ForeColor = Color.Gray;
-        }
-
         private void ListarTrabajadores()
         {
             try
@@ -30,17 +23,17 @@ namespace Waltrace
 
                 string consulta = @"SELECT t.id_trabajador, t.nom_trabajador, t.rut_trabajador, e.nom_empresa, t.cargo FROM trabajadores t INNER JOIN empresas e ON t.id_empresa = e.id_empresa";
 
-                using SqlCommand comando = new SqlCommand(consulta, DataBaseConnection.Conexion);
+                using SqlCommand comando = new(consulta, DataBaseConnection.Conexion);
                 using SqlDataReader lector = comando.ExecuteReader();
                 TrabajadoresList.Items.Clear();
 
                 while (lector.Read())
                 {
-                    ListViewItem item = new ListViewItem(lector["nom_trabajador"].ToString());
+                    ListViewItem item = new(lector["nom_trabajador"].ToString());
                     item.SubItems.Add(lector["rut_trabajador"].ToString());
                     item.SubItems.Add(lector["cargo"].ToString());
                     item.SubItems.Add(lector["nom_empresa"].ToString());
-                    item.Tag = lector["id_trabajador"].ToString();  // ID almacenado en el Tag del item
+                    item.Tag = lector["id_trabajador"].ToString();
                     TrabajadoresList.Items.Add(item);
                 }
             }
@@ -67,7 +60,7 @@ namespace Waltrace
                     string rut = item.SubItems[1].Text;
                     string cargo = item.SubItems[2].Text;
                     string empresa = item.SubItems[3].Text;
-                    string id = item.Tag?.ToString() ?? "";  // Obtener el ID del Tag
+                    string id = item.Tag?.ToString() ?? "";
 
                     // Abrir nueva ventana con los datos recolectados
                     TrabajadorSeleccionado form = new(nombre, rut, empresa, cargo, id);
@@ -76,11 +69,74 @@ namespace Waltrace
             }
         }
 
-        private void BuscadorEmpleado_TextChanged(object sender, EventArgs e)
+        private void BuscadorEmpleado_KeyDown(object sender, KeyEventArgs e)
         {
-            // Código del búscador:
-            // Hay que filtrar datos por nombre o por rut.
-            // Hay que comprobar el estado de la conexión a internet.
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Evitar que el evento se propague
+                e.SuppressKeyPress = true;
+
+                if (BuscadorEmpleado.Text == "")
+                {
+                    ListarTrabajadores();
+                }
+                else
+                {
+                    BuscarEmpleado();
+                }
+            }
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            if (BuscadorEmpleado.Text == "")
+            {
+                ListarTrabajadores();
+            }
+            else
+            {
+
+                BuscarEmpleado();
+            }
+        }
+
+        private void BuscarEmpleado()
+        {
+            string searchTerm = BuscadorEmpleado.Text.Trim();
+
+            try
+            {
+                // Abrir la conexión en caso de que no esté abierta
+                DataBaseConnection.AbrirConexion();
+
+                // Consulta SQL actualizada para buscar empleados por nombre o RUT e incluir unión con la tabla empresas
+                string query = @"SELECT t.id_trabajador, t.nom_trabajador, t.rut_trabajador, e.nom_empresa, t.cargo FROM trabajadores t INNER JOIN empresas e ON t.id_empresa = e.id_empresa WHERE t.nom_trabajador LIKE @searchTerm OR t.rut_trabajador LIKE @searchTerm";
+
+                using SqlCommand command = new(query, DataBaseConnection.Conexion);
+                command.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
+
+                using SqlDataReader reader = command.ExecuteReader();
+                TrabajadoresList.Items.Clear();
+
+                while (reader.Read())
+                {
+                    ListViewItem item = new(reader["nom_trabajador"].ToString());
+                    item.SubItems.Add(reader["rut_trabajador"].ToString());
+                    item.SubItems.Add(reader["cargo"].ToString());
+                    item.SubItems.Add(reader["nom_empresa"].ToString());
+                    item.Tag = reader["id_trabajador"].ToString();
+
+                    TrabajadoresList.Items.Add(item);
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error en la base de datos: " + ex.Message, "Error de base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                DataBaseConnection.CerrarConexion();
+            }
         }
 
         private void RegresarButton_Click(object sender, EventArgs e)
@@ -94,26 +150,6 @@ namespace Waltrace
             DataBaseConnection.CerrarConexion();
         }
 
-        private void BuscadorEmpleado_Enter(object sender, EventArgs e)
-        {
-            // Remover el placeholder de los buscadores cuando se haga click en ellos
-            if (BuscadorEmpleado.Text == "Ingrese nombre o rut")
-            {
-                BuscadorEmpleado.Text = "";
-                BuscadorEmpleado.ForeColor = Color.Black;
-            }
-        }
-
-        private void BuscadorEmpleado_Leave(object sender, EventArgs e)
-        {
-            // Comprobar si el buscador está vacio para colocar el placeholder
-            if (BuscadorEmpleado.Text == "")
-            {
-                BuscadorEmpleado.Text = "Ingrese nombre o rut";
-                BuscadorEmpleado.ForeColor = Color.Gray;
-            }
-        }
-
         // Al cerrar la ventana
         private void Trabajadores_FormClosing(object? sender, FormClosingEventArgs e)
         {
@@ -121,12 +157,12 @@ namespace Waltrace
         }
 
         // Simular efecto Hover del cursor
-        private void RegresarButton_MouseEnter(object sender, EventArgs e)
+        private void Button_MouseEnter(object sender, EventArgs e)
         {
             Cursor = Cursors.Hand;
         }
 
-        private void RegresarButton_MouseLeave(object sender, EventArgs e)
+        private void Button_MouseLeave(object sender, EventArgs e)
         {
             Cursor = Cursors.Default;
         }

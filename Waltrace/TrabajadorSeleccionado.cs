@@ -28,32 +28,23 @@ namespace Waltrace
                 DataBaseConnection.AbrirConexion();
 
                 string consulta = "SELECT fecha_inicio, curriculum_url, foto FROM trabajadores WHERE id_trabajador = @Identificador";
-
                 using SqlCommand comando = new(consulta, DataBaseConnection.Conexion);
                 comando.Parameters.AddWithValue("@Identificador", identificador);
 
-                using (SqlDataReader lector = comando.ExecuteReader())
+                using SqlDataReader lector = comando.ExecuteReader();
+                if (lector.Read())
                 {
-                    if (lector.Read())
-                    {
-                        DateTime fechaInicio = (DateTime)lector["fecha_inicio"];
-                        DisplayBoxAño.Text = fechaInicio.ToString("dd-MM-yyyy");
+                    DateTime fechaInicio = (DateTime)lector["fecha_inicio"];
+                    DisplayBoxAño.Text = fechaInicio.ToString("dd-MM-yyyy");
 
-                        // Obtener la URL de la foto del trabajador
-                        string urlFoto = lector["foto"]?.ToString() ?? "";
+                    string urlFoto = lector["foto"].ToString() ?? "";
+                    CargarFoto(urlFoto);
 
-                        string curriculumUrl = lector["curriculum_url"]?.ToString() ?? "";
-
-                        // Llamada al método para cargar la foto
-                        CargarFoto(urlFoto);
-
-                        // Actualizar variable del enlace con curriculum del trabajador
-                        urlCurr = curriculumUrl;
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se encontraron datos para el trabajador seleccionado.", "Información no encontrada", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    urlCurr = lector["curriculum_url"].ToString() ?? "";
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron datos para el trabajador seleccionado.", "Información no encontrada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (SqlException ex)
