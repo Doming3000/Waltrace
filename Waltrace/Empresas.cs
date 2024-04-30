@@ -7,28 +7,39 @@ namespace Waltrace
     public partial class Empresas : Form
     {
         // Variables
-        string urlDoc = string.Empty;
+        private string urlDoc = string.Empty;
+        private static readonly HttpClient client = new();
 
         public Empresas()
         {
             InitializeComponent();
             FormClosing += Empresas_FormClosing;
 
-            // Llamada a método para listar las empresas
             ListarEmpresasBox();
         }
 
-        // Método para listar las empresas en EmpresasBox almacenadas en la base de datos.
+        private bool VerifyInternetConnection()
+        {
+            if (!NetworkInterface.GetIsNetworkAvailable())
+            {
+                MessageBox.Show("No estás conectado a internet.\r\nVerifica el estado de tu conexión y vuelve a intentarlo más tarde.", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+
         private void ListarEmpresasBox()
         {
             try
             {
+                // Abrir la conexión en caso de que no esté abierta
                 DataBaseConnection.AbrirConexion();
 
-                using SqlCommand comando = new("SELECT id_empresa, nom_empresa FROM empresas", DataBaseConnection.Conexion);
-                using SqlDataReader lector = comando.ExecuteReader();
+                using SqlCommand command = new("SELECT id_empresa, nom_empresa FROM empresas", DataBaseConnection.Conexion);
+                using SqlDataReader lector = command.ExecuteReader();
                 DataTable dt = new();
                 dt.Load(lector);
+
                 EmpresasBox.DataSource = dt;
                 EmpresasBox.ValueMember = "id_empresa";
                 EmpresasBox.DisplayMember = "nom_empresa";
@@ -70,21 +81,13 @@ namespace Waltrace
             {
                 MessageBox.Show("Ha ocurrido un error al intentar obtener los datos de la empresa: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             return (rutEmpresa, nombreRepresentante, direccion, telefono, añoConst, logoUrl, documentacion);
         }
 
         private void EmpresasBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Verificar si hay conexión a internet al seleccionar una empresa
-            bool checkConnection = NetworkInterface.GetIsNetworkAvailable();
-            if (!checkConnection)
+            if (VerifyInternetConnection())
             {
-                MessageBox.Show("No estás conectado a internet.\r\nVerífica el estado de tu conexión y vuelve a intentarlo más tarde.", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                // Comprobar si existe una selección válida
                 if (EmpresasBox.SelectedIndex >= 0 && EmpresasBox.SelectedValue != null && int.TryParse(EmpresasBox.SelectedValue.ToString(), out int idEmpresa))
                 {
                     // Habilitar GroupBox al seleccionar una empresa
@@ -119,7 +122,7 @@ namespace Waltrace
                     DisplayBoxTel.Text = telefono.ToString();
                     DisplayBoxAño.Text = añoConst.ToString("d-MM-yyyy");
 
-                    // Llamada a método para cargar el logo de la empresa
+                    // Cargar logo de la empresa
                     CargarLogo(logoUrl);
 
                     // Actualizar la URL de documentación actual
@@ -128,7 +131,6 @@ namespace Waltrace
             }
         }
 
-        private static readonly HttpClient client = new();
         private async void CargarLogo(string urlLogo)
         {
             // Mostrar texto "Cargando logotipo"
@@ -196,7 +198,7 @@ namespace Waltrace
 
         private void RegresarButton_Click(object sender, EventArgs e)
         {
-            // Regresar al formulario inicial
+            // Regresar a la ventana inicial
             Principal form = new();
             form.Show();
             Hide();

@@ -13,48 +13,54 @@ namespace Waltrace
             TrabajadoresList.EmptyText = "La base de datos está vacía. No hay datos para mostrar";
             TrabajadoresList.NoResultsText = "No se encontró al trabajador que estás buscando.";
 
-            // Llamada a método para listar los trabajdores en el listview
             ListarTrabajadores();
+        }
+
+        private bool VerifyInternetConnection()
+        {
+            if (!NetworkInterface.GetIsNetworkAvailable())
+            {
+                MessageBox.Show("No estás conectado a internet.\r\nVerifica el estado de tu conexión y vuelve a intentarlo más tarde.", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
         }
 
         private void ListarTrabajadores()
         {
-            try
+            if (VerifyInternetConnection())
             {
-                // Abrir la conexión en caso de que no esté abierta
-                DataBaseConnection.AbrirConexion();
-
-                string consulta = @"SELECT t.id_trabajador, t.nom_trabajador, t.rut_trabajador, e.nom_empresa, t.cargo FROM trabajadores t INNER JOIN empresas e ON t.id_empresa = e.id_empresa";
-
-                using SqlCommand comando = new(consulta, DataBaseConnection.Conexion);
-                using SqlDataReader lector = comando.ExecuteReader();
-                TrabajadoresList.Items.Clear();
-
-                while (lector.Read())
+                try
                 {
-                    ListViewItem item = new(lector["nom_trabajador"].ToString());
-                    item.SubItems.Add(lector["rut_trabajador"].ToString());
-                    item.SubItems.Add(lector["cargo"].ToString());
-                    item.SubItems.Add(lector["nom_empresa"].ToString());
-                    item.Tag = lector["id_trabajador"].ToString();
-                    TrabajadoresList.Items.Add(item);
+                    // Abrir la conexión en caso de que no esté abierta
+                    DataBaseConnection.AbrirConexion();
+
+                    string consulta = @"SELECT t.id_trabajador, t.nom_trabajador, t.rut_trabajador, e.nom_empresa, t.cargo FROM trabajadores t INNER JOIN empresas e ON t.id_empresa = e.id_empresa";
+
+                    using SqlCommand comando = new(consulta, DataBaseConnection.Conexion);
+                    using SqlDataReader lector = comando.ExecuteReader();
+                    TrabajadoresList.Items.Clear();
+
+                    while (lector.Read())
+                    {
+                        ListViewItem item = new(lector["nom_trabajador"].ToString());
+                        item.SubItems.Add(lector["rut_trabajador"].ToString());
+                        item.SubItems.Add(lector["cargo"].ToString());
+                        item.SubItems.Add(lector["nom_empresa"].ToString());
+                        item.Tag = lector["id_trabajador"].ToString();
+                        TrabajadoresList.Items.Add(item);
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ha ocurrido un error al intentar listar los trabajadores: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ha ocurrido un error al intentar listar los trabajadores: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         private void TrabajadoresList_ItemActivate(object sender, EventArgs e)
         {
-            // Verificar si hay conexión a internet al seleccionar una empresa
-            bool checkConnection = NetworkInterface.GetIsNetworkAvailable();
-            if (!checkConnection)
-            {
-                MessageBox.Show("No estás conectado a internet.\r\nVerífica el estado de tu conexión y vuelve a intentarlo más tarde.", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
+            if (VerifyInternetConnection())
             {
                 if (TrabajadoresList.SelectedItems.Count > 0)
                 {
@@ -98,7 +104,6 @@ namespace Waltrace
             }
             else
             {
-
                 BuscarEmpleado();
             }
         }
@@ -107,40 +112,43 @@ namespace Waltrace
         {
             string searchTerm = BuscadorEmpleado.Text.Trim();
 
-            try
+            if (VerifyInternetConnection())
             {
-                // Abrir la conexión en caso de que no esté abierta
-                DataBaseConnection.AbrirConexion();
-
-                // Consulta SQL actualizada para buscar empleados por nombre o RUT e incluir unión con la tabla empresas
-                string query = @"SELECT t.id_trabajador, t.nom_trabajador, t.rut_trabajador, e.nom_empresa, t.cargo FROM trabajadores t INNER JOIN empresas e ON t.id_empresa = e.id_empresa WHERE t.nom_trabajador LIKE @searchTerm OR t.rut_trabajador LIKE @searchTerm";
-
-                using SqlCommand command = new(query, DataBaseConnection.Conexion);
-                command.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
-
-                using SqlDataReader reader = command.ExecuteReader();
-                TrabajadoresList.Items.Clear();
-                TrabajadoresList.IsSearchResultEmpty = true;
-
-                while (reader.Read())
+                try
                 {
-                    ListViewItem item = new(reader["nom_trabajador"].ToString());
-                    item.SubItems.Add(reader["rut_trabajador"].ToString());
-                    item.SubItems.Add(reader["cargo"].ToString());
-                    item.SubItems.Add(reader["nom_empresa"].ToString());
-                    item.Tag = reader["id_trabajador"].ToString();
+                    // Abrir la conexión en caso de que no esté abierta
+                    DataBaseConnection.AbrirConexion();
 
-                    TrabajadoresList.Items.Add(item);
-                    TrabajadoresList.IsSearchResultEmpty = false;
+                    // Consulta SQL actualizada para buscar empleados por nombre o RUT e incluir unión con la tabla empresas
+                    string query = @"SELECT t.id_trabajador, t.nom_trabajador, t.rut_trabajador, e.nom_empresa, t.cargo FROM trabajadores t INNER JOIN empresas e ON t.id_empresa = e.id_empresa WHERE t.nom_trabajador LIKE @searchTerm OR t.rut_trabajador LIKE @searchTerm";
+
+                    using SqlCommand command = new(query, DataBaseConnection.Conexion);
+                    command.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
+
+                    using SqlDataReader reader = command.ExecuteReader();
+                    TrabajadoresList.Items.Clear();
+                    TrabajadoresList.IsSearchResultEmpty = true;
+
+                    while (reader.Read())
+                    {
+                        ListViewItem item = new(reader["nom_trabajador"].ToString());
+                        item.SubItems.Add(reader["rut_trabajador"].ToString());
+                        item.SubItems.Add(reader["cargo"].ToString());
+                        item.SubItems.Add(reader["nom_empresa"].ToString());
+                        item.Tag = reader["id_trabajador"].ToString();
+
+                        TrabajadoresList.Items.Add(item);
+                        TrabajadoresList.IsSearchResultEmpty = false;
+                    }
                 }
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Error en la base de datos: " + ex.Message, "Error de base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                DataBaseConnection.CerrarConexion();
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error en la base de datos: " + ex.Message, "Error de base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    DataBaseConnection.CerrarConexion();
+                }
             }
         }
 
