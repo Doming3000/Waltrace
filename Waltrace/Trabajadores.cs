@@ -10,6 +10,9 @@ namespace Waltrace
             InitializeComponent();
             FormClosing += Trabajadores_FormClosing;
 
+            TrabajadoresList.EmptyText = "La base de datos está vacía. No hay datos para mostrar";
+            TrabajadoresList.NoResultsText = "No se encontró al trabajador que estás buscando.";
+
             // Llamada a método para listar los trabajdores en el listview
             ListarTrabajadores();
         }
@@ -117,6 +120,7 @@ namespace Waltrace
 
                 using SqlDataReader reader = command.ExecuteReader();
                 TrabajadoresList.Items.Clear();
+                TrabajadoresList.IsSearchResultEmpty = true;
 
                 while (reader.Read())
                 {
@@ -127,6 +131,7 @@ namespace Waltrace
                     item.Tag = reader["id_trabajador"].ToString();
 
                     TrabajadoresList.Items.Add(item);
+                    TrabajadoresList.IsSearchResultEmpty = false;
                 }
             }
             catch (SqlException ex)

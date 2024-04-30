@@ -32,7 +32,7 @@
             bindingSource1 = new BindingSource(components);
             SearchButton = new Button();
             RegresarButton = new Button();
-            TrabajadoresList = new ListView();
+            TrabajadoresList = new CustomListView();
             NombreTrabajador = new ColumnHeader();
             RutTrabajador = new ColumnHeader();
             cargo = new ColumnHeader();
@@ -43,7 +43,7 @@
             // 
             // SearchButton
             // 
-            SearchButton.Location = new Point(239, 12);
+            SearchButton.Location = new Point(218, 12);
             SearchButton.Name = "SearchButton";
             SearchButton.Size = new Size(94, 29);
             SearchButton.TabIndex = 0;
@@ -68,10 +68,13 @@
             // TrabajadoresList
             // 
             TrabajadoresList.Columns.AddRange(new ColumnHeader[] { NombreTrabajador, RutTrabajador, cargo, EmpresaContr });
+            TrabajadoresList.EmptyText = "";
             TrabajadoresList.FullRowSelect = true;
+            TrabajadoresList.IsSearchResultEmpty = false;
             TrabajadoresList.Location = new Point(12, 47);
             TrabajadoresList.Name = "TrabajadoresList";
-            TrabajadoresList.Size = new Size(545, 120);
+            TrabajadoresList.NoResultsText = "";
+            TrabajadoresList.Size = new Size(545, 220);
             TrabajadoresList.TabIndex = 15;
             TrabajadoresList.TileSize = new Size(1, 1);
             TrabajadoresList.UseCompatibleStateImageBehavior = false;
@@ -103,7 +106,7 @@
             BuscadorEmpleado.Location = new Point(12, 12);
             BuscadorEmpleado.Name = "BuscadorEmpleado";
             BuscadorEmpleado.PlaceholderText = "Ingrese nombre o rut";
-            BuscadorEmpleado.Size = new Size(221, 27);
+            BuscadorEmpleado.Size = new Size(200, 27);
             BuscadorEmpleado.TabIndex = 16;
             BuscadorEmpleado.KeyDown += BuscadorEmpleado_KeyDown;
             // 
@@ -128,7 +131,7 @@
         private BindingSource bindingSource1;
         private Button SearchButton;
         private Button RegresarButton;
-        private ListView TrabajadoresList;
+        private CustomListView TrabajadoresList;
         private ColumnHeader NombreTrabajador;
         private ColumnHeader RutTrabajador;
         private ColumnHeader EmpresaContr;
