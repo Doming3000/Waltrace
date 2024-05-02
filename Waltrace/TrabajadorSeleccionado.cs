@@ -6,6 +6,7 @@ namespace Waltrace
     {
         // Variables
         string urlCurr = string.Empty;
+        private static readonly HttpClient client = new();
 
         public TrabajadorSeleccionado(string nombre, string rut, string empresa, string cargo, string id)
         {
@@ -28,10 +29,10 @@ namespace Waltrace
                 DataBaseConnection.AbrirConexion();
 
                 string consulta = "SELECT fecha_inicio, curriculum_url, foto FROM trabajadores WHERE id_trabajador = @Identificador";
-                using SqlCommand comando = new(consulta, DataBaseConnection.Conexion);
-                comando.Parameters.AddWithValue("@Identificador", identificador);
+                using SqlCommand command = new(consulta, DataBaseConnection.Conexion);
+                command.Parameters.AddWithValue("@Identificador", identificador);
 
-                using SqlDataReader lector = comando.ExecuteReader();
+                using SqlDataReader lector = command.ExecuteReader();
                 if (lector.Read())
                 {
                     DateTime fechaInicio = (DateTime)lector["fecha_inicio"];
@@ -61,15 +62,23 @@ namespace Waltrace
             }
         }
 
-        private static readonly HttpClient client = new();
-
         private async void CargarFoto(string urlFoto)
         {
+            // Utilizar imagen predeterminada si el trabajaddor seleccionado no tiene foto
+            Bitmap defaultImage = Properties.Resources.NoFoto;
+
             // Mostrar texto "Cargando foto..."
             LoadingText.Visible = true;
 
             try
             {
+                if (string.IsNullOrEmpty(urlFoto))
+                {
+                    FotoBox.Image = defaultImage;
+                    LoadingText.Visible = false;
+                    return;
+                }
+
                 using HttpResponseMessage response = await client.GetAsync(urlFoto);
                 using Stream stream = await response.Content.ReadAsStreamAsync();
                 if (response.IsSuccessStatusCode)
@@ -90,8 +99,9 @@ namespace Waltrace
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No se ha podido cargar el logo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                FotoBox.Image = defaultImage;
                 LoadingText.Visible = false;
+                MessageBox.Show("No se ha podido cargar la imagen: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

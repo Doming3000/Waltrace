@@ -196,6 +196,12 @@ namespace Waltrace
             Clipboard.SetText(nombreRepresentante + "\n" + rutEmpresa + "\n" + direccion + "\n" + telefono + "\n" + año);
         }
 
+        private void FlotaButton_Click(object sender, EventArgs e)
+        {
+            FlotaWalbusch form = new();
+            form.ShowDialog();
+        }
+
         private void RegresarButton_Click(object sender, EventArgs e)
         {
             // Regresar a la ventana inicial
@@ -205,12 +211,6 @@ namespace Waltrace
 
             // Cerrar conexión
             DataBaseConnection.CerrarConexion();
-        }
-
-        private void FlotaButton_Click(object sender, EventArgs e)
-        {
-            FlotaWalbusch form = new();
-            form.ShowDialog();
         }
 
         // Al cerrar la ventana
