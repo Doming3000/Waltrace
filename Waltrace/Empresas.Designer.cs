@@ -139,6 +139,8 @@
             // 
             // DocsButton
             // 
+            DocsButton.BackgroundImageLayout = ImageLayout.None;
+            DocsButton.ImageAlign = ContentAlignment.MiddleLeft;
             DocsButton.Location = new Point(167, 207);
             DocsButton.Name = "DocsButton";
             DocsButton.Size = new Size(160, 29);

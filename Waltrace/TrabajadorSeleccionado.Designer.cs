@@ -42,6 +42,7 @@
             LoadingText = new Label();
             CurriculumLink = new LinkLabel();
             FotoBox = new PictureBox();
+            CopyButton = new Button();
             ((System.ComponentModel.ISupportInitialize)FotoBox).BeginInit();
             SuspendLayout();
             // 
@@ -172,11 +173,22 @@
             FotoBox.TabIndex = 9;
             FotoBox.TabStop = false;
             // 
+            // CopyButton
+            // 
+            CopyButton.Location = new Point(201, 212);
+            CopyButton.Name = "CopyButton";
+            CopyButton.Size = new Size(169, 29);
+            CopyButton.TabIndex = 10;
+            CopyButton.Text = "Copiar al portapapeles";
+            CopyButton.UseVisualStyleBackColor = true;
+            CopyButton.Click += CopyButton_Click;
+            // 
             // TrabajadorSeleccionado
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(482, 253);
+            Controls.Add(CopyButton);
             Controls.Add(FotoBox);
             Controls.Add(CurriculumLink);
             Controls.Add(LoadingText);
@@ -215,5 +227,6 @@
         private Label LoadingText;
         private LinkLabel CurriculumLink;
         private PictureBox FotoBox;
+        private Button CopyButton;
     }
 }

@@ -125,6 +125,19 @@ namespace Waltrace
             }
         }
 
+        private void CopyButton_Click(object sender, EventArgs e)
+        {
+            // Obtener información de los textboxes 
+            string nombreEmpleado = DisplayBoxNom.Text;
+            string rutEmpleado = DisplayBoxRut.Text;
+            string cargo = DisplayBoxCargo.Text;
+            string empresaContr = DisplayBoxEmp.Text;
+            string fetchInicio = DisplayBoxAño.Text;
+
+            // Copiar información al portapapeles
+            Clipboard.SetText(nombreEmpleado + "\n" + rutEmpleado + "\n" + cargo + "\n" + empresaContr + "\n" + fetchInicio);
+        }
+
         private void AceptarButton_Click(object sender, EventArgs e)
         {
             Close();
