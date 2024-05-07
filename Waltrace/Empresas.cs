@@ -32,7 +32,6 @@ namespace Waltrace
         {
             try
             {
-                // Abrir la conexión en caso de que no esté abierta
                 DataBaseConnection.AbrirConexion();
 
                 using SqlCommand command = new("SELECT id_empresa, nom_empresa FROM empresas", DataBaseConnection.Conexion);

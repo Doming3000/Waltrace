@@ -53,5 +53,13 @@ namespace Waltrace
         {
             Cursor = Cursors.Default;
         }
+
+        // Quitar esto después
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ModificarTrabajador form = new();
+            form.Show();
+            Hide();
+        }
     }
 }

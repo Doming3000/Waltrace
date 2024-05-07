@@ -32,6 +32,7 @@
             pictureBox1 = new PictureBox();
             EmpresaButton = new Button();
             TrabajadorButton = new Button();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -71,12 +72,23 @@
             TrabajadorButton.MouseEnter += Button_MouseEnter;
             TrabajadorButton.MouseLeave += Button_MouseLeave;
             // 
+            // button1
+            // 
+            button1.Location = new Point(676, 412);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 3;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // Principal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(782, 453);
+            Controls.Add(button1);
             Controls.Add(TrabajadorButton);
             Controls.Add(EmpresaButton);
             Controls.Add(pictureBox1);
@@ -94,5 +106,6 @@
         private Button EmpresaButton;
         private Button TrabajadorButton;
         private PictureBox pictureBox1;
+        private Button button1;
     }
 }
