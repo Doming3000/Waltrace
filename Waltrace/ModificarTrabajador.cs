@@ -87,61 +87,100 @@ namespace Waltrace
 
         private void CargarButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(TextBoxNom.Text) || string.IsNullOrEmpty(TextBoxRut.Text) || string.IsNullOrEmpty(TextBoxCargo.Text) || string.IsNullOrEmpty(TextBoxFetch.Text) || string.IsNullOrEmpty(TextBoxCurr.Text) || ComboBoxEmp.SelectedIndex == -1)
+            if (string.IsNullOrEmpty(TextBoxNom.Text) || string.IsNullOrEmpty(TextBoxRut.Text) || string.IsNullOrEmpty(TextBoxCargo.Text) || string.IsNullOrEmpty(TextBoxCurr.Text) || ComboBoxEmp.SelectedIndex == -1)
             {
                 MessageBox.Show("Debe completar todos los campos", "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (!ValidarRut(TextBoxRut.Text))
             {
-                MessageBox.Show("El RUT ingresado no es válido.", "Datos Inválidos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El RUT ingresado no es válido.", "Datos no válidos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else if (!ValidarUrl(TextBoxCurr.Text))
             {
-                MessageBox.Show("La URL del currículum no es válida.", "Datos Inválidos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("La URL del currículum no es válida.", "Datos no válidos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else if (!string.IsNullOrEmpty(TextBoxFoto.Text) && !ValidarUrl(TextBoxFoto.Text))
             {
-                MessageBox.Show("La URL de la foto no es válida.", "Datos Inválidos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("La URL de la foto no es válida.", "Datos no válidos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else
             {
-                try
+                DialogResult dialogResult = MessageBox.Show("¿Estás seguro de que deseas proceder?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    DataBaseConnection.AbrirConexion();
-
-                    string query = @"INSERT INTO trabajadores (id_empresa, nom_trabajador, rut_trabajador, cargo, fecha_inicio, curriculum_url, foto) VALUES (@IdEmpresa, @Nombre, @Rut, @Cargo, @FechaInicio, @CurriculumUrl, @Foto)";
-
-                    using SqlCommand command = new(query, DataBaseConnection.Conexion);
-                    command.Parameters.AddWithValue("@IdEmpresa", ComboBoxEmp.SelectedValue);
-                    command.Parameters.AddWithValue("@Nombre", TextBoxNom.Text);
-                    command.Parameters.AddWithValue("@Rut", TextBoxRut.Text);
-                    command.Parameters.AddWithValue("@Cargo", TextBoxCargo.Text);
-                    command.Parameters.AddWithValue("@FechaInicio", DateTime.Parse(TextBoxFetch.Text));
-                    command.Parameters.AddWithValue("@CurriculumUrl", TextBoxCurr.Text);
-                    command.Parameters.AddWithValue("@Foto", TextBoxFoto.Text);
-
-                    int result = command.ExecuteNonQuery();
-                    if (result > 0)
-                    {
-                        MessageBox.Show("Trabajador añadido exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo añadir al trabajador", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al insertar el trabajador: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    DataBaseConnection.CerrarConexion();
+                    CargarDatos();
+                    LimpiarTextBoxes();
                 }
             }
-        }   
+        }
+
+        private void CargarDatos()
+        {
+            try
+            {
+                DataBaseConnection.AbrirConexion();
+
+                string query = @"INSERT INTO trabajadores (id_empresa, nom_trabajador, rut_trabajador, cargo, fecha_inicio, curriculum_url, foto) VALUES (@IdEmpresa, @Nombre, @Rut, @Cargo, @FechaInicio, @CurriculumUrl, @Foto)";
+
+                using SqlCommand command = new(query, DataBaseConnection.Conexion);
+                command.Parameters.AddWithValue("@IdEmpresa", ComboBoxEmp.SelectedValue);
+                command.Parameters.AddWithValue("@Nombre", TextBoxNom.Text);
+                command.Parameters.AddWithValue("@Rut", TextBoxRut.Text);
+                command.Parameters.AddWithValue("@Cargo", TextBoxCargo.Text);
+                command.Parameters.AddWithValue("@FechaInicio", DateTimeP.Value);
+                command.Parameters.AddWithValue("@CurriculumUrl", TextBoxCurr.Text);
+                command.Parameters.AddWithValue("@Foto", TextBoxFoto.Text);
+
+                int result = command.ExecuteNonQuery();
+                if (result > 0)
+                {
+                    MessageBox.Show("Trabajador añadido exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo añadir al trabajador", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al insertar el trabajador: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                DataBaseConnection.CerrarConexion();
+            }
+        }
+
+        private void LimpiarTextBoxes()
+        {
+            TextBoxNom.Text = "";
+            TextBoxRut.Text = "";
+            TextBoxCargo.Text = "";
+            ComboBoxEmp.SelectedIndex = -1;
+            DateTimeP.Value = DateTime.Now;
+            TextBoxCurr.Text = "";
+            TextBoxFoto.Text = "";
+        }
+
+        private void RegresarButton_Click(object sender, EventArgs e)
+        {
+            Principal form = new();
+            form.Show();
+            Hide();
+        }
+
+        // Simular efecto Hover del cursor
+        private void Button_MouseEnter(object sender, EventArgs e)
+        {
+            Cursor = Cursors.Hand;
+        }
+
+        private void Button_MouseLeave(object sender, EventArgs e)
+        {
+            Cursor = Cursors.Default;
+        }
     }
 }

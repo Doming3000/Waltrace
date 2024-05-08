@@ -74,7 +74,7 @@
             TrabajadoresList.Location = new Point(12, 47);
             TrabajadoresList.Name = "TrabajadoresList";
             TrabajadoresList.NoResultsText = "";
-            TrabajadoresList.Size = new Size(545, 220);
+            TrabajadoresList.Size = new Size(550, 220);
             TrabajadoresList.TabIndex = 15;
             TrabajadoresList.TileSize = new Size(1, 1);
             TrabajadoresList.UseCompatibleStateImageBehavior = false;

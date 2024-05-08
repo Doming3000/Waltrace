@@ -8,12 +8,11 @@ namespace Waltrace
         public Trabajadores()
         {
             InitializeComponent();
+            ListarTrabajadores();
             FormClosing += Trabajadores_FormClosing;
 
             TrabajadoresList.EmptyText = "La base de datos está vacía. No hay datos para mostrar";
             TrabajadoresList.NoResultsText = "No se encontró al trabajador que estás buscando.";
-
-            ListarTrabajadores();
         }
 
         private bool VerifyInternetConnection()
@@ -32,11 +31,9 @@ namespace Waltrace
             {
                 try
                 {
-                    // Abrir la conexión en caso de que no esté abierta
                     DataBaseConnection.AbrirConexion();
 
                     string consulta = @"SELECT t.id_trabajador, t.nom_trabajador, t.rut_trabajador, e.nom_empresa, t.cargo FROM trabajadores t INNER JOIN empresas e ON t.id_empresa = e.id_empresa";
-
                     using SqlCommand comando = new(consulta, DataBaseConnection.Conexion);
                     using SqlDataReader lector = comando.ExecuteReader();
                     TrabajadoresList.Items.Clear();
@@ -71,7 +68,6 @@ namespace Waltrace
                     string empresa = item.SubItems[3].Text;
                     string id = item.Tag?.ToString() ?? "";
 
-                    // Abrir nueva ventana con los datos recolectados
                     TrabajadorSeleccionado form = new(nombre, rut, empresa, cargo, id);
                     form.ShowDialog();
                 }
@@ -116,10 +112,8 @@ namespace Waltrace
             {
                 try
                 {
-                    // Abrir la conexión en caso de que no esté abierta
                     DataBaseConnection.AbrirConexion();
 
-                    // Consulta SQL actualizada para buscar empleados por nombre o RUT e incluir unión con la tabla empresas
                     string query = @"SELECT t.id_trabajador, t.nom_trabajador, t.rut_trabajador, e.nom_empresa, t.cargo FROM trabajadores t INNER JOIN empresas e ON t.id_empresa = e.id_empresa WHERE t.nom_trabajador LIKE @searchTerm OR t.rut_trabajador LIKE @searchTerm";
 
                     using SqlCommand command = new(query, DataBaseConnection.Conexion);
@@ -154,12 +148,10 @@ namespace Waltrace
 
         private void RegresarButton_Click(object sender, EventArgs e)
         {
-            // Regresar a la ventana inicial
             Principal form = new();
             form.Show();
             Hide();
 
-            // Cerrar la conexión
             DataBaseConnection.CerrarConexion();
         }
 
