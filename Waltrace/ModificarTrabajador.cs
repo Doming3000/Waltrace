@@ -112,23 +112,29 @@ namespace Waltrace
                 if (dialogResult == DialogResult.Yes)
                 {
                     CargarDatos();
-                    LimpiarTextBoxes();
                 }
             }
         }
 
         private void CargarDatos()
         {
+            string rut = TextBoxRut.Text.Trim();
+
             try
             {
                 DataBaseConnection.AbrirConexion();
 
-                string query = @"INSERT INTO trabajadores (id_empresa, nom_trabajador, rut_trabajador, cargo, fecha_inicio, curriculum_url, foto) VALUES (@IdEmpresa, @Nombre, @Rut, @Cargo, @FechaInicio, @CurriculumUrl, @Foto)";
+                if (RutDuplicado(rut))
+                {
+                    MessageBox.Show("El trabajador ingresado ya existe en la base de datos", "Información duplicada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
+                string query = @"INSERT INTO trabajadores (id_empresa, nom_trabajador, rut_trabajador, cargo, fecha_inicio, curriculum_url, foto) VALUES (@IdEmpresa, @Nombre, @Rut, @Cargo, @FechaInicio, @CurriculumUrl, @Foto)";
                 using SqlCommand command = new(query, DataBaseConnection.Conexion);
                 command.Parameters.AddWithValue("@IdEmpresa", ComboBoxEmp.SelectedValue);
                 command.Parameters.AddWithValue("@Nombre", TextBoxNom.Text);
-                command.Parameters.AddWithValue("@Rut", TextBoxRut.Text);
+                command.Parameters.AddWithValue("@Rut", rut);
                 command.Parameters.AddWithValue("@Cargo", TextBoxCargo.Text);
                 command.Parameters.AddWithValue("@FechaInicio", DateTimeP.Value);
                 command.Parameters.AddWithValue("@CurriculumUrl", TextBoxCurr.Text);
@@ -138,6 +144,7 @@ namespace Waltrace
                 if (result > 0)
                 {
                     MessageBox.Show("Trabajador añadido exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimpiarCampos();
                 }
                 else
                 {
@@ -154,15 +161,24 @@ namespace Waltrace
             }
         }
 
-        private void LimpiarTextBoxes()
+        private bool RutDuplicado(string rut)
         {
-            TextBoxNom.Text = "";
-            TextBoxRut.Text = "";
-            TextBoxCargo.Text = "";
+            string query = "SELECT COUNT(*) FROM trabajadores WHERE rut_trabajador = @Rut";
+            using SqlCommand command = new(query, DataBaseConnection.Conexion);
+            command.Parameters.AddWithValue("@Rut", rut);
+            int count = Convert.ToInt32(command.ExecuteScalar());
+            return count > 0;
+        }
+
+        private void LimpiarCampos()
+        {
+            TextBoxNom.Clear();
+            TextBoxRut.Clear();
+            TextBoxCargo.Clear();
             ComboBoxEmp.SelectedIndex = -1;
             DateTimeP.Value = DateTime.Now;
-            TextBoxCurr.Text = "";
-            TextBoxFoto.Text = "";
+            TextBoxCurr.Clear();
+            TextBoxFoto.Clear();
         }
 
         private void RegresarButton_Click(object sender, EventArgs e)

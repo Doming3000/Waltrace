@@ -9,13 +9,12 @@ namespace Waltrace
         {
             InitializeComponent();
             ListarTrabajadores();
-            FormClosing += Trabajadores_FormClosing;
 
             TrabajadoresList.EmptyText = "La base de datos está vacía. No hay datos para mostrar";
             TrabajadoresList.NoResultsText = "No se encontró al trabajador que estás buscando.";
         }
 
-        private bool VerifyInternetConnection()
+        private static bool VerifyInternetConnection()
         {
             if (!NetworkInterface.GetIsNetworkAvailable())
             {
@@ -51,6 +50,10 @@ namespace Waltrace
                 catch (Exception ex)
                 {
                     MessageBox.Show("Ha ocurrido un error al intentar listar los trabajadores: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    DataBaseConnection.CerrarConexion();
                 }
             }
         }
@@ -151,14 +154,6 @@ namespace Waltrace
             Principal form = new();
             form.Show();
             Hide();
-
-            DataBaseConnection.CerrarConexion();
-        }
-
-        // Al cerrar la ventana
-        private void Trabajadores_FormClosing(object? sender, FormClosingEventArgs e)
-        {
-            DataBaseConnection.CerrarConexion();
         }
 
         // Simular efecto Hover del cursor

@@ -163,7 +163,7 @@
             CargarButton.Location = new Point(379, 356);
             CargarButton.Name = "CargarButton";
             CargarButton.Size = new Size(109, 29);
-            CargarButton.TabIndex = 8;
+            CargarButton.TabIndex = 9;
             CargarButton.Text = "Cargar Datos";
             CargarButton.UseVisualStyleBackColor = true;
             CargarButton.Click += CargarButton_Click;
@@ -176,7 +176,7 @@
             DateTimeP.Location = new Point(15, 251);
             DateTimeP.Name = "DateTimeP";
             DateTimeP.Size = new Size(121, 27);
-            DateTimeP.TabIndex = 13;
+            DateTimeP.TabIndex = 5;
             DateTimeP.Value = new DateTime(2024, 5, 8, 7, 57, 47, 0);
             // 
             // InsertarTrabajador
@@ -207,7 +207,7 @@
             RegresarButton.Location = new Point(279, 356);
             RegresarButton.Name = "RegresarButton";
             RegresarButton.Size = new Size(94, 29);
-            RegresarButton.TabIndex = 14;
+            RegresarButton.TabIndex = 8;
             RegresarButton.Text = "Regresar";
             RegresarButton.UseVisualStyleBackColor = true;
             RegresarButton.Click += RegresarButton_Click;
