@@ -12,13 +12,11 @@ namespace Waltrace
         {
             InitializeComponent();
 
-            // Asignar los valores a los TextBoxes u otros controles
             DisplayBoxNom.Text = nombre;
             DisplayBoxRut.Text = rut;
             DisplayBoxEmp.Text = empresa;
             DisplayBoxCargo.Text = cargo;
 
-            // Cargar información adicional usando el ID
             ListarNuevaInformacion(id);
         }
 
@@ -50,11 +48,11 @@ namespace Waltrace
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Ha ocurrido un error en base de datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ha ocurrido un error en la base de datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar cargar información: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ha ocurrido un error al cargar la información: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -67,7 +65,6 @@ namespace Waltrace
             // Utilizar imagen predeterminada si el trabajaddor seleccionado no tiene foto
             Bitmap defaultImage = Properties.Resources.NoFoto;
 
-            // Mostrar texto "Cargando foto..."
             LoadingText.Visible = true;
 
             try
@@ -83,7 +80,6 @@ namespace Waltrace
                 using Stream stream = await response.Content.ReadAsStreamAsync();
                 if (response.IsSuccessStatusCode)
                 {
-                    // Crear una imagen desde el stream de manera asincrónica
                     var image = Image.FromStream(stream);
 
                     Invoke((MethodInvoker)delegate
@@ -134,7 +130,6 @@ namespace Waltrace
             string empresaContr = DisplayBoxEmp.Text;
             string fetchInicio = DisplayBoxAño.Text;
 
-            // Copiar información al portapapeles
             Clipboard.SetText(nombreEmpleado + "\n" + rutEmpleado + "\n" + cargo + "\n" + empresaContr + "\n" + fetchInicio);
         }
 

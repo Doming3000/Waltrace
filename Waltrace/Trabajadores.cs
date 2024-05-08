@@ -10,7 +10,7 @@ namespace Waltrace
             InitializeComponent();
             ListarTrabajadores();
 
-            TrabajadoresList.EmptyText = "La base de datos está vacía. No hay datos para mostrar";
+            TrabajadoresList.EmptyText = "La base de datos está vacía o no hay conexión a ella.\r\nNo hay datos para mostrar.";
             TrabajadoresList.NoResultsText = "No se encontró al trabajador que estás buscando.";
         }
 
@@ -49,7 +49,7 @@ namespace Waltrace
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Ha ocurrido un error al intentar listar los trabajadores: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ha ocurrido un error al cargar la lista de trabajadores: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {
@@ -140,7 +140,7 @@ namespace Waltrace
                 }
                 catch (SqlException ex)
                 {
-                    MessageBox.Show("Error en la base de datos: " + ex.Message, "Error de base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ha ocurrido un error en la base de datos: " + ex.Message, "Error de base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {

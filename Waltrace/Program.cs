@@ -31,7 +31,7 @@ namespace Waltrace
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al abrir conexión: " + ex.Message);
+                Console.WriteLine("Ha ocurrido un error al abrir conexión: " + ex.Message);
             }
         }
 
@@ -45,7 +45,7 @@ namespace Waltrace
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al cerrar conexión: " + ex.Message);
+                Console.WriteLine("Ha ocurrido un error al cerrar conexión: " + ex.Message);
             }
         }
     }

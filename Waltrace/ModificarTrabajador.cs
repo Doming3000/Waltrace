@@ -1,5 +1,6 @@
 ﻿using System.Data.SqlClient;
 using System.Data;
+using System.Net.NetworkInformation;
 
 namespace Waltrace
 {
@@ -11,29 +12,42 @@ namespace Waltrace
             ListarEmpresas();
         }
 
+        private static bool VerifyInternetConnection()
+        {
+            if (!NetworkInterface.GetIsNetworkAvailable())
+            {
+                MessageBox.Show("No estás conectado a internet.\r\nVerifica el estado de tu conexión y vuelve a intentarlo más tarde.", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+
         private void ListarEmpresas()
         {
-            try
+            if (VerifyInternetConnection())
             {
-                DataBaseConnection.AbrirConexion();
+                try
+                {
+                    DataBaseConnection.AbrirConexion();
 
-                using SqlCommand comando = new("SELECT id_empresa, nom_empresa FROM empresas", DataBaseConnection.Conexion);
-                using SqlDataReader lector = comando.ExecuteReader();
-                DataTable dt = new();
-                dt.Load(lector);
+                    using SqlCommand comando = new("SELECT id_empresa, nom_empresa FROM empresas", DataBaseConnection.Conexion);
+                    using SqlDataReader lector = comando.ExecuteReader();
+                    DataTable dt = new();
+                    dt.Load(lector);
 
-                ComboBoxEmp.DataSource = dt;
-                ComboBoxEmp.ValueMember = "id_empresa";
-                ComboBoxEmp.DisplayMember = "nom_empresa";
-                ComboBoxEmp.SelectedIndex = -1;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ha ocurrido un error al intentar listar las empresas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                DataBaseConnection.CerrarConexion();
+                    ComboBoxEmp.DataSource = dt;
+                    ComboBoxEmp.ValueMember = "id_empresa";
+                    ComboBoxEmp.DisplayMember = "nom_empresa";
+                    ComboBoxEmp.SelectedIndex = -1;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ha ocurrido un error al cargar las empresas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    DataBaseConnection.CerrarConexion();
+                }
             }
         }
 
@@ -120,48 +134,51 @@ namespace Waltrace
         {
             string rut = TextBoxRut.Text.Trim();
 
-            try
+            if (VerifyInternetConnection())
             {
-                DataBaseConnection.AbrirConexion();
-
-                if (RutDuplicado(rut))
+                try
                 {
-                    MessageBox.Show("El trabajador ingresado ya existe en la base de datos", "Información duplicada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                    DataBaseConnection.AbrirConexion();
 
-                string query = @"INSERT INTO trabajadores (id_empresa, nom_trabajador, rut_trabajador, cargo, fecha_inicio, curriculum_url, foto) VALUES (@IdEmpresa, @Nombre, @Rut, @Cargo, @FechaInicio, @CurriculumUrl, @Foto)";
-                using SqlCommand command = new(query, DataBaseConnection.Conexion);
-                command.Parameters.AddWithValue("@IdEmpresa", ComboBoxEmp.SelectedValue);
-                command.Parameters.AddWithValue("@Nombre", TextBoxNom.Text);
-                command.Parameters.AddWithValue("@Rut", rut);
-                command.Parameters.AddWithValue("@Cargo", TextBoxCargo.Text);
-                command.Parameters.AddWithValue("@FechaInicio", DateTimeP.Value);
-                command.Parameters.AddWithValue("@CurriculumUrl", TextBoxCurr.Text);
-                command.Parameters.AddWithValue("@Foto", TextBoxFoto.Text);
+                    if (RutDuplicado(rut))
+                    {
+                        MessageBox.Show("El trabajador ingresado ya existe en la base de datos", "Información duplicada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
 
-                int result = command.ExecuteNonQuery();
-                if (result > 0)
-                {
-                    MessageBox.Show("Trabajador añadido exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LimpiarCampos();
+                    string query = @"INSERT INTO trabajadores (id_empresa, nom_trabajador, rut_trabajador, cargo, fecha_inicio, curriculum_url, foto) VALUES (@IdEmpresa, @Nombre, @Rut, @Cargo, @FechaInicio, @CurriculumUrl, @Foto)";
+                    using SqlCommand command = new(query, DataBaseConnection.Conexion);
+                    command.Parameters.AddWithValue("@IdEmpresa", ComboBoxEmp.SelectedValue);
+                    command.Parameters.AddWithValue("@Nombre", TextBoxNom.Text);
+                    command.Parameters.AddWithValue("@Rut", rut);
+                    command.Parameters.AddWithValue("@Cargo", TextBoxCargo.Text);
+                    command.Parameters.AddWithValue("@FechaInicio", DateTimeP.Value);
+                    command.Parameters.AddWithValue("@CurriculumUrl", TextBoxCurr.Text);
+                    command.Parameters.AddWithValue("@Foto", TextBoxFoto.Text);
+
+                    int result = command.ExecuteNonQuery();
+                    if (result > 0)
+                    {
+                        MessageBox.Show("Trabajador añadido exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LimpiarCampos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se ha podido añadir al trabajador", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("No se pudo añadir al trabajador", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ha ocurrido un error al insertar al trabajador: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al insertar el trabajador: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                DataBaseConnection.CerrarConexion();
+                finally
+                {
+                    DataBaseConnection.CerrarConexion();
+                }
             }
         }
 
-        private bool RutDuplicado(string rut)
+        private static bool RutDuplicado(string rut)
         {
             string query = "SELECT COUNT(*) FROM trabajadores WHERE rut_trabajador = @Rut";
             using SqlCommand command = new(query, DataBaseConnection.Conexion);
