@@ -1,6 +1,5 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
-using System.Net.NetworkInformation;
 
 namespace Waltrace
 {
@@ -16,42 +15,29 @@ namespace Waltrace
             ListarEmpresas();
         }
 
-        private static bool VerifyInternetConnection()
-        {
-            if (!NetworkInterface.GetIsNetworkAvailable())
-            {
-                MessageBox.Show("No estás conectado a internet.\r\nVerifica el estado de tu conexión y vuelve a intentarlo más tarde.", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            return true;
-        }
-
         private void ListarEmpresas()
         {
-            if (VerifyInternetConnection())
+            try
             {
-                try
-                {
-                    DataBaseConnection.AbrirConexion();
+                DataBaseConnection.AbrirConexion();
 
-                    using SqlCommand comando = new("SELECT id_empresa, nom_empresa FROM empresas", DataBaseConnection.Conexion);
-                    using SqlDataReader lector = comando.ExecuteReader();
-                    DataTable dt = new();
-                    dt.Load(lector);
+                using SqlCommand comando = new("SELECT id_empresa, nom_empresa FROM empresas", DataBaseConnection.Conexion);
+                using SqlDataReader lector = comando.ExecuteReader();
+                DataTable dt = new();
+                dt.Load(lector);
 
-                    EmpresasBox.DataSource = dt;
-                    EmpresasBox.ValueMember = "id_empresa";
-                    EmpresasBox.DisplayMember = "nom_empresa";
-                    EmpresasBox.SelectedIndex = -1;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ha ocurrido un error al cargar las empresas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    DataBaseConnection.CerrarConexion();
-                }
+                EmpresasBox.DataSource = dt;
+                EmpresasBox.ValueMember = "id_empresa";
+                EmpresasBox.DisplayMember = "nom_empresa";
+                EmpresasBox.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al cargar las empresas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                DataBaseConnection.CerrarConexion();
             }
         }
 
@@ -95,46 +81,44 @@ namespace Waltrace
 
         private void EmpresasBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (VerifyInternetConnection())
+            if (EmpresasBox.SelectedIndex >= 0 && EmpresasBox.SelectedValue != null && int.TryParse(EmpresasBox.SelectedValue.ToString(), out int idEmpresa))
             {
-                if (EmpresasBox.SelectedIndex >= 0 && EmpresasBox.SelectedValue != null && int.TryParse(EmpresasBox.SelectedValue.ToString(), out int idEmpresa))
+                DatosEmpresa.Enabled = true;
+
+                // Limpiar posibles datos seleccionados anteriormente
+                WalbuschPanel.Visible = false;
+                MCAPanel.Visible = false;
+                WaltechPanel.Visible = false;
+
+                if (idEmpresa == 1) // Walbusch SA
                 {
-                    DatosEmpresa.Enabled = true;
-
-                    // Limpiar posibles datos seleccionados anteriormente
-                    WalbuschPanel.Visible = false;
-                    MCAPanel.Visible = false;
-                    WaltechPanel.Visible = false;
-
-                    if (idEmpresa == 1) // Walbusch SA
-                    {
-                        WalbuschPanel.Visible = true;
-                    }
-                    else if (idEmpresa == 2) // MCA SA
-                    {
-                        MCAPanel.Visible = true;
-                    }
-                    else if (idEmpresa == 3) // Waltech
-                    {
-                        WaltechPanel.Visible = true;
-                    }
-
-                    // Consultar la base de datos para obtener la información a imprimir
-                    var (rutEmpresa, nombreRepresentante, direccion, telefono, añoConst, logoUrl, documentacion) = ObtenerDatosEmpresa(idEmpresa);
-
-                    // Imprimir los datos en sus respectivos textboxes
-                    DisplayBoxRep.Text = nombreRepresentante;
-                    DisplayBoxRut.Text = rutEmpresa;
-                    DisplayBoxDir.Text = direccion;
-                    DisplayBoxTel.Text = telefono.ToString();
-                    DisplayBoxAño.Text = añoConst.ToString("d-MM-yyyy");
-
-                    CargarLogo(logoUrl);
-
-                    // Actualizar la URL de documentación actual
-                    urlDoc = documentacion;
+                    WalbuschPanel.Visible = true;
                 }
+                else if (idEmpresa == 2) // MCA SA
+                {
+                    MCAPanel.Visible = true;
+                }
+                else if (idEmpresa == 3) // Waltech
+                {
+                    WaltechPanel.Visible = true;
+                }
+
+                // Consultar la base de datos para obtener la información a imprimir
+                var (rutEmpresa, nombreRepresentante, direccion, telefono, añoConst, logoUrl, documentacion) = ObtenerDatosEmpresa(idEmpresa);
+
+                // Imprimir los datos en sus respectivos textboxes
+                DisplayBoxRep.Text = nombreRepresentante;
+                DisplayBoxRut.Text = rutEmpresa;
+                DisplayBoxDir.Text = direccion;
+                DisplayBoxTel.Text = telefono.ToString();
+                DisplayBoxAño.Text = añoConst.ToString("d-MM-yyyy");
+
+                CargarLogo(logoUrl);
+
+                // Actualizar la URL de documentación actual
+                urlDoc = documentacion;
             }
+
         }
 
         private async void CargarLogo(string urlLogo)
@@ -149,8 +133,7 @@ namespace Waltrace
                 {
                     var image = Image.FromStream(stream);
 
-                    Invoke((MethodInvoker)delegate
-                    {
+                    Invoke((MethodInvoker)delegate {
                         LogoBox.Image = image;
                         LoadingText.Visible = false;
                     });
