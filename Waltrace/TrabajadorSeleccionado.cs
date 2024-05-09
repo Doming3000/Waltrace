@@ -62,9 +62,7 @@ namespace Waltrace
 
         private async void CargarFoto(string urlFoto)
         {
-            // Utilizar imagen predeterminada si el trabajaddor seleccionado no tiene foto
             Bitmap defaultImage = Properties.Resources.NoFoto;
-
             LoadingText.Visible = true;
 
             try

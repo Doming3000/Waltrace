@@ -13,12 +13,10 @@ namespace Waltrace
         public Empresas()
         {
             InitializeComponent();
-            FormClosing += Empresas_FormClosing;
-
-            ListarEmpresasBox();
+            ListarEmpresas();
         }
 
-        private bool VerifyInternetConnection()
+        private static bool VerifyInternetConnection()
         {
             if (!NetworkInterface.GetIsNetworkAvailable())
             {
@@ -28,30 +26,37 @@ namespace Waltrace
             return true;
         }
 
-        private void ListarEmpresasBox()
+        private void ListarEmpresas()
         {
-            try
+            if (VerifyInternetConnection())
             {
-                DataBaseConnection.AbrirConexion();
+                try
+                {
+                    DataBaseConnection.AbrirConexion();
 
-                using SqlCommand command = new("SELECT id_empresa, nom_empresa FROM empresas", DataBaseConnection.Conexion);
-                using SqlDataReader lector = command.ExecuteReader();
-                DataTable dt = new();
-                dt.Load(lector);
+                    using SqlCommand comando = new("SELECT id_empresa, nom_empresa FROM empresas", DataBaseConnection.Conexion);
+                    using SqlDataReader lector = comando.ExecuteReader();
+                    DataTable dt = new();
+                    dt.Load(lector);
 
-                EmpresasBox.DataSource = dt;
-                EmpresasBox.ValueMember = "id_empresa";
-                EmpresasBox.DisplayMember = "nom_empresa";
-                EmpresasBox.SelectedIndex = -1;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ha ocurrido un error al intentar listar las empresas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    EmpresasBox.DataSource = dt;
+                    EmpresasBox.ValueMember = "id_empresa";
+                    EmpresasBox.DisplayMember = "nom_empresa";
+                    EmpresasBox.SelectedIndex = -1;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ha ocurrido un error al cargar las empresas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    DataBaseConnection.CerrarConexion();
+                }
             }
         }
 
-        // Método para obtener datos de la empresa badados en el ID de la empresa
-        private (string rutEmpresa, string nombreRepresentante, string direccion, long telefono, DateTime añoConst, string logoUrl, string documentacion) ObtenerDatosEmpresa(int idEmpresa)
+        // Obtener datos de la empresa basado en el identificador
+        private static (string rutEmpresa, string nombreRepresentante, string direccion, long telefono, DateTime añoConst, string logoUrl, string documentacion) ObtenerDatosEmpresa(int idEmpresa)
         {
             string rutEmpresa = "", nombreRepresentante = "", direccion = "", logoUrl = "", documentacion = "";
             long telefono = 0;
@@ -59,8 +64,9 @@ namespace Waltrace
 
             try
             {
-                string consulta = "SELECT rut_empresa, representante, direccion, telefono, año_const, logo, documentacion FROM empresas WHERE id_empresa = @idEmpresa";
+                DataBaseConnection.AbrirConexion();
 
+                string consulta = "SELECT rut_empresa, representante, direccion, telefono, año_const, logo, documentacion FROM empresas WHERE id_empresa = @idEmpresa";
                 using SqlCommand command = new(consulta, DataBaseConnection.Conexion);
                 command.Parameters.AddWithValue("@idEmpresa", idEmpresa);
 
@@ -80,6 +86,10 @@ namespace Waltrace
             {
                 MessageBox.Show("Ha ocurrido un error al intentar obtener los datos de la empresa: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                DataBaseConnection.CerrarConexion();
+            }
             return (rutEmpresa, nombreRepresentante, direccion, telefono, añoConst, logoUrl, documentacion);
         }
 
@@ -89,15 +99,13 @@ namespace Waltrace
             {
                 if (EmpresasBox.SelectedIndex >= 0 && EmpresasBox.SelectedValue != null && int.TryParse(EmpresasBox.SelectedValue.ToString(), out int idEmpresa))
                 {
-                    // Habilitar GroupBox al seleccionar una empresa
-                    GroupBox1.Enabled = true;
+                    DatosEmpresa.Enabled = true;
 
                     // Limpiar posibles datos seleccionados anteriormente
                     WalbuschPanel.Visible = false;
                     MCAPanel.Visible = false;
                     WaltechPanel.Visible = false;
 
-                    // Comprobar cuál empresa se seleccionó:
                     if (idEmpresa == 1) // Walbusch SA
                     {
                         WalbuschPanel.Visible = true;
@@ -121,7 +129,6 @@ namespace Waltrace
                     DisplayBoxTel.Text = telefono.ToString();
                     DisplayBoxAño.Text = añoConst.ToString("d-MM-yyyy");
 
-                    // Cargar logo de la empresa
                     CargarLogo(logoUrl);
 
                     // Actualizar la URL de documentación actual
@@ -132,7 +139,6 @@ namespace Waltrace
 
         private async void CargarLogo(string urlLogo)
         {
-            // Mostrar texto "Cargando logotipo"
             LoadingText.Visible = true;
 
             try
@@ -141,7 +147,6 @@ namespace Waltrace
                 using Stream stream = await response.Content.ReadAsStreamAsync();
                 if (response.IsSuccessStatusCode)
                 {
-                    // Crear una imagen desde el stream de manera asincrónica
                     var image = Image.FromStream(stream);
 
                     Invoke((MethodInvoker)delegate
@@ -191,31 +196,14 @@ namespace Waltrace
             string telefono = DisplayBoxTel.Text;
             string año = DisplayBoxAño.Text;
 
-            // Copiar información al portapapeles
             Clipboard.SetText(nombreRepresentante + "\n" + rutEmpresa + "\n" + direccion + "\n" + telefono + "\n" + año);
-        }
-
-        private void FlotaButton_Click(object sender, EventArgs e)
-        {
-            FlotaWalbusch form = new();
-            form.ShowDialog();
         }
 
         private void RegresarButton_Click(object sender, EventArgs e)
         {
-            // Regresar a la ventana inicial
             Principal form = new();
             form.Show();
             Hide();
-
-            // Cerrar conexión
-            DataBaseConnection.CerrarConexion();
-        }
-
-        // Al cerrar la ventana
-        private void Empresas_FormClosing(object? sender, FormClosingEventArgs e)
-        {
-            DataBaseConnection.CerrarConexion();
         }
 
         // Simular efecto Hover del cursor

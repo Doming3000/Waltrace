@@ -32,7 +32,7 @@
             EmpresasBox = new ComboBox();
             label1 = new Label();
             RegresarButton = new Button();
-            GroupBox1 = new GroupBox();
+            DatosEmpresa = new GroupBox();
             CopyButton = new Button();
             DisplayBoxDir = new TextBox();
             DocsButton = new Button();
@@ -58,7 +58,7 @@
             label8 = new Label();
             button2 = new Button();
             panel1 = new Panel();
-            GroupBox1.SuspendLayout();
+            DatosEmpresa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)LogoBox).BeginInit();
             WalbuschPanel.SuspendLayout();
             WaltechPanel.SuspendLayout();
@@ -96,26 +96,26 @@
             RegresarButton.MouseEnter += Button_MouseEnter;
             RegresarButton.MouseLeave += Button_MouseLeave;
             // 
-            // GroupBox1
+            // DatosEmpresa
             // 
-            GroupBox1.Controls.Add(CopyButton);
-            GroupBox1.Controls.Add(DisplayBoxDir);
-            GroupBox1.Controls.Add(DocsButton);
-            GroupBox1.Controls.Add(label6);
-            GroupBox1.Controls.Add(label5);
-            GroupBox1.Controls.Add(label4);
-            GroupBox1.Controls.Add(DisplayBoxAño);
-            GroupBox1.Controls.Add(DisplayBoxTel);
-            GroupBox1.Controls.Add(label3);
-            GroupBox1.Controls.Add(label2);
-            GroupBox1.Controls.Add(DisplayBoxRut);
-            GroupBox1.Controls.Add(DisplayBoxRep);
-            GroupBox1.Enabled = false;
-            GroupBox1.Location = new Point(25, 150);
-            GroupBox1.Name = "GroupBox1";
-            GroupBox1.Size = new Size(354, 303);
-            GroupBox1.TabIndex = 6;
-            GroupBox1.TabStop = false;
+            DatosEmpresa.Controls.Add(CopyButton);
+            DatosEmpresa.Controls.Add(DisplayBoxDir);
+            DatosEmpresa.Controls.Add(DocsButton);
+            DatosEmpresa.Controls.Add(label6);
+            DatosEmpresa.Controls.Add(label5);
+            DatosEmpresa.Controls.Add(label4);
+            DatosEmpresa.Controls.Add(DisplayBoxAño);
+            DatosEmpresa.Controls.Add(DisplayBoxTel);
+            DatosEmpresa.Controls.Add(label3);
+            DatosEmpresa.Controls.Add(label2);
+            DatosEmpresa.Controls.Add(DisplayBoxRut);
+            DatosEmpresa.Controls.Add(DisplayBoxRep);
+            DatosEmpresa.Enabled = false;
+            DatosEmpresa.Location = new Point(25, 150);
+            DatosEmpresa.Name = "DatosEmpresa";
+            DatosEmpresa.Size = new Size(354, 303);
+            DatosEmpresa.TabIndex = 6;
+            DatosEmpresa.TabStop = false;
             // 
             // CopyButton
             // 
@@ -255,7 +255,6 @@
             FlotaButton.TabIndex = 10;
             FlotaButton.Text = "Flota";
             FlotaButton.UseVisualStyleBackColor = true;
-            FlotaButton.Click += FlotaButton_Click;
             // 
             // WalbuschPanel
             // 
@@ -362,7 +361,7 @@
             Controls.Add(MCAPanel);
             Controls.Add(WalbuschPanel);
             Controls.Add(LoadingText);
-            Controls.Add(GroupBox1);
+            Controls.Add(DatosEmpresa);
             Controls.Add(RegresarButton);
             Controls.Add(label1);
             Controls.Add(LogoBox);
@@ -372,8 +371,8 @@
             Name = "Empresas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Waltrace - Empresas";
-            GroupBox1.ResumeLayout(false);
-            GroupBox1.PerformLayout();
+            DatosEmpresa.ResumeLayout(false);
+            DatosEmpresa.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)LogoBox).EndInit();
             WalbuschPanel.ResumeLayout(false);
             WalbuschPanel.PerformLayout();
@@ -390,7 +389,7 @@
         private ComboBox EmpresasBox;
         private Label label1;
         private Button RegresarButton;
-        private GroupBox GroupBox1;
+        private GroupBox DatosEmpresa;
         private Label label2;
         private TextBox DisplayBoxRep;
         private TextBox DisplayBoxRut;
