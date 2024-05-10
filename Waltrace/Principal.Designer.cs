@@ -78,7 +78,7 @@
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 3;
-            button1.Text = "button1";
+            button1.Text = "test";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 

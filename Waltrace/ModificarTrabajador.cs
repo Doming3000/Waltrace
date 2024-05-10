@@ -190,11 +190,20 @@ namespace Waltrace
             Hide();
         }
 
+        private void TextBoxRut_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '-' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
         // Simular efecto Hover del cursor
         private void Button_MouseEnter(object sender, EventArgs e)
         {
             Cursor = Cursors.Hand;
         }
+
 
         private void Button_MouseLeave(object sender, EventArgs e)
         {

@@ -15,7 +15,6 @@ namespace Waltrace
 
         private void ListarTrabajadores()
         {
-
             try
             {
                 DataBaseConnection.AbrirConexion();
@@ -43,12 +42,10 @@ namespace Waltrace
             {
                 DataBaseConnection.CerrarConexion();
             }
-
         }
 
         private void TrabajadoresList_ItemActivate(object sender, EventArgs e)
         {
-
             if (TrabajadoresList.SelectedItems.Count > 0)
             {
                 ListViewItem item = TrabajadoresList.SelectedItems[0];
@@ -61,7 +58,6 @@ namespace Waltrace
                 TrabajadorSeleccionado form = new(nombre, rut, empresa, cargo, id);
                 form.ShowDialog();
             }
-
         }
 
         private void BuscadorEmpleado_KeyDown(object sender, KeyEventArgs e)
@@ -131,7 +127,6 @@ namespace Waltrace
             {
                 DataBaseConnection.CerrarConexion();
             }
-
         }
 
         private void RegresarButton_Click(object sender, EventArgs e)

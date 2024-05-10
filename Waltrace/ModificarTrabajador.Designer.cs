@@ -63,6 +63,7 @@
             TextBoxRut.Name = "TextBoxRut";
             TextBoxRut.Size = new Size(227, 27);
             TextBoxRut.TabIndex = 2;
+            TextBoxRut.KeyPress += TextBoxRut_KeyPress;
             // 
             // TextBoxCargo
             // 
