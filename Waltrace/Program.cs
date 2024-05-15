@@ -21,20 +21,33 @@ namespace Waltrace
 
         public static SqlConnection Conexion => conexion;
 
+
         public static void AbrirConexion()
         {
-            if (!VerifyInternetConnection()) return;
-
-            if (conexion.State == System.Data.ConnectionState.Closed)
-                conexion.Open();
-            MessageBox.Show("La conexión está abierta");
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    conexion.Open();
+                MessageBox.Show("La conexión está abierta");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ha ocurrido un error al abrir conexión: " + ex.Message);
+            }
         }
 
         public static void CerrarConexion()
         {
-            if (conexion.State == System.Data.ConnectionState.Open)
-                conexion.Close();
-            MessageBox.Show("La conexión está cerrada");
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Open)
+                    conexion.Close();
+                MessageBox.Show("La conexión está cerrada");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ha ocurrido un error al cerrar conexión: " + ex.Message);
+            }
         }
 
         public static bool VerifyInternetConnection()

@@ -1,6 +1,4 @@
-﻿using System.Net.NetworkInformation;
-
-namespace Waltrace
+﻿namespace Waltrace
 {
     public partial class Principal : Form
     {
@@ -11,15 +9,8 @@ namespace Waltrace
 
         private void TrabajadorButton_Click(object sender, EventArgs e)
         {
-            // Verificar si hay conexión a internet al cargar la ventana
-            bool checkConnection = NetworkInterface.GetIsNetworkAvailable();
-            if (!checkConnection)
+            if (DataBaseConnection.VerifyInternetConnection())
             {
-                MessageBox.Show("No estás conectado a internet.\r\nVerífica el estado de tu conexión y vuelve a intentarlo más tarde.", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                // Cargar nueva ventana y esconder la anterior
                 Trabajadores form = new();
                 form.Show();
                 Hide();
@@ -28,15 +19,8 @@ namespace Waltrace
 
         private void EmpresaButton_Click(object sender, EventArgs e)
         {
-            // Verificar si hay conexión a internet al cargar la ventana
-            bool checkConnection = NetworkInterface.GetIsNetworkAvailable();
-            if (!checkConnection)
+            if (DataBaseConnection.VerifyInternetConnection())
             {
-                MessageBox.Show("No estás conectado a internet.\r\nVerífica el estado de tu conexión y vuelve a intentarlo más tarde.", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                // Cargar nueva ventana y esconder la anterior
                 Empresas form = new();
                 form.Show();
                 Hide();

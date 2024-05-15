@@ -81,44 +81,46 @@ namespace Waltrace
 
         private void EmpresasBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (EmpresasBox.SelectedIndex >= 0 && EmpresasBox.SelectedValue != null && int.TryParse(EmpresasBox.SelectedValue.ToString(), out int idEmpresa))
+            if (DataBaseConnection.VerifyInternetConnection())
             {
-                DatosEmpresa.Enabled = true;
-
-                // Limpiar posibles datos seleccionados anteriormente
-                WalbuschPanel.Visible = false;
-                MCAPanel.Visible = false;
-                WaltechPanel.Visible = false;
-
-                if (idEmpresa == 1) // Walbusch SA
+                if (EmpresasBox.SelectedIndex >= 0 && EmpresasBox.SelectedValue != null && int.TryParse(EmpresasBox.SelectedValue.ToString(), out int idEmpresa))
                 {
-                    WalbuschPanel.Visible = true;
+                    DatosEmpresa.Enabled = true;
+
+                    // Limpiar posibles datos seleccionados anteriormente
+                    WalbuschPanel.Visible = false;
+                    MCAPanel.Visible = false;
+                    WaltechPanel.Visible = false;
+
+                    if (idEmpresa == 1) // Walbusch SA
+                    {
+                        WalbuschPanel.Visible = true;
+                    }
+                    else if (idEmpresa == 2) // MCA SA
+                    {
+                        MCAPanel.Visible = true;
+                    }
+                    else if (idEmpresa == 3) // Waltech
+                    {
+                        WaltechPanel.Visible = true;
+                    }
+
+                    // Consultar la base de datos para obtener la información a imprimir
+                    var (rutEmpresa, nombreRepresentante, direccion, telefono, añoConst, logoUrl, documentacion) = ObtenerDatosEmpresa(idEmpresa);
+
+                    // Imprimir los datos en sus respectivos textboxes
+                    DisplayBoxRep.Text = nombreRepresentante;
+                    DisplayBoxRut.Text = rutEmpresa;
+                    DisplayBoxDir.Text = direccion;
+                    DisplayBoxTel.Text = telefono.ToString();
+                    DisplayBoxAño.Text = añoConst.ToString("d-MM-yyyy");
+
+                    CargarLogo(logoUrl);
+
+                    // Actualizar la URL de documentación actual
+                    urlDoc = documentacion;
                 }
-                else if (idEmpresa == 2) // MCA SA
-                {
-                    MCAPanel.Visible = true;
-                }
-                else if (idEmpresa == 3) // Waltech
-                {
-                    WaltechPanel.Visible = true;
-                }
-
-                // Consultar la base de datos para obtener la información a imprimir
-                var (rutEmpresa, nombreRepresentante, direccion, telefono, añoConst, logoUrl, documentacion) = ObtenerDatosEmpresa(idEmpresa);
-
-                // Imprimir los datos en sus respectivos textboxes
-                DisplayBoxRep.Text = nombreRepresentante;
-                DisplayBoxRut.Text = rutEmpresa;
-                DisplayBoxDir.Text = direccion;
-                DisplayBoxTel.Text = telefono.ToString();
-                DisplayBoxAño.Text = añoConst.ToString("d-MM-yyyy");
-
-                CargarLogo(logoUrl);
-
-                // Actualizar la URL de documentación actual
-                urlDoc = documentacion;
             }
-
         }
 
         private async void CargarLogo(string urlLogo)
