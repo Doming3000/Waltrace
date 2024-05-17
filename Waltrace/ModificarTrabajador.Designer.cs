@@ -43,9 +43,10 @@
             TextBoxFoto = new TextBox();
             CargarButton = new Button();
             DateTimeP = new DateTimePicker();
-            InsertarTrabajador = new Panel();
+            InsertarEmpleado = new Panel();
             RegresarButton = new Button();
-            InsertarTrabajador.SuspendLayout();
+            ModificarEmpleado = new Panel();
+            InsertarEmpleado.SuspendLayout();
             SuspendLayout();
             // 
             // TextBoxNom
@@ -180,28 +181,28 @@
             DateTimeP.TabIndex = 5;
             DateTimeP.Value = new DateTime(2024, 5, 8, 7, 57, 47, 0);
             // 
-            // InsertarTrabajador
+            // InsertarEmpleado
             // 
-            InsertarTrabajador.Controls.Add(RegresarButton);
-            InsertarTrabajador.Controls.Add(CargarButton);
-            InsertarTrabajador.Controls.Add(TextBoxFoto);
-            InsertarTrabajador.Controls.Add(DateTimeP);
-            InsertarTrabajador.Controls.Add(label7);
-            InsertarTrabajador.Controls.Add(label1);
-            InsertarTrabajador.Controls.Add(TextBoxCurr);
-            InsertarTrabajador.Controls.Add(label6);
-            InsertarTrabajador.Controls.Add(TextBoxNom);
-            InsertarTrabajador.Controls.Add(label2);
-            InsertarTrabajador.Controls.Add(TextBoxRut);
-            InsertarTrabajador.Controls.Add(label3);
-            InsertarTrabajador.Controls.Add(label5);
-            InsertarTrabajador.Controls.Add(TextBoxCargo);
-            InsertarTrabajador.Controls.Add(ComboBoxEmp);
-            InsertarTrabajador.Controls.Add(label4);
-            InsertarTrabajador.Location = new Point(15, 15);
-            InsertarTrabajador.Name = "InsertarTrabajador";
-            InsertarTrabajador.Size = new Size(500, 400);
-            InsertarTrabajador.TabIndex = 14;
+            InsertarEmpleado.Controls.Add(RegresarButton);
+            InsertarEmpleado.Controls.Add(CargarButton);
+            InsertarEmpleado.Controls.Add(TextBoxFoto);
+            InsertarEmpleado.Controls.Add(DateTimeP);
+            InsertarEmpleado.Controls.Add(label7);
+            InsertarEmpleado.Controls.Add(label1);
+            InsertarEmpleado.Controls.Add(TextBoxCurr);
+            InsertarEmpleado.Controls.Add(label6);
+            InsertarEmpleado.Controls.Add(TextBoxNom);
+            InsertarEmpleado.Controls.Add(label2);
+            InsertarEmpleado.Controls.Add(TextBoxRut);
+            InsertarEmpleado.Controls.Add(label3);
+            InsertarEmpleado.Controls.Add(label5);
+            InsertarEmpleado.Controls.Add(TextBoxCargo);
+            InsertarEmpleado.Controls.Add(ComboBoxEmp);
+            InsertarEmpleado.Controls.Add(label4);
+            InsertarEmpleado.Location = new Point(15, 15);
+            InsertarEmpleado.Name = "InsertarEmpleado";
+            InsertarEmpleado.Size = new Size(500, 400);
+            InsertarEmpleado.TabIndex = 14;
             // 
             // RegresarButton
             // 
@@ -215,18 +216,26 @@
             RegresarButton.MouseEnter += Button_MouseEnter;
             RegresarButton.MouseLeave += Button_MouseLeave;
             // 
+            // ModificarEmpleado
+            // 
+            ModificarEmpleado.Location = new Point(530, 15);
+            ModificarEmpleado.Name = "ModificarEmpleado";
+            ModificarEmpleado.Size = new Size(500, 400);
+            ModificarEmpleado.TabIndex = 15;
+            // 
             // ModificarTrabajador
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(1102, 673);
-            Controls.Add(InsertarTrabajador);
+            Controls.Add(ModificarEmpleado);
+            Controls.Add(InsertarEmpleado);
             Name = "ModificarTrabajador";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
-            InsertarTrabajador.ResumeLayout(false);
-            InsertarTrabajador.PerformLayout();
+            InsertarEmpleado.ResumeLayout(false);
+            InsertarEmpleado.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -247,7 +256,8 @@
         private TextBox TextBoxFoto;
         private Button CargarButton;
         private DateTimePicker DateTimeP;
-        private Panel InsertarTrabajador;
+        private Panel InsertarEmpleado;
         private Button RegresarButton;
+        private Panel ModificarEmpleado;
     }
 }

@@ -35,7 +35,6 @@ namespace Waltrace
             {
                 DataBaseConnection.CerrarConexion();
             }
-
         }
 
         public static bool ValidarRut(string rut)

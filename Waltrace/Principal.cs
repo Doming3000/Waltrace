@@ -27,6 +27,19 @@
             }
         }
 
+        private void LoginButton_Click(object sender, EventArgs e)
+        {
+            Login form = new();
+            var result = form.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                ModificarTrabajador form2 = new();
+                form2.Show();
+                Hide();
+            }
+        }
+
         // Simular efecto Hover del cursor
         private void Button_MouseEnter(object sender, EventArgs e)
         {
@@ -36,14 +49,6 @@
         private void Button_MouseLeave(object sender, EventArgs e)
         {
             Cursor = Cursors.Default;
-        }
-
-        // Quitar esto después
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ModificarTrabajador form = new();
-            form.Show();
-            Hide();
         }
     }
 }

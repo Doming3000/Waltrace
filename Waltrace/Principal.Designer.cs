@@ -32,7 +32,7 @@
             pictureBox1 = new PictureBox();
             EmpresaButton = new Button();
             TrabajadorButton = new Button();
-            button1 = new Button();
+            LoginButton = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -52,7 +52,6 @@
             EmpresaButton.Name = "EmpresaButton";
             EmpresaButton.Size = new Size(180, 30);
             EmpresaButton.TabIndex = 1;
-            EmpresaButton.TabStop = false;
             EmpresaButton.Text = "Consultar por empresa";
             EmpresaButton.UseVisualStyleBackColor = true;
             EmpresaButton.Click += EmpresaButton_Click;
@@ -65,22 +64,24 @@
             TrabajadorButton.Name = "TrabajadorButton";
             TrabajadorButton.Size = new Size(180, 30);
             TrabajadorButton.TabIndex = 2;
-            TrabajadorButton.TabStop = false;
             TrabajadorButton.Text = "Consultar por trabajador";
             TrabajadorButton.UseVisualStyleBackColor = true;
             TrabajadorButton.Click += TrabajadorButton_Click;
             TrabajadorButton.MouseEnter += Button_MouseEnter;
             TrabajadorButton.MouseLeave += Button_MouseLeave;
             // 
-            // button1
+            // LoginButton
             // 
-            button1.Location = new Point(676, 412);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 3;
-            button1.Text = "test";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            LoginButton.Location = new Point(676, 412);
+            LoginButton.Name = "LoginButton";
+            LoginButton.Size = new Size(94, 29);
+            LoginButton.TabIndex = 3;
+            LoginButton.TabStop = false;
+            LoginButton.Text = "Acceder";
+            LoginButton.UseVisualStyleBackColor = true;
+            LoginButton.Click += LoginButton_Click;
+            LoginButton.MouseEnter += Button_MouseEnter;
+            LoginButton.MouseLeave += Button_MouseLeave;
             // 
             // Principal
             // 
@@ -88,7 +89,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(782, 453);
-            Controls.Add(button1);
+            Controls.Add(LoginButton);
             Controls.Add(TrabajadorButton);
             Controls.Add(EmpresaButton);
             Controls.Add(pictureBox1);
@@ -106,6 +107,6 @@
         private Button EmpresaButton;
         private Button TrabajadorButton;
         private PictureBox pictureBox1;
-        private Button button1;
+        private Button LoginButton;
     }
 }

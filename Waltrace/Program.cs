@@ -28,7 +28,7 @@ namespace Waltrace
             {
                 if (conexion.State == System.Data.ConnectionState.Closed)
                     conexion.Open();
-                MessageBox.Show("La conexión está abierta");
+                //MessageBox.Show("La conexión está abierta");
             }
             catch (Exception ex)
             {
@@ -42,7 +42,7 @@ namespace Waltrace
             {
                 if (conexion.State == System.Data.ConnectionState.Open)
                     conexion.Close();
-                MessageBox.Show("La conexión está cerrada");
+                //MessageBox.Show("La conexión está cerrada");
             }
             catch (Exception ex)
             {
