@@ -38,7 +38,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(49, 48);
+            label1.Location = new Point(38, 48);
             label1.Name = "label1";
             label1.Size = new Size(62, 20);
             label1.TabIndex = 0;
@@ -47,7 +47,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(49, 81);
+            label2.Location = new Point(38, 80);
             label2.Name = "label2";
             label2.Size = new Size(86, 20);
             label2.TabIndex = 1;
@@ -55,16 +55,18 @@
             // 
             // TextboxUser
             // 
-            TextboxUser.Location = new Point(141, 45);
+            TextboxUser.Location = new Point(126, 48);
+            TextboxUser.MaxLength = 30;
             TextboxUser.Name = "TextboxUser";
-            TextboxUser.Size = new Size(125, 27);
+            TextboxUser.Size = new Size(170, 27);
             TextboxUser.TabIndex = 2;
             // 
             // TextboxPass
             // 
-            TextboxPass.Location = new Point(141, 78);
+            TextboxPass.Location = new Point(126, 80);
+            TextboxPass.MaxLength = 30;
             TextboxPass.Name = "TextboxPass";
-            TextboxPass.Size = new Size(125, 27);
+            TextboxPass.Size = new Size(170, 27);
             TextboxPass.TabIndex = 3;
             // 
             // Acceder

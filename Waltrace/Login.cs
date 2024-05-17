@@ -24,7 +24,7 @@
                 }
                 else
                 {
-                    MessageBox.Show("Credenciales incorrectas. Por favor, intente de nuevo.", "Error de inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Las credenciales de acceso son incorrectas. Por favor, intente de nuevo.", "Error de inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
