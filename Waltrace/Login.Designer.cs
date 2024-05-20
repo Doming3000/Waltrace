@@ -68,6 +68,7 @@
             TextboxPass.Name = "TextboxPass";
             TextboxPass.Size = new Size(170, 27);
             TextboxPass.TabIndex = 3;
+            TextboxPass.UseSystemPasswordChar = true;
             // 
             // Acceder
             // 

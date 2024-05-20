@@ -1,4 +1,6 @@
-﻿namespace Waltrace
+﻿using System.Data.SqlClient;
+
+namespace Waltrace
 {
     public partial class Login : Form
     {
@@ -15,7 +17,7 @@
             }
             else
             {
-                bool loginSuccess = VerificarCredenciales();
+                bool loginSuccess = VerificarCredenciales(TextboxUser.Text, TextboxPass.Text);
 
                 if (loginSuccess)
                 {
@@ -29,13 +31,32 @@
             }
         }
 
-        // Cambiar por lógica real en base de datos
-        private bool VerificarCredenciales()
+        private static bool VerificarCredenciales(string usuario, string contraseña)
         {
-            string usuario = TextboxUser.Text;
-            string contraseña = TextboxPass.Text;
+            bool isValid = false;
 
-            return usuario == "juan" && contraseña == "1234";
+            try
+            {
+                DataBaseConnection.AbrirConexion();
+
+                string query = "SELECT COUNT(*) FROM usuarios WHERE usuario = @usuario AND contraseña = @contraseña";
+                using SqlCommand command = new(query, DataBaseConnection.Conexion);
+                command.Parameters.AddWithValue("@usuario", usuario);
+                command.Parameters.AddWithValue("@contraseña", contraseña);
+
+                int count = Convert.ToInt32(command.ExecuteScalar());
+                isValid = count > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al verificar las credenciales: " + ex.Message, "Error de Base de Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                DataBaseConnection.CerrarConexion();
+            }
+
+            return isValid;
         }
     }
 }
