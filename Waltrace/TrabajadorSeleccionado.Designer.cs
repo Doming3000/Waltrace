@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrabajadorSeleccionado));
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -67,7 +68,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(190, 81);
+            label3.Location = new Point(190, 114);
             label3.Name = "label3";
             label3.Size = new Size(52, 20);
             label3.TabIndex = 0;
@@ -76,7 +77,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(190, 114);
+            label4.Location = new Point(190, 81);
             label4.Name = "label4";
             label4.Size = new Size(149, 20);
             label4.TabIndex = 0;
@@ -121,7 +122,7 @@
             // 
             // DisplayBoxCargo
             // 
-            DisplayBoxCargo.Location = new Point(345, 78);
+            DisplayBoxCargo.Location = new Point(345, 111);
             DisplayBoxCargo.Name = "DisplayBoxCargo";
             DisplayBoxCargo.ReadOnly = true;
             DisplayBoxCargo.Size = new Size(125, 27);
@@ -129,7 +130,7 @@
             // 
             // DisplayBoxEmp
             // 
-            DisplayBoxEmp.Location = new Point(345, 111);
+            DisplayBoxEmp.Location = new Point(345, 78);
             DisplayBoxEmp.Name = "DisplayBoxEmp";
             DisplayBoxEmp.ReadOnly = true;
             DisplayBoxEmp.Size = new Size(125, 27);
@@ -158,10 +159,10 @@
             CurriculumLink.AutoSize = true;
             CurriculumLink.Location = new Point(190, 175);
             CurriculumLink.Name = "CurriculumLink";
-            CurriculumLink.Size = new Size(151, 20);
+            CurriculumLink.Size = new Size(247, 20);
             CurriculumLink.TabIndex = 8;
             CurriculumLink.TabStop = true;
-            CurriculumLink.Text = "Descargar Currículum";
+            CurriculumLink.Text = "Descargar antecedentes curriculares";
             CurriculumLink.LinkClicked += CurriculumLink_LinkClicked;
             // 
             // FotoBox
@@ -187,6 +188,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlLight;
             ClientSize = new Size(482, 253);
             Controls.Add(CopyButton);
             Controls.Add(FotoBox);
@@ -203,6 +205,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "TrabajadorSeleccionado";
             StartPosition = FormStartPosition.CenterScreen;

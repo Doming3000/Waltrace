@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModificarTrabajador));
             TextBoxNom = new TextBox();
             TextBoxRut = new TextBox();
             TextBoxCargo = new TextBox();
@@ -231,6 +232,7 @@
             ClientSize = new Size(1102, 673);
             Controls.Add(ModificarEmpleado);
             Controls.Add(InsertarEmpleado);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ModificarTrabajador";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";

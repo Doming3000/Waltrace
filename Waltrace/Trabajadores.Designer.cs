@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Trabajadores));
             bindingSource1 = new BindingSource(components);
             SearchButton = new Button();
             RegresarButton = new Button();
@@ -119,6 +120,7 @@
             Controls.Add(TrabajadoresList);
             Controls.Add(RegresarButton);
             Controls.Add(SearchButton);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Trabajadores";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Waltrace - Trabajadores";
