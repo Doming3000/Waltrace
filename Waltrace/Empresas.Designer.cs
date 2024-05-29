@@ -48,20 +48,20 @@
             LoadingText = new Label();
             LogoBox = new PictureBox();
             WalbuschPanel = new Panel();
-            label7 = new Label();
-            WaltechPanel = new Panel();
-            label9 = new Label();
-            MCAPanel = new Panel();
-            label8 = new Label();
-            panel1 = new Panel();
             label10 = new Label();
-            label11 = new Label();
+            label7 = new Label();
+            MCAPanel = new Panel();
             label12 = new Label();
+            label8 = new Label();
+            WaltechPanel = new Panel();
+            label11 = new Label();
+            label9 = new Label();
+            panel1 = new Panel();
             DatosEmpresa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)LogoBox).BeginInit();
             WalbuschPanel.SuspendLayout();
-            WaltechPanel.SuspendLayout();
             MCAPanel.SuspendLayout();
+            WaltechPanel.SuspendLayout();
             SuspendLayout();
             // 
             // EmpresasBox
@@ -112,13 +112,13 @@
             DatosEmpresa.Enabled = false;
             DatosEmpresa.Location = new Point(25, 150);
             DatosEmpresa.Name = "DatosEmpresa";
-            DatosEmpresa.Size = new Size(354, 303);
+            DatosEmpresa.Size = new Size(410, 300);
             DatosEmpresa.TabIndex = 6;
             DatosEmpresa.TabStop = false;
             // 
             // CopyButton
             // 
-            CopyButton.Location = new Point(141, 249);
+            CopyButton.Location = new Point(235, 265);
             CopyButton.Name = "CopyButton";
             CopyButton.Size = new Size(169, 29);
             CopyButton.TabIndex = 8;
@@ -133,14 +133,14 @@
             DisplayBoxDir.Location = new Point(167, 108);
             DisplayBoxDir.Name = "DisplayBoxDir";
             DisplayBoxDir.ReadOnly = true;
-            DisplayBoxDir.Size = new Size(160, 27);
+            DisplayBoxDir.Size = new Size(227, 27);
             DisplayBoxDir.TabIndex = 4;
             // 
             // DocsButton
             // 
             DocsButton.BackgroundImageLayout = ImageLayout.None;
             DocsButton.ImageAlign = ContentAlignment.MiddleLeft;
-            DocsButton.Location = new Point(167, 207);
+            DocsButton.Location = new Point(235, 207);
             DocsButton.Name = "DocsButton";
             DocsButton.Size = new Size(160, 29);
             DocsButton.TabIndex = 7;
@@ -153,7 +153,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(17, 177);
+            label6.Location = new Point(15, 180);
             label6.Name = "label6";
             label6.Size = new Size(144, 20);
             label6.TabIndex = 11;
@@ -162,7 +162,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(17, 144);
+            label5.Location = new Point(15, 145);
             label5.Name = "label5";
             label5.Size = new Size(70, 20);
             label5.TabIndex = 10;
@@ -171,7 +171,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(17, 111);
+            label4.Location = new Point(15, 110);
             label4.Name = "label4";
             label4.Size = new Size(75, 20);
             label4.TabIndex = 9;
@@ -182,7 +182,7 @@
             DisplayBoxAño.Location = new Point(167, 174);
             DisplayBoxAño.Name = "DisplayBoxAño";
             DisplayBoxAño.ReadOnly = true;
-            DisplayBoxAño.Size = new Size(160, 27);
+            DisplayBoxAño.Size = new Size(227, 27);
             DisplayBoxAño.TabIndex = 6;
             // 
             // DisplayBoxTel
@@ -190,13 +190,13 @@
             DisplayBoxTel.Location = new Point(167, 141);
             DisplayBoxTel.Name = "DisplayBoxTel";
             DisplayBoxTel.ReadOnly = true;
-            DisplayBoxTel.Size = new Size(160, 27);
+            DisplayBoxTel.Size = new Size(227, 27);
             DisplayBoxTel.TabIndex = 5;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(17, 74);
+            label3.Location = new Point(15, 75);
             label3.Name = "label3";
             label3.Size = new Size(116, 20);
             label3.TabIndex = 2;
@@ -205,7 +205,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(17, 41);
+            label2.Location = new Point(15, 40);
             label2.Name = "label2";
             label2.Size = new Size(144, 20);
             label2.TabIndex = 1;
@@ -216,7 +216,7 @@
             DisplayBoxRut.Location = new Point(167, 71);
             DisplayBoxRut.Name = "DisplayBoxRut";
             DisplayBoxRut.ReadOnly = true;
-            DisplayBoxRut.Size = new Size(160, 27);
+            DisplayBoxRut.Size = new Size(227, 27);
             DisplayBoxRut.TabIndex = 3;
             // 
             // DisplayBoxRep
@@ -224,7 +224,7 @@
             DisplayBoxRep.Location = new Point(167, 38);
             DisplayBoxRep.Name = "DisplayBoxRep";
             DisplayBoxRep.ReadOnly = true;
-            DisplayBoxRep.Size = new Size(160, 27);
+            DisplayBoxRep.Size = new Size(227, 27);
             DisplayBoxRep.TabIndex = 2;
             // 
             // LoadingText
@@ -250,12 +250,19 @@
             // 
             WalbuschPanel.Controls.Add(label10);
             WalbuschPanel.Controls.Add(label7);
-            WalbuschPanel.Controls.Add(MCAPanel);
-            WalbuschPanel.Location = new Point(454, 105);
+            WalbuschPanel.Location = new Point(467, 50);
             WalbuschPanel.Name = "WalbuschPanel";
             WalbuschPanel.Size = new Size(375, 202);
             WalbuschPanel.TabIndex = 12;
             WalbuschPanel.Visible = false;
+            // 
+            // label10
+            // 
+            label10.Location = new Point(13, 45);
+            label10.Name = "label10";
+            label10.Size = new Size(210, 64);
+            label10.TabIndex = 13;
+            label10.Text = "Aquí se mostrarán opciones adicionales al seleccionar esta empresa";
             // 
             // label7
             // 
@@ -266,35 +273,23 @@
             label7.TabIndex = 12;
             label7.Text = "Panel Walbusch Sa";
             // 
-            // WaltechPanel
-            // 
-            WaltechPanel.Controls.Add(label11);
-            WaltechPanel.Controls.Add(label9);
-            WaltechPanel.Location = new Point(0, 29);
-            WaltechPanel.Name = "WaltechPanel";
-            WaltechPanel.Size = new Size(375, 202);
-            WaltechPanel.TabIndex = 14;
-            WaltechPanel.Visible = false;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(13, 15);
-            label9.Name = "label9";
-            label9.Size = new Size(101, 20);
-            label9.TabIndex = 12;
-            label9.Text = "Panel Waltech";
-            // 
             // MCAPanel
             // 
-            MCAPanel.Controls.Add(WaltechPanel);
             MCAPanel.Controls.Add(label12);
             MCAPanel.Controls.Add(label8);
-            MCAPanel.Location = new Point(0, 38);
+            MCAPanel.Location = new Point(467, 261);
             MCAPanel.Name = "MCAPanel";
             MCAPanel.Size = new Size(375, 202);
             MCAPanel.TabIndex = 13;
             MCAPanel.Visible = false;
+            // 
+            // label12
+            // 
+            label12.Location = new Point(13, 41);
+            label12.Name = "label12";
+            label12.Size = new Size(210, 64);
+            label12.TabIndex = 14;
+            label12.Text = "Aquí se mostrarán opciones adicionales al seleccionar esta empresa";
             // 
             // label8
             // 
@@ -305,22 +300,15 @@
             label8.TabIndex = 12;
             label8.Text = "Panel MCA SA";
             // 
-            // panel1
+            // WaltechPanel
             // 
-            panel1.BackColor = SystemColors.Highlight;
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1102, 44);
-            panel1.TabIndex = 14;
-            // 
-            // label10
-            // 
-            label10.Location = new Point(13, 45);
-            label10.Name = "label10";
-            label10.Size = new Size(210, 64);
-            label10.TabIndex = 13;
-            label10.Text = "Aquí se mostrarán opciones adicionales al seleccionar esta empresa";
+            WaltechPanel.Controls.Add(label11);
+            WaltechPanel.Controls.Add(label9);
+            WaltechPanel.Location = new Point(467, 469);
+            WaltechPanel.Name = "WaltechPanel";
+            WaltechPanel.Size = new Size(375, 202);
+            WaltechPanel.TabIndex = 14;
+            WaltechPanel.Visible = false;
             // 
             // label11
             // 
@@ -330,13 +318,23 @@
             label11.TabIndex = 14;
             label11.Text = "Aquí se mostrarán opciones adicionales al seleccionar esta empresa";
             // 
-            // label12
+            // label9
             // 
-            label12.Location = new Point(13, 41);
-            label12.Name = "label12";
-            label12.Size = new Size(210, 64);
-            label12.TabIndex = 14;
-            label12.Text = "Aquí se mostrarán opciones adicionales al seleccionar esta empresa";
+            label9.AutoSize = true;
+            label9.Location = new Point(13, 15);
+            label9.Name = "label9";
+            label9.Size = new Size(101, 20);
+            label9.TabIndex = 12;
+            label9.Text = "Panel Waltech";
+            // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.Highlight;
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1102, 44);
+            panel1.TabIndex = 14;
             // 
             // Empresas
             // 
@@ -344,8 +342,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(1102, 673);
+            Controls.Add(WaltechPanel);
             Controls.Add(panel1);
             Controls.Add(WalbuschPanel);
+            Controls.Add(MCAPanel);
             Controls.Add(LoadingText);
             Controls.Add(DatosEmpresa);
             Controls.Add(RegresarButton);
@@ -362,10 +362,10 @@
             ((System.ComponentModel.ISupportInitialize)LogoBox).EndInit();
             WalbuschPanel.ResumeLayout(false);
             WalbuschPanel.PerformLayout();
-            WaltechPanel.ResumeLayout(false);
-            WaltechPanel.PerformLayout();
             MCAPanel.ResumeLayout(false);
             MCAPanel.PerformLayout();
+            WaltechPanel.ResumeLayout(false);
+            WaltechPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }

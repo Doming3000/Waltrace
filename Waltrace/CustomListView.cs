@@ -4,7 +4,7 @@
     public string EmptyText
     {
         get { return _emptyText; }
-        set { _emptyText = value; Invalidate(); } // Asegurar que se repinta cuando se cambia el texto
+        set { _emptyText = value; Invalidate(); }
     }
 
     private string _noResultsText = "";

@@ -9,6 +9,9 @@ namespace Waltrace
         {
             InitializeComponent();
             ListarEmpresas();
+
+            TrabajadoresList.EmptyText = "La base de datos está vacía o no hay conexión a ella.\r\nNo hay datos para mostrar.";
+            TrabajadoresList.NoResultsText = "No se encontró al trabajador que estás buscando.";
         }
 
         private void ListarEmpresas()
@@ -171,6 +174,48 @@ namespace Waltrace
             command.Parameters.AddWithValue("@Rut", rut);
             int count = Convert.ToInt32(command.ExecuteScalar());
             return count > 0;
+        }
+
+        private void ModificarButton_Click(object sender, EventArgs e)
+        {
+            ModificarEmpleado.Visible = true;
+            InsertarEmpleado.Visible = false;
+
+            ListarTrabajadores();
+        }
+
+        private void ListarTrabajadores()
+        {
+            if (DataBaseConnection.VerifyInternetConnection())
+            {
+                try
+                {
+                    DataBaseConnection.AbrirConexion();
+
+                    string consulta = @"SELECT t.id_trabajador, t.nom_trabajador, t.rut_trabajador, e.nom_empresa, t.cargo FROM trabajadores t INNER JOIN empresas e ON t.id_empresa = e.id_empresa";
+                    using SqlCommand comando = new(consulta, DataBaseConnection.Conexion);
+                    using SqlDataReader lector = comando.ExecuteReader();
+                    TrabajadoresList.Items.Clear();
+
+                    while (lector.Read())
+                    {
+                        ListViewItem item = new(lector["nom_trabajador"].ToString());
+                        item.SubItems.Add(lector["rut_trabajador"].ToString());
+                        item.SubItems.Add(lector["cargo"].ToString());
+                        item.SubItems.Add(lector["nom_empresa"].ToString());
+                        item.Tag = lector["id_trabajador"].ToString();
+                        TrabajadoresList.Items.Add(item);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ha ocurrido un error al cargar la lista de trabajadores: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    DataBaseConnection.CerrarConexion();
+                }
+            }
         }
 
         private void LimpiarCampos()

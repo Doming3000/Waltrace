@@ -125,10 +125,18 @@ namespace Waltrace
 
         private async void CargarLogo(string urlLogo)
         {
+            Bitmap defaultImage = Properties.Resources.NoFoto;
             LoadingText.Visible = true;
 
             try
             {
+                if (string.IsNullOrEmpty(urlLogo))
+                {
+                    LogoBox.Image = defaultImage;
+                    LoadingText.Visible = false;
+                    return;
+                }
+
                 using HttpResponseMessage response = await client.GetAsync(urlLogo);
                 using Stream stream = await response.Content.ReadAsStreamAsync();
                 if (response.IsSuccessStatusCode)

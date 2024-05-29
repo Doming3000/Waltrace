@@ -45,9 +45,19 @@
             CargarButton = new Button();
             DateTimeP = new DateTimePicker();
             InsertarEmpleado = new Panel();
+            ModificarButton = new Button();
             RegresarButton = new Button();
+            label8 = new Label();
             ModificarEmpleado = new Panel();
+            BuscadorEmpleado = new TextBox();
+            SearchButton = new Button();
+            TrabajadoresList = new CustomListView();
+            NombreTrabajador = new ColumnHeader();
+            RutTrabajador = new ColumnHeader();
+            cargo = new ColumnHeader();
+            EmpresaContr = new ColumnHeader();
             InsertarEmpleado.SuspendLayout();
+            ModificarEmpleado.SuspendLayout();
             SuspendLayout();
             // 
             // TextBoxNom
@@ -184,6 +194,7 @@
             // 
             // InsertarEmpleado
             // 
+            InsertarEmpleado.Controls.Add(ModificarButton);
             InsertarEmpleado.Controls.Add(RegresarButton);
             InsertarEmpleado.Controls.Add(CargarButton);
             InsertarEmpleado.Controls.Add(TextBoxFoto);
@@ -205,6 +216,18 @@
             InsertarEmpleado.Size = new Size(500, 400);
             InsertarEmpleado.TabIndex = 14;
             // 
+            // ModificarButton
+            // 
+            ModificarButton.Location = new Point(364, 15);
+            ModificarButton.Name = "ModificarButton";
+            ModificarButton.Size = new Size(124, 29);
+            ModificarButton.TabIndex = 13;
+            ModificarButton.Text = "Modificar Datos";
+            ModificarButton.UseVisualStyleBackColor = true;
+            ModificarButton.Click += ModificarButton_Click;
+            ModificarButton.MouseEnter += Button_MouseEnter;
+            ModificarButton.MouseLeave += Button_MouseLeave;
+            // 
             // RegresarButton
             // 
             RegresarButton.Location = new Point(279, 356);
@@ -217,12 +240,77 @@
             RegresarButton.MouseEnter += Button_MouseEnter;
             RegresarButton.MouseLeave += Button_MouseLeave;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(87, 45);
+            label8.Name = "label8";
+            label8.Size = new Size(0, 20);
+            label8.TabIndex = 0;
+            // 
             // ModificarEmpleado
             // 
-            ModificarEmpleado.Location = new Point(530, 15);
+            ModificarEmpleado.Controls.Add(BuscadorEmpleado);
+            ModificarEmpleado.Controls.Add(SearchButton);
+            ModificarEmpleado.Controls.Add(TrabajadoresList);
+            ModificarEmpleado.Controls.Add(label8);
+            ModificarEmpleado.Location = new Point(521, 266);
             ModificarEmpleado.Name = "ModificarEmpleado";
-            ModificarEmpleado.Size = new Size(500, 400);
+            ModificarEmpleado.Size = new Size(598, 400);
             ModificarEmpleado.TabIndex = 15;
+            ModificarEmpleado.Visible = false;
+            // 
+            // BuscadorEmpleado
+            // 
+            BuscadorEmpleado.Location = new Point(13, 8);
+            BuscadorEmpleado.Name = "BuscadorEmpleado";
+            BuscadorEmpleado.PlaceholderText = "Ingrese nombre o rut";
+            BuscadorEmpleado.Size = new Size(200, 27);
+            BuscadorEmpleado.TabIndex = 18;
+            // 
+            // SearchButton
+            // 
+            SearchButton.Location = new Point(219, 8);
+            SearchButton.Name = "SearchButton";
+            SearchButton.Size = new Size(94, 29);
+            SearchButton.TabIndex = 17;
+            SearchButton.Text = "Buscar";
+            SearchButton.UseVisualStyleBackColor = true;
+            // 
+            // TrabajadoresList
+            // 
+            TrabajadoresList.Columns.AddRange(new ColumnHeader[] { NombreTrabajador, RutTrabajador, cargo, EmpresaContr });
+            TrabajadoresList.EmptyText = "";
+            TrabajadoresList.FullRowSelect = true;
+            TrabajadoresList.IsSearchResultEmpty = false;
+            TrabajadoresList.Location = new Point(13, 41);
+            TrabajadoresList.Name = "TrabajadoresList";
+            TrabajadoresList.NoResultsText = "";
+            TrabajadoresList.Size = new Size(550, 220);
+            TrabajadoresList.TabIndex = 16;
+            TrabajadoresList.TileSize = new Size(1, 1);
+            TrabajadoresList.UseCompatibleStateImageBehavior = false;
+            TrabajadoresList.View = View.Details;
+            // 
+            // NombreTrabajador
+            // 
+            NombreTrabajador.Text = "Nombre Completo";
+            NombreTrabajador.Width = 140;
+            // 
+            // RutTrabajador
+            // 
+            RutTrabajador.Text = "Rut";
+            RutTrabajador.Width = 90;
+            // 
+            // cargo
+            // 
+            cargo.Text = "Cargo";
+            cargo.Width = 150;
+            // 
+            // EmpresaContr
+            // 
+            EmpresaContr.Text = "Empresa Contratante";
+            EmpresaContr.Width = 160;
             // 
             // ModificarTrabajador
             // 
@@ -238,6 +326,8 @@
             Text = "Form1";
             InsertarEmpleado.ResumeLayout(false);
             InsertarEmpleado.PerformLayout();
+            ModificarEmpleado.ResumeLayout(false);
+            ModificarEmpleado.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -260,6 +350,15 @@
         private DateTimePicker DateTimeP;
         private Panel InsertarEmpleado;
         private Button RegresarButton;
+        private Button ModificarButton;
+        private Label label8;
         private Panel ModificarEmpleado;
+        private CustomListView TrabajadoresList;
+        private ColumnHeader NombreTrabajador;
+        private ColumnHeader RutTrabajador;
+        private ColumnHeader cargo;
+        private ColumnHeader EmpresaContr;
+        private TextBox BuscadorEmpleado;
+        private Button SearchButton;
     }
 }
