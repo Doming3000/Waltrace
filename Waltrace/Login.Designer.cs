@@ -95,7 +95,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "Iniciar sesión";
             ResumeLayout(false);
             PerformLayout();
         }

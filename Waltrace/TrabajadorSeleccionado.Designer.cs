@@ -94,7 +94,7 @@
             // 
             // AceptarButton
             // 
-            AceptarButton.Location = new Point(376, 212);
+            AceptarButton.Location = new Point(426, 212);
             AceptarButton.Name = "AceptarButton";
             AceptarButton.Size = new Size(94, 29);
             AceptarButton.TabIndex = 1;
@@ -109,7 +109,7 @@
             DisplayBoxNom.Location = new Point(345, 12);
             DisplayBoxNom.Name = "DisplayBoxNom";
             DisplayBoxNom.ReadOnly = true;
-            DisplayBoxNom.Size = new Size(125, 27);
+            DisplayBoxNom.Size = new Size(175, 27);
             DisplayBoxNom.TabIndex = 2;
             // 
             // DisplayBoxRut
@@ -117,7 +117,7 @@
             DisplayBoxRut.Location = new Point(345, 45);
             DisplayBoxRut.Name = "DisplayBoxRut";
             DisplayBoxRut.ReadOnly = true;
-            DisplayBoxRut.Size = new Size(125, 27);
+            DisplayBoxRut.Size = new Size(175, 27);
             DisplayBoxRut.TabIndex = 3;
             // 
             // DisplayBoxCargo
@@ -125,29 +125,29 @@
             DisplayBoxCargo.Location = new Point(345, 111);
             DisplayBoxCargo.Name = "DisplayBoxCargo";
             DisplayBoxCargo.ReadOnly = true;
-            DisplayBoxCargo.Size = new Size(125, 27);
-            DisplayBoxCargo.TabIndex = 4;
+            DisplayBoxCargo.Size = new Size(175, 27);
+            DisplayBoxCargo.TabIndex = 5;
             // 
             // DisplayBoxEmp
             // 
             DisplayBoxEmp.Location = new Point(345, 78);
             DisplayBoxEmp.Name = "DisplayBoxEmp";
             DisplayBoxEmp.ReadOnly = true;
-            DisplayBoxEmp.Size = new Size(125, 27);
-            DisplayBoxEmp.TabIndex = 5;
+            DisplayBoxEmp.Size = new Size(175, 27);
+            DisplayBoxEmp.TabIndex = 4;
             // 
             // DisplayBoxAño
             // 
             DisplayBoxAño.Location = new Point(345, 144);
             DisplayBoxAño.Name = "DisplayBoxAño";
             DisplayBoxAño.ReadOnly = true;
-            DisplayBoxAño.Size = new Size(125, 27);
+            DisplayBoxAño.Size = new Size(175, 27);
             DisplayBoxAño.TabIndex = 6;
             // 
             // LoadingText
             // 
             LoadingText.AutoSize = true;
-            LoadingText.Location = new Point(12, 175);
+            LoadingText.Location = new Point(12, 203);
             LoadingText.Name = "LoadingText";
             LoadingText.Size = new Size(115, 20);
             LoadingText.TabIndex = 0;
@@ -157,7 +157,7 @@
             // CurriculumLink
             // 
             CurriculumLink.AutoSize = true;
-            CurriculumLink.Location = new Point(190, 175);
+            CurriculumLink.Location = new Point(273, 180);
             CurriculumLink.Name = "CurriculumLink";
             CurriculumLink.Size = new Size(247, 20);
             CurriculumLink.TabIndex = 8;
@@ -169,14 +169,14 @@
             // 
             FotoBox.Location = new Point(12, 12);
             FotoBox.Name = "FotoBox";
-            FotoBox.Size = new Size(150, 160);
+            FotoBox.Size = new Size(172, 188);
             FotoBox.SizeMode = PictureBoxSizeMode.StretchImage;
             FotoBox.TabIndex = 9;
             FotoBox.TabStop = false;
             // 
             // CopyButton
             // 
-            CopyButton.Location = new Point(201, 212);
+            CopyButton.Location = new Point(251, 212);
             CopyButton.Name = "CopyButton";
             CopyButton.Size = new Size(169, 29);
             CopyButton.TabIndex = 10;
@@ -189,7 +189,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
-            ClientSize = new Size(482, 253);
+            ClientSize = new Size(532, 253);
             Controls.Add(CopyButton);
             Controls.Add(FotoBox);
             Controls.Add(CurriculumLink);

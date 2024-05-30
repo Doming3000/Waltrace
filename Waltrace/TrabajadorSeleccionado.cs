@@ -120,8 +120,7 @@ namespace Waltrace
         }
 
         private void CopyButton_Click(object sender, EventArgs e)
-        {
-            // Obtener información de los textboxes 
+        { 
             string nombreEmpleado = DisplayBoxNom.Text;
             string rutEmpleado = DisplayBoxRut.Text;
             string cargo = DisplayBoxCargo.Text;

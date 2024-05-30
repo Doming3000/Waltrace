@@ -41,7 +41,7 @@ namespace Waltrace
             }
         }
 
-        // Obtener datos de la empresa basado en el identificador
+        // Método para obtener datos de la empresa basado en el identificador
         private static (string rutEmpresa, string nombreRepresentante, string direccion, long telefono, DateTime añoConst, string logoUrl, string documentacion) ObtenerDatosEmpresa(int idEmpresa)
         {
             string rutEmpresa = "", nombreRepresentante = "", direccion = "", logoUrl = "", documentacion = "";
@@ -92,23 +92,22 @@ namespace Waltrace
                     MCAPanel.Visible = false;
                     WaltechPanel.Visible = false;
 
-                    if (idEmpresa == 1) // Walbusch SA
+                    // Condicionales en caso de querer mostrar información adicional para cada empresa
+                    if (idEmpresa == 1)
                     {
                         WalbuschPanel.Visible = true;
                     }
-                    else if (idEmpresa == 2) // MCA SA
+                    else if (idEmpresa == 2)
                     {
                         MCAPanel.Visible = true;
                     }
-                    else if (idEmpresa == 3) // Waltech
+                    else if (idEmpresa == 3)
                     {
                         WaltechPanel.Visible = true;
                     }
 
-                    // Consultar la base de datos para obtener la información a imprimir
                     var (rutEmpresa, nombreRepresentante, direccion, telefono, añoConst, logoUrl, documentacion) = ObtenerDatosEmpresa(idEmpresa);
 
-                    // Imprimir los datos en sus respectivos textboxes
                     DisplayBoxRep.Text = nombreRepresentante;
                     DisplayBoxRut.Text = rutEmpresa;
                     DisplayBoxDir.Text = direccion;
@@ -116,8 +115,6 @@ namespace Waltrace
                     DisplayBoxAño.Text = añoConst.ToString("d-MM-yyyy");
 
                     CargarLogo(logoUrl);
-
-                    // Actualizar la URL de documentación actual
                     urlDoc = documentacion;
                 }
             }
