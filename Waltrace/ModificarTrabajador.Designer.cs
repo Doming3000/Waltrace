@@ -49,6 +49,7 @@
             RegresarButton = new Button();
             label8 = new Label();
             ModificarEmpleado = new Panel();
+            AñadirButton = new Button();
             BuscadorEmpleado = new TextBox();
             SearchButton = new Button();
             TrabajadoresList = new CustomListView();
@@ -250,15 +251,28 @@
             // 
             // ModificarEmpleado
             // 
+            ModificarEmpleado.Controls.Add(AñadirButton);
             ModificarEmpleado.Controls.Add(BuscadorEmpleado);
             ModificarEmpleado.Controls.Add(SearchButton);
             ModificarEmpleado.Controls.Add(TrabajadoresList);
             ModificarEmpleado.Controls.Add(label8);
-            ModificarEmpleado.Location = new Point(521, 266);
+            ModificarEmpleado.Location = new Point(15, 15);
             ModificarEmpleado.Name = "ModificarEmpleado";
-            ModificarEmpleado.Size = new Size(598, 400);
+            ModificarEmpleado.Size = new Size(580, 400);
             ModificarEmpleado.TabIndex = 15;
             ModificarEmpleado.Visible = false;
+            // 
+            // AñadirButton
+            // 
+            AñadirButton.Location = new Point(455, 357);
+            AñadirButton.Name = "AñadirButton";
+            AñadirButton.Size = new Size(108, 29);
+            AñadirButton.TabIndex = 19;
+            AñadirButton.Text = "Añadir Datos";
+            AñadirButton.UseVisualStyleBackColor = true;
+            AñadirButton.Click += AñadirButton_Click;
+            AñadirButton.MouseEnter += Button_MouseEnter;
+            AñadirButton.MouseLeave += Button_MouseLeave;
             // 
             // BuscadorEmpleado
             // 
@@ -267,6 +281,7 @@
             BuscadorEmpleado.PlaceholderText = "Ingrese nombre o rut";
             BuscadorEmpleado.Size = new Size(200, 27);
             BuscadorEmpleado.TabIndex = 18;
+            BuscadorEmpleado.KeyDown += BuscadorEmpleado_KeyDown;
             // 
             // SearchButton
             // 
@@ -276,6 +291,9 @@
             SearchButton.TabIndex = 17;
             SearchButton.Text = "Buscar";
             SearchButton.UseVisualStyleBackColor = true;
+            SearchButton.Click += SearchButton_Click;
+            SearchButton.MouseEnter += Button_MouseEnter;
+            SearchButton.MouseLeave += Button_MouseLeave;
             // 
             // TrabajadoresList
             // 
@@ -360,5 +378,6 @@
         private ColumnHeader EmpresaContr;
         private TextBox BuscadorEmpleado;
         private Button SearchButton;
+        private Button AñadirButton;
     }
 }

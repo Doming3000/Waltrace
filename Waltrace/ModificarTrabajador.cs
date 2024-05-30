@@ -218,6 +218,78 @@ namespace Waltrace
             }
         }
 
+        private void BuscadorEmpleado_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Evitar que el evento se propague
+                e.SuppressKeyPress = true;
+
+                if (BuscadorEmpleado.Text == "")
+                {
+                    ListarTrabajadores();
+                }
+                else
+                {
+                    BuscarEmpleado();
+                }
+            }
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            if (BuscadorEmpleado.Text == "")
+            {
+                ListarTrabajadores();
+            }
+            else
+            {
+                BuscarEmpleado();
+            }
+        }
+
+        private void BuscarEmpleado()
+        {
+            string searchTerm = BuscadorEmpleado.Text.Trim();
+
+            if (DataBaseConnection.VerifyInternetConnection())
+            {
+                try
+                {
+                    DataBaseConnection.AbrirConexion();
+
+                    string query = @"SELECT t.id_trabajador, t.nom_trabajador, t.rut_trabajador, e.nom_empresa, t.cargo FROM trabajadores t INNER JOIN empresas e ON t.id_empresa = e.id_empresa WHERE t.nom_trabajador LIKE @searchTerm OR t.rut_trabajador LIKE @searchTerm";
+
+                    using SqlCommand command = new(query, DataBaseConnection.Conexion);
+                    command.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
+
+                    using SqlDataReader reader = command.ExecuteReader();
+                    TrabajadoresList.Items.Clear();
+                    TrabajadoresList.IsSearchResultEmpty = true;
+
+                    while (reader.Read())
+                    {
+                        ListViewItem item = new(reader["nom_trabajador"].ToString());
+                        item.SubItems.Add(reader["rut_trabajador"].ToString());
+                        item.SubItems.Add(reader["cargo"].ToString());
+                        item.SubItems.Add(reader["nom_empresa"].ToString());
+                        item.Tag = reader["id_trabajador"].ToString();
+
+                        TrabajadoresList.Items.Add(item);
+                        TrabajadoresList.IsSearchResultEmpty = false;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Ha ocurrido un error en la base de datos: " + ex.Message, "Error de base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    DataBaseConnection.CerrarConexion();
+                }
+            }
+        }
+
         private void LimpiarCampos()
         {
             TextBoxNom.Clear();
@@ -242,6 +314,12 @@ namespace Waltrace
             {
                 e.Handled = true;
             }
+        }
+
+        private void AñadirButton_Click(object sender, EventArgs e)
+        {
+            InsertarEmpleado.Visible = true;
+            ModificarEmpleado.Visible = false;
         }
 
         // Simular efecto Hover del cursor
