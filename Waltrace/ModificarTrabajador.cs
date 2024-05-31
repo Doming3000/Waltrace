@@ -9,6 +9,8 @@ namespace Waltrace
         {
             InitializeComponent();
             ListarEmpresas();
+
+            DateTimeP.Value = DateTime.Now;
         }
 
         private void ListarEmpresas()

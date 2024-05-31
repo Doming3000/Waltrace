@@ -161,7 +161,7 @@
             DateTimeP.Name = "DateTimeP";
             DateTimeP.Size = new Size(121, 27);
             DateTimeP.TabIndex = 5;
-            DateTimeP.Value = new DateTime(2024, 5, 8, 7, 57, 47, 0);
+            DateTimeP.Value = new DateTime(2024, 4, 1, 0, 0, 0, 0);
             // 
             // TextBoxFoto
             // 
