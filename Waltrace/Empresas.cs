@@ -140,7 +140,8 @@ namespace Waltrace
                 {
                     var image = Image.FromStream(stream);
 
-                    Invoke((MethodInvoker)delegate {
+                    Invoke((MethodInvoker)delegate
+                    {
                         LogoBox.Image = image;
                         LoadingText.Visible = false;
                     });
@@ -205,6 +206,11 @@ namespace Waltrace
         private void Button_MouseLeave(object sender, EventArgs e)
         {
             Cursor = Cursors.Default;
+        }
+
+        private void Empresas_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            CloseProgram.Close();
         }
     }
 }

@@ -124,6 +124,7 @@
             Name = "Trabajadores";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Waltrace - Trabajadores";
+            FormClosing += Trabajadores_FormClosing;
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);
             PerformLayout();

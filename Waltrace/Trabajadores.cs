@@ -155,5 +155,10 @@ namespace Waltrace
         {
             Cursor = Cursors.Default;
         }
+
+        private void Trabajadores_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            CloseProgram.Close();
+        }
     }
 }

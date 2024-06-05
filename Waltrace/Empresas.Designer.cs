@@ -357,6 +357,7 @@
             Name = "Empresas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Waltrace - Empresas";
+            FormClosing += Empresas_FormClosing;
             DatosEmpresa.ResumeLayout(false);
             DatosEmpresa.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)LogoBox).EndInit();

@@ -21,7 +21,6 @@ namespace Waltrace
 
         public static SqlConnection Conexion => conexion;
 
-
         public static void AbrirConexion()
         {
             try
@@ -58,6 +57,15 @@ namespace Waltrace
                 return false;
             }
             return true;
+        }
+    }
+
+    public static class CloseProgram
+    {
+        public static void Close()
+        {
+            DataBaseConnection.CerrarConexion();
+            Application.Exit();
         }
     }
 }

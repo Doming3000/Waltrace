@@ -98,6 +98,7 @@
             Name = "Principal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Waltrace";
+            FormClosing += Principal_FormClosing;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }

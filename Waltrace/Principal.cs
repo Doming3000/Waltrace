@@ -50,5 +50,10 @@
         {
             Cursor = Cursors.Default;
         }
+
+        private void Principal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            CloseProgram.Close();
+        }
     }
 }

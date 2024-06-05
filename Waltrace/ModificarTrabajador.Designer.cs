@@ -241,6 +241,7 @@
             Name = "ModificarTrabajador";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
+            FormClosing += ModificarTrabajador_FormClosing;
             InsertarEmpleado.ResumeLayout(false);
             InsertarEmpleado.PerformLayout();
             ResumeLayout(false);
